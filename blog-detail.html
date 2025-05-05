@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melestarikan Kue Tradisional Indonesia - Rasa Nusantara</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .article-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    
+    .article-content h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1.25rem;
+      color: #1F2937;
+    }
+    
+    .article-content h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #1F2937;
+    }
+    
+    .article-content ul, .article-content ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.25rem;
+    }
+    
+    .article-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+    
+    .article-content ul li {
+      list-style-type: disc;
+    }
+    
+    .article-content ol li {
+      list-style-type: decimal;
+    }
+    
+    .article-content img {
+      border-radius: 0.5rem;
+      margin: 2rem 0;
+    }
+    
+    .article-content blockquote {
+      border-left: 4px solid #EA580C;
+      padding-left: 1rem;
+      font-style: italic;
+      color: #4B5563;
+      margin: 1.5rem 0;
+    }
+    
+    .article-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .article-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .tag-pill {
+      transition: all 0.3s ease;
+    }
+    
+    .tag-pill:hover {
+      transform: translateY(-2px);
+      background-color: #FFEDD5;
+      color: #EA580C;
+    }
+    
+    .share-button {
+      transition: all 0.3s ease;
+    }
+    
+    .share-button:hover {
+      transform: translateY(-3px);
+    }
+    
+    .table-of-contents li {
+      transition: all 0.2s ease;
+    }
+    
+    .table-of-contents li:hover {
+      color: #EA580C;
+    }
+    
+    .comment-form input:focus, .comment-form textarea:focus {
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.3);
+    }
+    
+    .featured-gradient {
+      background: linear-gradient(to right, rgba(249, 115, 22, 0.9), rgba(249, 115, 22, 0.7));
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <a href="index.html" class="text-2xl font-bold text-orange-600 flex items-center">
+          <i class="fas fa-utensils mr-2"></i>
+          Rasa Nusantara
+        </a>
+        
+        <!-- Navigation - Desktop -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Beranda</a>
+          <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Produk</a>
+          <a href="blog.html" class="text-orange-500 font-medium border-b-2 border-orange-500 pb-1">Blog</a>
+          <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Tentang Kami</a>
+          <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Kontak</a>
+        </nav>
+        
+        <!-- Right Menu -->
+        <div class="flex items-center space-x-6">
+          <!-- Search -->
+          <div class="relative hidden md:block">
+            <input type="text" placeholder="Cari artikel atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-64 text-sm">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+          
+          <!-- Notifications -->
+          <div class="relative">
+            <a href="#" class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-bell text-xl"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
+            </a>
+          </div>
+          
+          <!-- Cart -->
+          <div class="relative">
+            <a href="keranjang.html" class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+            </a>
+          </div>
+          
+          <!-- User -->
+          <div class="relative">
+            <a href="akun.html" class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-user-circle text-xl"></i>
+            </a>
+          </div>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+        <div class="flex flex-col space-y-4">
+          <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Beranda</a>
+          <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Produk</a>
+          <a href="blog.html" class="text-orange-500 font-medium">Blog</a>
+          <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Tentang Kami</a>
+          <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Kontak</a>
+        </div>
+        <div class="mt-4 relative">
+          <input type="text" placeholder="Cari artikel atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full text-sm">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-100 py-3">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-orange-500">Beranda</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <a href="blog.html" class="text-gray-600 hover:text-orange-500">Blog</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <span class="text-orange-500 font-medium">Melestarikan Kue Tradisional Indonesia</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article Content -->
+  <section class="py-10">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Main Content -->
+        <div class="lg:w-2/3">
+          <!-- Article Header -->
+          <div class="mb-8">
+            <div class="flex items-center mb-4">
+              <span class="bg-orange-100 text-orange-600 text-xs px-3 py-1 rounded-full font-medium">Kuliner Tradisional</span>
+              <span class="text-gray-500 text-sm ml-3 flex items-center"><i class="far fa-calendar-alt mr-1"></i> 15 April 2025</span>
+              <span class="text-gray-500 text-sm ml-3 flex items-center"><i class="far fa-eye mr-1"></i> 2.5K</span>
+              <span class="text-gray-500 text-sm ml-3 flex items-center"><i class="far fa-comment mr-1"></i> 18</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 leading-tight">Melestarikan Kue Tradisional Indonesia yang Hampir Punah</h1>
+            <p class="text-gray-600 text-lg mb-6">Mengenal lebih dekat kue-kue tradisional Indonesia yang mulai langka dan upaya untuk melestarikannya di tengah gempuran kuliner modern.</p>
+            
+            <!-- Author -->
+            <div class="flex items-center mb-6 border-b border-gray-200 pb-6">
+              <img src="https://via.placeholder.com/100" alt="Dewi Lestari" class="w-12 h-12 rounded-full border-2 border-orange-500 mr-4 object-cover">
+              <div>
+                <span class="text-gray-800 font-medium block">Dewi Lestari</span>
+                <span class="text-gray-500 text-sm">Food Historian & Culinary Writer</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Featured Image -->
+          <div class="mb-8 rounded-xl overflow-hidden shadow-lg">
+            <img src="https://via.placeholder.com/1200x600" alt="Kue Tradisional Indonesia" class="w-full h-auto">
+            <div class="bg-gray-100 text-gray-600 text-sm p-3 italic">
+              Berbagai kue tradisional Indonesia yang mulai jarang ditemui di pasaran
+            </div>
+          </div>
+          
+          <!-- Article Content -->
+          <div class="article-content text-gray-700 leading-relaxed">
+            <p>Indonesia memiliki kekayaan kuliner yang luar biasa, termasuk berbagai jenis kue tradisional yang telah ada sejak berabad-abad lalu. Sayangnya, di era modern ini, banyak kue tradisional yang mulai terlupakan dan terancam punah. Generasi muda lebih mengenal kue-kue modern dari luar negeri dibandingkan kue tradisional warisan nenek moyang mereka sendiri.</p>
+            
+            <p>Artikel ini akan membahas beberapa kue tradisional Indonesia yang mulai langka, nilai sejarah dan budaya di baliknya, serta upaya yang dapat dilakukan untuk melestarikannya. Mari kita jelajahi kekayaan kuliner nusantara yang patut dilestarikan ini.</p>
+            
+            <h2>Kue Tradisional yang Mulai Langka</h2>
+            
+            <p>Berikut adalah beberapa kue tradisional Indonesia yang semakin sulit ditemukan di pasaran:</p>
+            
+            <h3>1. Kue Rangi</h3>
+            
+            <p>Kue Rangi adalah kue tradisional Betawi yang terbuat dari tepung beras, kelapa parut, dan gula merah. Kue ini memiliki tekstur renyah di luar dan lembut di dalam dengan rasa manis gurih yang khas. Proses pembuatannya yang rumit dan membutuhkan cetakan khusus membuat kue ini semakin jarang diproduksi.</p>
+            
+            <img src="https://via.placeholder.com/800x400" alt="Kue Rangi" class="w-full h-auto">
+            
+            <h3>2. Kue Cincin</h3>
+            
+            <p>Kue Cincin adalah kue tradisional berbentuk cincin yang terbuat dari tepung beras, gula merah, dan kelapa parut. Kue ini memiliki tekstur renyah dan rasa manis yang khas. Dahulu, kue ini sering dijajakan oleh pedagang keliling, namun kini semakin sulit ditemukan.</p>
+            
+            <h3>3. Kue Putu Mayang</h3>
+            
+            <p>Putu Mayang adalah kue tradisional yang terbuat dari tepung beras dan tepung sagu, berbentuk seperti mie dan disajikan dengan kuah gula merah dan kelapa parut. Kue ini memiliki warna-warni menarik dan rasa yang manis gurih. Proses pembuatannya yang rumit membuat kue ini semakin jarang diproduksi.</p>
+            
+            <img src="https://via.placeholder.com/800x400" alt="Kue Putu Mayang" class="w-full h-auto">
+            
+            <h3>4. Kue Mangkok Otomatis</h3>
+            
+            <p>Kue Mangkok Otomatis adalah kue tradisional yang terbuat dari tepung beras, tepung terigu, dan tape singkong. Kue ini memiliki bentuk seperti mangkok yang mekar dengan tekstur lembut dan rasa manis. Proses pembuatannya yang membutuhkan keahlian khusus membuat kue ini semakin jarang ditemukan.</p>
+            
+            <h3>5. Kue Kembang Goyang</h3>
+            
+            <p>Kue Kembang Goyang adalah kue tradisional yang terbuat dari tepung beras, telur, dan gula. Kue ini memiliki bentuk seperti bunga dengan tekstur renyah dan rasa manis. Proses pembuatannya yang membutuhkan cetakan khusus dan keahlian dalam menggoreng membuat kue ini semakin jarang diproduksi.</p>
+            
+            <blockquote>
+              "Kue tradisional Indonesia bukan sekadar makanan, tetapi juga cerminan kekayaan budaya dan sejarah bangsa yang patut dilestarikan untuk generasi mendatang." - Prof. Dr. Murdijati Gardjito, Pakar Kuliner Tradisional Indonesia
+            </blockquote>
+            
+            <h2>Nilai Sejarah dan Budaya di Balik Kue Tradisional</h2>
+            
+            <p>Kue tradisional Indonesia tidak hanya sekadar makanan, tetapi juga memiliki nilai sejarah dan budaya yang mendalam. Beberapa kue tradisional memiliki makna simbolis dalam upacara adat atau perayaan tertentu. Misalnya, kue Apem yang sering digunakan dalam upacara selamatan di Jawa, atau kue Cucur yang melambangkan kemakmuran dalam tradisi Betawi.</p>
+            
+            <p>Selain itu, kue tradisional juga mencerminkan kearifan lokal dalam memanfaatkan bahan-bahan alami yang tersedia di sekitar. Penggunaan bahan-bahan seperti tepung beras, kelapa, gula merah, dan rempah-rempah lokal menunjukkan bagaimana nenek moyang kita memanfaatkan sumber daya alam dengan bijak.</p>
+            
+            <h2>Tantangan dalam Melestarikan Kue Tradisional</h2>
+            
+            <p>Ada beberapa tantangan yang dihadapi dalam upaya melestarikan kue tradisional Indonesia:</p>
+            
+            <ol>
+              <li><strong>Perubahan gaya hidup:</strong> Masyarakat modern cenderung memilih makanan yang praktis dan cepat saji, sementara kue tradisional seringkali membutuhkan waktu dan proses yang panjang dalam pembuatannya.</li>
+              <li><strong>Kurangnya regenerasi:</strong> Semakin sedikit generasi muda yang tertarik untuk mempelajari dan meneruskan tradisi pembuatan kue tradisional.</li>
+              <li><strong>Persaingan dengan kue modern:</strong> Kue-kue modern dari luar negeri yang dipasarkan secara masif membuat kue tradisional semakin terpinggirkan.</li>
+              <li><strong>Kesulitan bahan baku:</strong> Beberapa bahan baku untuk membuat kue tradisional semakin sulit ditemukan atau harganya semakin mahal.</li>
+              <li><strong>Kurangnya dokumentasi:</strong> Banyak resep kue tradisional yang tidak terdokumentasi dengan baik dan hanya diturunkan secara lisan dari generasi ke generasi.</li>
+            </ol>
+            
+            <h2>Upaya Pelestarian Kue Tradisional</h2>
+            
+            <p>Berikut adalah beberapa upaya yang dapat dilakukan untuk melestarikan kue tradisional Indonesia:</p>
+            
+            <h3>1. Dokumentasi dan Publikasi</h3>
+            
+            <p>Mendokumentasikan resep dan cara pembuatan kue tradisional secara detail dan mempublikasikannya melalui berbagai media, baik cetak maupun digital. Hal ini akan membantu menyebarluaskan pengetahuan tentang kue tradisional kepada masyarakat luas.</p>
+            
+            <h3>2. Edukasi dan Pelatihan</h3>
+            
+            <p>Menyelenggarakan workshop atau pelatihan pembuatan kue tradisional untuk generasi muda. Hal ini dapat dilakukan di sekolah, komunitas, atau pusat kebudayaan untuk mengenalkan kue tradisional sejak dini.</p>
+            
+            <img src="https://via.placeholder.com/800x400" alt="Workshop Pembuatan Kue Tradisional" class="w-full h-auto">
+            
+            <h3>3. Inovasi dalam Penyajian</h3>
+            
+            <p>Melakukan inovasi dalam penyajian kue tradisional agar lebih menarik bagi generasi muda, tanpa menghilangkan esensi dan cita rasa aslinya. Misalnya, dengan kemasan yang lebih modern atau variasi rasa yang lebih beragam.</p>
+            
+            <h3>4. Promosi melalui Media Sosial</h3>
+            
+            <p>Memanfaatkan media sosial untuk mempromosikan kue tradisional kepada masyarakat luas. Konten-konten menarik tentang kue tradisional dapat menarik minat generasi muda untuk mencoba dan mempelajarinya.</p>
+            
+            <h3>5. Kerjasama dengan Industri Kuliner</h3>
+            
+            <p>Menjalin kerjasama dengan industri kuliner, seperti hotel, restoran, atau kafe, untuk menyajikan kue tradisional sebagai bagian dari menu mereka. Hal ini akan membantu memperkenalkan kue tradisional kepada masyarakat luas, termasuk wisatawan.</p>
+            
+            <h2>Resep Kue Tradisional: Kue Rangi</h2>
+            
+            <p>Berikut adalah resep untuk membuat Kue Rangi, salah satu kue tradisional Betawi yang mulai langka:</p>
+            
+            <h3>Bahan-bahan:</h3>
+            
+            <ul>
+              <li>250 gram tepung beras</li>
+              <li>50 gram tepung tapioka</li>
+              <li>200 gram kelapa parut</li>
+              <li>200 gram gula merah, disisir halus</li>
+              <li>100 gram gula pasir</li>
+              <li>1/2 sendok teh garam</li>
+              <li>400 ml air</li>
+              <li>Minyak goreng secukupnya</li>
+            </ul>
+            
+            <h3>Cara Membuat:</h3>
+            
+            <ol>
+              <li>Campurkan tepung beras, tepung tapioka, kelapa parut, dan garam dalam wadah. Aduk rata.</li>
+              <li>Rebus air, gula merah, dan gula pasir hingga gula larut dan mendidih. Saring.</li>
+              <li>Tuangkan larutan gula ke dalam campuran tepung sedikit demi sedikit sambil diaduk hingga rata dan tidak bergerindil.</li>
+              <li>Diamkan adonan selama 30 menit.</li>
+              <li>Panaskan cetakan kue rangi dengan api kecil. Olesi dengan sedikit minyak.</li>
+              <li>Tuang adonan ke dalam cetakan hingga 3/4 penuh. Tutup cetakan dan masak hingga kue matang dan berwarna kecoklatan.</li>
+              <li>Angkat kue dari cetakan dan sajikan.</li>
+            </ol>
+            
+            <p>Dengan melestarikan resep dan cara pembuatan kue tradisional, kita turut menjaga warisan kuliner Indonesia agar tidak punah dan dapat dinikmati oleh generasi mendatang.</p>
+            
+            <h2>Kesimpulan</h2>
+            
+            <p>Kue tradisional Indonesia adalah warisan kuliner yang patut dilestarikan. Melalui upaya dokumentasi, edukasi, inovasi, promosi, dan kerjasama dengan berbagai pihak, kita dapat memastikan bahwa kue tradisional Indonesia tetap eksis dan dikenal oleh generasi mendatang.</p>
+            
+            <p>Mari bersama-sama melestarikan kue tradisional Indonesia sebagai bagian dari upaya menjaga kekayaan budaya bangsa. Dengan mengenal dan mencintai kuliner tradisional, kita turut menjaga identitas dan jati diri bangsa Indonesia di tengah arus globalisasi.</p>
+          </div>
+          
+          <!-- Tags -->
+          <div class="mt-10 mb-8">
+            <div class="flex flex-wrap gap-2">
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Kue Tradisional</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Kuliner Indonesia</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Warisan Budaya</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Resep Tradisional</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Pelestarian Kuliner</a>
+            </div>
+          </div>
+          
+          <!-- Share Buttons -->
+          <div class="flex items-center justify-between border-t border-b border-gray-200 py-6 mb-10">
+            <div class="text-gray-700 font-medium">Bagikan Artikel:</div>
+            <div class="flex space-x-3">
+              <a href="#" class="share-button bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="share-button bg-blue-400 hover:bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="share-button bg-green-600 hover:bg-green-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="#" class="share-button bg-blue-800 hover:bg-blue-900 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="#" class="share-button bg-red-600 hover:bg-red-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                <i class="fab fa-pinterest"></i>
+              </a>
+              <button class="share-button bg-gray-200 hover:bg-gray-300 text-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                <i class="fas fa-link"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Author Bio -->
+          <div class="bg-orange-50 rounded-xl p-6 mb-10">
+            <div class="flex items-start">
+              <img src="https://via.placeholder.com/100" alt="Dewi Lestari" class="w-20 h-20 rounded-full border-2 border-orange-500 mr-6 object-cover">
+              <div>
+                <h3 class="text-xl font-bold mb-2">Tentang Penulis</h3>
+                <h4 class="text-lg font-medium text-orange-600 mb-2">Dewi Lestari</h4>
+                <p class="text-gray-700 mb-4">Dewi Lestari adalah seorang food historian dan penulis kuliner yang telah meneliti kue tradisional Indonesia selama lebih dari 15 tahun. Ia telah menerbitkan beberapa buku tentang kuliner tradisional Indonesia dan aktif dalam berbagai kegiatan pelestarian warisan kuliner nusantara.</p>
+                <div class="flex space-x-3">
+                  <a href="#" class="text-gray-600 hover:text-orange-500 transition-colors">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="#" class="text-gray-600 hover:text-orange-500 transition-colors">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="#" class="text-gray-600 hover:text-orange-500 transition-colors">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                  <a href="#" class="text-gray-600 hover:text-orange-500 transition-colors">
+                    <i class="fas fa-globe"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Related Articles -->
+          <div class="mb-10">
+            <h3 class="text-2xl font-bold mb-6 flex items-center">
+              <i class="fas fa-newspaper text-orange-500 mr-3"></i>
+              Artikel Terkait
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Related Article 1 -->
+              <div class="bg-white rounded-xl shadow-md overflow-hidden article-card">
+                <a href="blog-detail.html" class="block relative">
+                  <img src="https://via.placeholder.com/400x250" alt="Resep Kue Tradisional" class="w-full h-48 object-cover">
+                  <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black opacity-50 transition-opacity hover:opacity-30"></div>
+                </a>
+                <div class="p-6">
+                  <div class="flex items-center mb-3">
+                    <span class="bg-orange-100 text-orange-600 text-xs px-3 py-1 rounded-full font-medium">Resep</span>
+                    <span class="text-gray-500 text-sm ml-3 flex items-center"><i class="far fa-calendar-alt mr-1"></i> 10 April 2025</span>
+                  </div>
+                  <a href="blog-detail.html" class="block">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 hover:text-orange-500 transition-colors">5 Resep Kue Tradisional yang Mudah Dibuat di Rumah</h3>
+                  </a>
+                  <p class="text-gray-600 mb-4 line-clamp-2">Temukan resep kue tradisional Indonesia yang mudah dibuat dengan bahan-bahan yang tersedia di dapur rumah Anda.</p>
+                  <div class="flex items-center">
+                    <img src="https://via.placeholder.com/50" alt="Chef Budi" class="w-8 h-8 rounded-full mr-2 object-cover">
+                    <span class="text-gray-700 text-sm">Oleh <span class="font-medium text-orange-500">Chef Budi</span></span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Related Article 2 -->
+              <div class="bg-white rounded-xl shadow-md overflow-hidden article-card">
+                <a href="blog-detail.html" class="block relative">
+                  <img src="https://via.placeholder.com/400x250" alt="Festival Kuliner Tradisional" class="w-full h-48 object-cover">
+                  <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black opacity-50 transition-opacity hover:opacity-30"></div>
+                </a>
+                <div class="p-6">
+                  <div class="flex items-center mb-3">
+                    <span class="bg-orange-100 text-orange-600 text-xs px-3 py-1 rounded-full font-medium">Berita</span>
+                    <span class="text-gray-500 text-sm ml-3 flex items-center"><i class="far fa-calendar-alt mr-1"></i> 5 April 2025</span>
+                  </div>
+                  <a href="blog-detail.html" class="block">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 hover:text-orange-500 transition-colors">Festival Kuliner Tradisional 2025: Melestarikan Warisan Kuliner Nusantara</h3>
+                  </a>
+                  <p class="text-gray-600 mb-4 line-clamp-2">Festival tahunan yang menampilkan berbagai kuliner tradisional Indonesia dari Sabang sampai Merauke.</p>
+                  <div class="flex items-center">
+                    <img src="https://via.placeholder.com/50" alt="Maya Sari" class="w-8 h-8 rounded-full mr-2 object-cover">
+                    <span class="text-gray-700 text-sm">Oleh <span class="font-medium text-orange-500">Maya Sari</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Comments Section -->
+          <div class="mb-10">
+            <h3 class="text-2xl font-bold mb-6 flex items-center">
+              <i class="fas fa-comments text-orange-500 mr-3"></i>
+              Komentar (18)
+            </h3>
+            
+            <!-- Comment Form -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+              <h4 class="text-lg font-bold mb-4">Tinggalkan Komentar</h4>
+              <form class="comment-form">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label for="name" class="block text-gray-700 mb-2 font-medium">Nama</label>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors">
+                  </div>
+                  <div>
+                    <label for="email" class="block text-gray-700 mb-2 font-medium">Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors">
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label for="comment" class="block text-gray-700 mb-2 font-medium">Komentar</label>
+                  <textarea id="comment" name="comment" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors"></textarea>
+                </div>
+                <div class="flex items-center mb-4">
+                  <input type="checkbox" id="notify" name="notify" class="w-5 h-5 text-orange-500 focus:ring-orange-500 rounded">
+                  <label for="notify" class="ml-2 text-gray-700">Beri tahu saya jika ada balasan</label>
+                </div>
+                <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors font-medium flex items-center justify-center shadow-md">
+                  <i class="fas fa-paper-plane mr-2"></i>
+                  Kirim Komentar
+                </button>
+              </form>
+            </div>
+            
+            <!-- Comments List -->
+            <div class="space-y-6">
+              <!-- Comment 1 -->
+              <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex items-start">
+                  <img src="https://via.placeholder.com/50" alt="Siti Rahma" class="w-12 h-12 rounded-full mr-4 object-cover">
+                  <div class="flex-grow">
+                    <div class="flex justify-between items-center mb-2">
+                      <h4 class="font-bold text-gray-800">Siti Rahma</h4>
+                      <span class="text-gray-500 text-sm">2 jam yang lalu</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">Artikel yang sangat informatif! Saya jadi terinspirasi untuk mencoba membuat kue rangi di rumah. Terima kasih telah berbagi resepnya.</p>
+                    <div class="flex items-center">
+                      <button class="text-gray-500 hover:text-orange-500 transition-colors flex items-center mr-4">
+                        <i class="far fa-thumbs-up mr-1"></i>
+                        <span>12</span>
+                      </button>
+                      <button class="text-gray-500 hover:text-orange-500 transition-colors flex items-center">
+                        <i class="far fa-comment mr-1"></i>
+                        <span>Balas</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Reply -->
+                <div class="ml-16 mt-4 pl-4 border-l-2 border-gray-200">
+                  <div class="flex items-start">
+                    <img src="https://via.placeholder.com/50" alt="Dewi Lestari" class="w-10 h-10 rounded-full mr-3 object-cover">
+                    <div class="flex-grow">
+                      <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-bold text-gray-800">Dewi Lestari <span class="bg-orange-100 text-orange-600 text-xs px-2 py-0.5 rounded-full ml-2">Penulis</span></h4>
+                        <span class="text-gray-500 text-sm">1 jam yang lalu</span>
+                      </div>
+                      <p class="text-gray-700 mb-4">Terima kasih, Siti! Senang sekali jika artikel ini bisa menginspirasi Anda. Jangan ragu untuk berbagi hasil kue rangi buatan Anda ya.</p>
+                      <div class="flex items-center">
+                        <button class="text-gray-500 hover:text-orange-500 transition-colors flex items-center mr-4">
+                          <i class="far fa-thumbs-up mr-1"></i>
+                          <span>5</span>
+                        </button>
+                        <button class="text-gray-500 hover:text-orange-500 transition-colors flex items-center">
+                          <i class="far fa-comment mr-1"></i>
+                          <span>Balas</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Comment 2 -->
+              <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex items-start">
+                  <img src="https://via.placeholder.com/50" alt="Budi Santoso" class="w-12 h-12 rounded-full mr-4 object-cover">
+                  <div class="flex-grow">
+                    <div class="flex justify-between items-center mb-2">
+                      <h4 class="font-bold text-gray-800">Budi Santoso</h4>
+                      <span class="text-gray-500 text-sm">1 hari yang lalu</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">Saya setuju bahwa kue tradisional Indonesia perlu dilestarikan. Saya masih ingat nenek saya sering membuat kue putu mayang saat saya kecil. Sayang sekali sekarang sudah jarang yang bisa membuatnya.</p>
+                    <div class="flex items-center">
+                      <button class="text-gray-500 hover:text-orange-500 transition-colors flex items-center mr-4">
+                        <i class="far fa-thumbs-up mr-1"></i>
+                        <span>8</span>
+                      </button>
+                      <button class="text-gray-500 hover:text-orange-500 transition-colors flex items-center">
+                        <i class="far fa-comment mr-1"></i>
+                        <span>Balas</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Comment 3 -->
+              <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex items-start">
+                  <img src="https://via.placeholder.com/50" alt="Andi Wijaya" class="w-12 h-12 rounded-full mr-4 object-cover">
+                  <div class="flex-grow">
+                    <div class="flex justify-between items-center mb-2">
+                      <h4 class="font-bold text-gray-800">Andi Wijaya</h4>
+                      <span class="text-gray-500 text-sm">2 hari yang lalu</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">Bagaimana dengan kue tradisional dari Sulawesi? Saya berasal dari Makassar dan kami memiliki banyak kue tradisional yang juga mulai langka, seperti kue Barongko dan Bolu Paranggi.</p>
+                    <div class="flex items-center">
+                      <button class="text-gray-500 hover:text-orange-500 transition-colors flex items-center mr-4">
+                        <i class="far fa-thumbs-up mr-1"></i>
+                        <span>6</span>
+                      </button>
+                      <button class="text-gray-500 hover:text-orange-500 transition-colors flex items-center">
+                        <i class="far fa-comment mr-1"></i>
+                        <span>Balas</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Load More Comments -->
+              <div class="text-center">
+                <button class="bg-white hover:bg-gray-50 text-orange-500 border border-orange-500 px-6 py-3 rounded-lg transition-colors font-medium flex items-center justify-center mx-auto shadow-sm">
+                  <i class="fas fa-spinner mr-2"></i>
+                  Lihat Komentar Lainnya
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="lg:w-1/3">
+          <!-- Table of Contents -->
+          <div class="bg-white rounded-xl shadow-md p-6 mb-8 sticky top-24">
+            <h3 class="text-lg font-bold mb-4 flex items-center">
+              <i class="fas fa-list-ul text-orange-500 mr-2"></i>
+              Daftar Isi
+            </h3>
+            <ul class="space-y-3 table-of-contents">
+              <li class="pl-4 border-l-2 border-orange-500">
+                <a href="#" class="text-orange-500 font-medium">Kue Tradisional yang Mulai Langka</a>
+              </li>
+              <li class="pl-4 border-l-2 border-gray-200 hover:border-orange-500 transition-colors">
+                <a href="#" class="text-gray-700 hover:text-orange-500 transition-colors">Nilai Sejarah dan Budaya</a>
+              </li>
+              <li class="pl-4 border-l-2 border-gray-200 hover:border-orange-500 transition-colors">
+                <a href="#" class="text-gray-700 hover:text-orange-500 transition-colors">Tantangan dalam Pelestarian</a>
+              </li>
+              <li class="pl-4 border-l-2 border-gray-200 hover:border-orange-500 transition-colors">
+                <a href="#" class="text-gray-700 hover:text-orange-500 transition-colors">Upaya Pelestarian</a>
+              </li>
+              <li class="pl-4 border-l-2 border-gray-200 hover:border-orange-500 transition-colors">
+                <a href="#" class="text-gray-700 hover:text-orange-500 transition-colors">Resep Kue Rangi</a>
+              </li>
+              <li class="pl-4 border-l-2 border-gray-200 hover:border-orange-500 transition-colors">
+                <a href="#" class="text-gray-700 hover:text-orange-500 transition-colors">Kesimpulan</a>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Popular Posts -->
+          <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-lg font-bold mb-4 flex items-center">
+              <i class="fas fa-fire text-orange-500 mr-2"></i>
+              Artikel Populer
+            </h3>
+            <div class="space-y-4">
+              <!-- Popular Post 1 -->
+              <div class="flex items-center">
+                <a href="blog-detail.html" class="block w-20 h-20 rounded-lg overflow-hidden mr-4 flex-shrink-0">
+                  <img src="https://via.placeholder.com/100" alt="Rahasia Rendang" class="w-full h-full object-cover">
+                </a>
+                <div>
+                  <a href="blog-detail.html" class="block font-medium text-gray-800 hover:text-orange-500 transition-colors mb-1 line-clamp-2">Rahasia Rendang Padang yang Tahan Lama dan Tetap Lezat</a>
+                  <span class="text-gray-500 text-sm flex items-center"><i class="far fa-eye mr-1"></i> 3.2K</span>
+                </div>
+              </div>
+              
+              <!-- Popular Post 2 -->
+              <div class="flex items-center">
+                <a href="blog-detail.html" class="block w-20 h-20 rounded-lg overflow-hidden mr-4 flex-shrink-0">
+                  <img src="https://via.placeholder.com/100" alt="Sambal Tradisional" class="w-full h-full object-cover">
+                </a>
+                <div>
+                  <a href="blog-detail.html" class="block font-medium text-gray-800 hover:text-orange-500 transition-colors mb-1 line-clamp-2">5 Sambal Tradisional yang Wajib Dicoba di Rumah</a>
+                  <span class="text-gray-500 text-sm flex items-center"><i class="far fa-eye mr-1"></i> 2.8K</span>
+                </div>
+              </div>
+              
+              <!-- Popular Post 3 -->
+              <div class="flex items-center">
+                <a href="blog-detail.html" class="block w-20 h-20 rounded-lg overflow-hidden mr-4 flex-shrink-0">
+                  <img src="https://via.placeholder.com/100" alt="Teknik Memasak Gulai" class="w-full h-full object-cover">
+                </a>
+                <div>
+                  <a href="blog-detail.html" class="block font-medium text-gray-800 hover:text-orange-500 transition-colors mb-1 line-clamp-2">Teknik Memasak Gulai agar Tidak Pecah dan Lebih Gurih</a>
+                  <span class="text-gray-500 text-sm flex items-center"><i class="far fa-eye mr-1"></i> 2.5K</span>
+                </div>
+              </div>
+              
+              <!-- Popular Post 4 -->
+              <div class="flex items-center">
+                <a href="blog-detail.html" class="block w-20 h-20 rounded-lg overflow-hidden mr-4 flex-shrink-0">
+                  <img src="https://via.placeholder.com/100" alt="Kuliner Sulawesi" class="w-full h-full object-cover">
+                </a>
+                <div>
+                  <a href="blog-detail.html" class="block font-medium text-gray-800 hover:text-orange-500 transition-colors mb-1 line-clamp-2">Menjelajahi Kekayaan Kuliner Sulawesi yang Menggugah Selera</a>
+                  <span class="text-gray-500 text-sm flex items-center"><i class="far fa-eye mr-1"></i> 2.1K</span>
+                </div>
+              </div>
+              
+              <!-- Popular Post 5 -->
+              <div class="flex items-center">
+                <a href="blog-detail.html" class="block w-20 h-20 rounded-lg overflow-hidden mr-4 flex-shrink-0">
+                  <img src="https://via.placeholder.com/100" alt="Rempah Indonesia" class="w-full h-full object-cover">
+                </a>
+                <div>
+                  <a href="blog-detail.html" class="block font-medium text-gray-800 hover:text-orange-500 transition-colors mb-1 line-clamp-2">Rempah Indonesia Semakin Diminati Pasar Global</a>
+                  <span class="text-gray-500 text-sm flex items-center"><i class="far fa-eye mr-1"></i> 1.9K</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Categories -->
+          <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-lg font-bold mb-4 flex items-center">
+              <i class="fas fa-folder text-orange-500 mr-2"></i>
+              Kategori
+            </h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="flex items-center justify-between py-2 px-4 rounded-lg hover:bg-orange-50 transition-colors">
+                  <span class="flex items-center text-gray-700 hover:text-orange-500 transition-colors">
+                    <i class="fas fa-utensils mr-2 text-orange-500"></i>
+                    Resep
+                  </span>
+                  <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">24</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center justify-between py-2 px-4 rounded-lg hover:bg-orange-50 transition-colors">
+                  <span class="flex items-center text-gray-700 hover:text-orange-500 transition-colors">
+                    <i class="fas fa-lightbulb mr-2 text-orange-500"></i>
+                    Tips Memasak
+                  </span>
+                  <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">18</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center justify-between py-2 px-4 rounded-lg hover:bg-orange-50 transition-colors">
+                  <span class="flex items-center text-gray-700 hover:text-orange-500 transition-colors">
+                    <i class="fas fa-map-marker-alt mr-2 text-orange-500"></i>
+                    Kuliner Daerah
+                  </span>
+                  <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">15</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center justify-between py-2 px-4 rounded-lg hover:bg-orange-50 transition-colors">
+                  <span class="flex items-center text-gray-700 hover:text-orange-500 transition-colors">
+                    <i class="fas fa-newspaper mr-2 text-orange-500"></i>
+                    Berita
+                  </span>
+                  <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">12</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center justify-between py-2 px-4 rounded-lg hover:bg-orange-50 transition-colors">
+                  <span class="flex items-center text-gray-700 hover:text-orange-500 transition-colors">
+                    <i class="fas fa-heart mr-2 text-orange-500"></i>
+                    Gaya Hidup
+                  </span>
+                  <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">9</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Newsletter -->
+          <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-md p-6 mb-8 text-white">
+            <h3 class="text-lg font-bold mb-4 flex items-center">
+              <i class="fas fa-envelope mr-2"></i>
+              Berlangganan Newsletter
+            </h3>
+            <p class="mb-4 text-white text-opacity-90">Dapatkan artikel terbaru dan resep eksklusif langsung ke email Anda.</p>
+            <form>
+              <div class="mb-3">
+                <input type="email" placeholder="Alamat email Anda" class="w-full px-4 py-3 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-white text-gray-800">
+              </div>
+              <button type="submit" class="w-full bg-white text-orange-600 hover:bg-orange-50 px-4 py-3 rounded-lg transition-colors font-medium flex items-center justify-center">
+                <i class="fas fa-paper-plane mr-2"></i>
+                Berlangganan
+              </button>
+            </form>
+          </div>
+          
+          <!-- Tags -->
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <h3 class="text-lg font-bold mb-4 flex items-center">
+              <i class="fas fa-tags text-orange-500 mr-2"></i>
+              Tag Populer
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Kue Tradisional</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Rendang</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Sambal</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Rempah</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Kuliner Jawa</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Kuliner Sumatera</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Kuliner Sulawesi</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Tips Memasak</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Resep Tradisional</a>
+              <a href="#" class="tag-pill bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm transition-colors">Festival Kuliner</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 bg-gradient-to-r from-orange-100 to-orange-50 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0 bg-pattern bg-repeat" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23f97316\' fill-opacity=\'0.2\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E');"></div>
+    </div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="inline-block bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-medium mb-4">
+          NEWSLETTER
+        </div>
+        <h2 class="text-3xl font-bold mb-4 text-gray-800">Dapatkan Artikel Terbaru</h2>
+        <p class="text-gray-600 mb-8 text-lg">Berlangganan newsletter kami untuk mendapatkan artikel terbaru seputar kuliner tradisional Indonesia langsung ke email Anda.</p>
+        <div class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+          <input type="email" placeholder="Alamat email Anda" class="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent shadow-sm">
+          <button class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors font-medium flex items-center justify-center shadow-md">
+            <i class="fas fa-paper-plane mr-2"></i>
+            Berlangganan
+          </button>
+        </div>
+        <p class="text-gray-500 text-sm mt-4">Kami tidak akan mengirimkan spam. Anda dapat berhenti berlangganan kapan saja.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+        <!-- About -->
+        <div>
+          <h3 class="text-xl font-bold mb-6 flex items-center">
+            <i class="fas fa-utensils mr-2 text-orange-400"></i>
+            Rasa Nusantara
+          </h3>
+          <p class="text-gray-300 mb-6 leading-relaxed">Website e-commerce yang menyediakan berbagai produk kuliner tradisional Indonesia. Kami berkomitmen untuk melestarikan cita rasa nusantara dengan sentuhan modern.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="bg-gray-700 hover:bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fab fa-facebook-f text-white"></i>
+            </a>
+            <a href="#" class="bg-gray-700 hover:bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fab fa-instagram text-white"></i>
+            </a>
+            <a href="#" class="bg-gray-700 hover:bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fab fa-twitter text-white"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-6">Tautan Cepat</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Beranda
+              </a>
+            </li>
+            <li>
+              <a href="produk.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Produk
+              </a>
+            </li>
+            <li>
+              <a href="blog.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="forum.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Forum
+              </a>
+            </li>
+            <li>
+              <a href="tentang-kami.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Tentang Kami
+              </a>
+            </li>
+            <li>
+              <a href="kontak.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Kontak
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h3 class="text-xl font-bold mb-6">Kontak Kami</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-orange-400"></i>
+              <span>Jl. Contoh No. 123, Kota Cimahi, Jawa Barat, 40511</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone-alt mr-3 text-orange-400"></i>
+              <span>+62 812-3456-7890</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-3 text-orange-400"></i>
+              <span>support@rasanusantara.com</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Hours -->
+        <div>
+          <h3 class="text-xl font-bold mb-6">Jam Operasional</h3>
+          <ul class="space-y-3">
+            <li class="flex justify-between items-center pb-2 border-b border-gray-700">
+              <span>Senin - Jumat:</span>
+              <span class="text-orange-400">08:00 - 17:00 WIB</span>
+            </li>
+            <li class="flex justify-between items-center pb-2 border-b border-gray-700">
+              <span>Sabtu:</span>
+              <span class="text-orange-400">09:00 - 15:00 WIB</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <span>Minggu:</span>
+              <span class="text-orange-400">Tutup</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="border-gray-700 mb-8">
+      
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">&copy; 2025 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Syarat & Ketentuan</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Kebijakan Privasi</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+      
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 100,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Table of contents active state
+      const tocLinks = document.querySelectorAll('.table-of-contents a');
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          tocLinks.forEach(l => {
+            l.classList.remove('text-orange-500', 'font-medium');
+            l.parentElement.classList.remove('border-orange-500');
+            l.parentElement.classList.add('border-gray-200');
+          });
+          
+          this.classList.add('text-orange-500', 'font-medium');
+          this.parentElement.classList.remove('border-gray-200');
+          this.parentElement.classList.add('border-orange-500');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

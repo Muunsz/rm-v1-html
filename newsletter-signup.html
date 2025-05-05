@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Langganan Newsletter - Rasa Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #E57C23;
+            --secondary-color: #025464;
+            --accent-color: #E8AA42;
+            --light-color: #F8F1F1;
+            --dark-color: #333;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .social-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: white;
+        }
+        
+        .social-icon:hover {
+            color: var(--accent-color);
+        }
+        
+        .newsletter-container {
+            margin: 60px auto;
+            max-width: 800px;
+        }
+        
+        .newsletter-header {
+            background-color: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        
+        .newsletter-image {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        
+        .frequency-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .frequency-option:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .frequency-option.selected {
+            border-color: var(--primary-color);
+            background-color: var(--light-color);
+        }
+        
+        .frequency-option input {
+            margin-right: 15px;
+        }
+        
+        .interest-tag {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 5px;
+            border: 1px solid #dee2e6;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .interest-tag:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .interest-tag.selected {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .interest-tag input {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Rasa Nusantara</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produk.html">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forum.html">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tentang-kami.html">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontak.html">Kontak</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="keranjang.html" class="btn position-relative me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3
+                        </span>
+                    </a>
+                    <a href="wishlist.html" class="btn position-relative me-3">
+                        <i class="fas fa-heart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            5
+                        </span>
+                    </a>
+                    <div class="dropdown">
+                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-1"></i> Budi Santoso
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="user-profile.html"><i class="fas fa-user-circle me-2"></i>Profil Saya</a></li>
+                            <li><a class="dropdown-item" href="order-history.html"><i class="fas fa-history me-2"></i>Riwayat Pesanan</a></li>
+                            <li><a class="dropdown-item" href="wishlist.html"><i class="fas fa-heart me-2"></i>Wishlist</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Newsletter Header -->
+    <div class="newsletter-header">
+        <div class="container">
+            <h1 class="mb-3">Langganan Newsletter Rasa Nusantara</h1>
+            <p class="lead mb-0">Dapatkan informasi terbaru, resep eksklusif, dan penawaran spesial langsung ke inbox Anda</p>
+        </div>
+    </div>
+
+    <!-- Newsletter Content -->
+    <div class="container newsletter-container">
+        <div class="row mb-5">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <h3 class="mb-4">Mengapa Berlangganan?</h3>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <div>
+                        <h5>Penawaran Eksklusif</h5>
+                        <p class="mb-0">Dapatkan akses ke diskon dan penawaran khusus yang hanya tersedia untuk pelanggan newsletter.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div>
+                        <h5>Resep Rahasia</h5>
+                        <p class="mb-0">Pelajari resep-resep rahasia dari chef kami untuk membuat hidangan khas Nusantara yang autentik.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div>
+                        <h5>Update Produk Baru</h5>
+                        <p class="mb-0">Jadilah yang pertama tahu tentang produk baru dan koleksi terbatas kami.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div>
+                        <h5>Hadiah Ulang Tahun</h5>
+                        <p class="mb-0">Dapatkan kejutan spesial di hari ulang tahun Anda sebagai pelanggan setia kami.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="/placeholder.svg?height=400&width=400" alt="Newsletter" class="newsletter-image">
+            </div>
+        </div>
+        
+        <!-- Newsletter Form -->
+        <div class="newsletter-form">
+            <h3 class="mb-4 text-center">Daftar Newsletter</h3>
+            <form>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName" class="form-label">Nama Depan*</label>
+                        <input type="text" class="form-control" id="firstName" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName" class="form-label">Nama Belakang*</label>
+                        <input type="text" class="form-control" id="lastName" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email*</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="form-label">Frekuensi Email*</label>
+                    <div class="frequency-option selected">
+                        <input type="radio" name="frequency" id="weekly" value="weekly" checked>
+                        <label for="weekly" class="mb-0">
+                            <strong>Mingguan</strong>
+                            <p class="mb-0 text-muted">Dapatkan update mingguan tentang produk baru dan penawaran spesial</p>
+                        </label>
+                    </div>
+                    <div class="frequency-option">
+                        <input type="radio" name="frequency" id="biweekly" value="biweekly">
+                        <label for="biweekly" class="mb-0">
+                            <strong>Dua Mingguan</strong>
+                            <p class="mb-0 text-muted">Dapatkan update dua minggu sekali dengan konten yang lebih lengkap</p>
+                        </label>
+                    </div>
+                    <div class="frequency-option">
+                        <input type="radio" name="frequency" id="monthly" value="monthly">
+                        <label for="monthly" class="mb-0">
+                            <strong>Bulanan</strong>
+                            <p class="mb-0 text-muted">Dapatkan ringkasan bulanan dengan konten terbaik kami</p>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="form-label">Minat Anda (Pilih minimal 1)*</label>
+                    <div class="d-flex flex-wrap">
+                        <label class="interest-tag">
+                            <input type="checkbox" name="interests" value="makanan-tradisional">
+                            Makanan Tradisional
+                        </label>
+                        <label class="interest-tag">
+                            <input type="checkbox" name="interests" value="bumbu-rempah">
+                            Bumbu & Rempah
+                        </label>
+                        <label class="interest-tag">
+                            <input type="checkbox" name="interests" value="camilan">
+                            Camilan & Kue
+                        </label>
+                        <label class="interest-tag">
+                            <input type="checkbox" name="interests" value="minuman">
+                            Minuman Tradisional
+                        </label>
+                        <label class="interest-tag">
+                            <input type="checkbox" name="interests" value="resep">
+                            Resep & Tutorial
+                        </label>
+                        <label class="interest-tag">
+                            <input type="checkbox" name="interests" value="diskon">
+                            Diskon & Promo
+                        </label>
+                        <label class="interest-tag">
+                            <input type="checkbox" name="interests" value="event">
+                            Event & Workshop
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="mb-4 form-check">
+                    <input type="checkbox" class="form-check-input" id="privacyPolicy" required>
+                    <label class="form-check-label" for="privacyPolicy">
+                        Saya setuju dengan <a href="privacy-policy.html">Kebijakan Privasi</a> dan bersedia menerima email dari Rasa Nusantara*
+                    </label>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Langganan Sekarang</button>
+                    <p class="mt-3 text-muted small">Anda dapat berhenti berlangganan kapan saja dengan mengklik tautan berhenti berlangganan di email kami</p>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Testimonials -->
+        <div class="mt-5">
+            <h3 class="text-center mb-4">Apa Kata Pelanggan Kami</h3>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <p class="card-text">"Newsletter Rasa Nusantara selalu memberikan inspirasi untuk menu makan malam keluarga kami. Resep-resepnya mudah diikuti dan hasilnya selalu lezat!"</p>
+                            <div class="d-flex align-items-center mt-3">
+                                <img src="/placeholder.svg?height=50&width=50" alt="Testimonial" class="rounded-circle me-3" width="50" height="50">
+                                <div>
+                                    <h6 class="mb-0">Siti Nurhaliza</h6>
+                                    <small class="text-muted">Pelanggan sejak 2021</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <p class="card-text">"Saya selalu menantikan newsletter mingguan dari Rasa Nusantara. Diskon eksklusifnya sangat menguntungkan dan saya sering mendapatkan produk favorit dengan harga spesial!"</p>
+                            <div class="d-flex align-items-center mt-3">
+                                <img src="/placeholder.svg?height=50&width=50" alt="Testimonial" class="rounded-circle me-3" width="50" height="50">
+                                <div>
+                                    <h6 class="mb-0">Ahmad Rizki</h6>
+                                    <small class="text-muted">Pelanggan sejak 2020</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star-half-alt text-warning"></i>
+                            </div>
+                            <p class="card-text">"Berkat newsletter Rasa Nusantara, saya selalu update dengan produk baru dan event kuliner yang menarik. Kontennya informatif dan tidak spam!"</p>
+                            <div class="d-flex align-items-center mt-3">
+                                <img src="/placeholder.svg?height=50&width=50" alt="Testimonial" class="rounded-circle me-3" width="50" height="50">
+                                <div>
+                                    <h6 class="mb-0">Dewi Lestari</h6>
+                                    <small class="text-muted">Pelanggan sejak 2022</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">Rasa Nusantara</h5>
+                    <p>Menyajikan makanan khas Indonesia dengan kualitas terbaik dan rasa autentik sejak 2010.</p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Tautan Cepat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                        <li class="mb-2"><a href="produk.html" class="text-white text-decoration-none">Produk</a></li>
+                        <li class="mb-2"><a href="blog.html" class="text-white text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="forum.html" class="text-white text-decoration-none">Forum</a></li>
+                        <li class="mb-2"><a href="tentang-kami.html" class="text-white text-decoration-none">Tentang Kami</a></li>
+                        <li class="mb-2"><a href="kontak.html" class="text-white text-decoration-none">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Bantuan & Informasi</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="faq.html" class="text-white text-decoration-none">FAQ</a></li>
+                        <li class="mb-2"><a href="return-policy.html" class="text-white text-decoration-none">Kebijakan Pengembalian</a></li>
+                        <li class="mb-2"><a href="privacy-policy.html" class="text-white text-decoration-none">Kebijakan Privasi</a></li>
+                        <li class="mb-2"><a href="terms-conditions.html" class="text-white text-decoration-none">Syarat & Ketentuan</a></li>
+                        <li class="mb-2"><a href="size-guide.html" class="text-white text-decoration-none">Panduan Ukuran</a></li>
+                        <li class="mb-2"><a href="order-tracking.html" class="text-white text-decoration-none">Lacak Pesanan</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-4">Hubungi Kami</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Jl. Gatot Subroto No. 123, Jakarta</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> (021) 123-4567</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@rasanusantara.com</li>
+                    </ul>
+                    <h5 class="mb-3 mt-4">Metode Pembayaran</h5>
+                    <div class="d-flex flex-wrap">
+                        <i class="fab fa-cc-visa me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fab fa-cc-mastercard me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fab fa-cc-paypal me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fas fa-money-bill-wave me-3 mb-2" style="font-size: 24px;"></i>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2023 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Dibuat dengan <i class="fas fa-heart text-danger"></i> di Indonesia</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Frequency option selection
+            const frequencyOptions = document.querySelectorAll('.frequency-option');
+            
+            frequencyOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    frequencyOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Check the radio button
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                });
+            });
+            
+            // Interest tag selection
+            const interestTags = document.querySelectorAll('.interest-tag');
+            
+            interestTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    // Toggle selected class
+                    this.classList.toggle('selected');
+                    
+                    // Toggle checkbox
+                    const checkbox = this.querySelector('input[type="checkbox"]');
+                    checkbox.checked = !checkbox.checked;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

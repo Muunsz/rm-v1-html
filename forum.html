@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum - Rasa Nusantara</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+  <!-- Header - Sticky for better navigation -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <a href="index.html" class="text-2xl font-bold text-orange-600 flex items-center">
+          <span class="mr-2"><i class="fas fa-utensils"></i></span>
+          Rasa Nusantara
+        </a>
+        
+        <!-- Navigation - Desktop -->
+        <nav class="hidden md:flex space-x-6">
+          <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">Beranda</a>
+          <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">Produk</a>
+          <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">Blog</a>
+          <a href="forum.html" class="text-orange-500 font-medium border-b-2 border-orange-500 pb-1">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">Tentang Kami</a>
+          <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">Kontak</a>
+        </nav>
+        
+        <!-- Right Menu -->
+        <div class="flex items-center space-x-5">
+          <!-- Search -->
+          <div class="relative hidden md:block">
+            <input type="text" placeholder="Cari topik diskusi" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-64 transition-all duration-200">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+          
+          <!-- Notifications -->
+          <div class="relative group">
+            <a href="#" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">
+              <i class="fas fa-bell text-xl"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">2</span>
+            </a>
+            <div class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg py-2 z-10 hidden group-hover:block">
+              <div class="px-4 py-2 border-b border-gray-100">
+                <h4 class="font-semibold">Notifikasi (2)</h4>
+              </div>
+              <a href="#" class="block px-4 py-3 hover:bg-gray-50 transition-colors duration-200">
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 mr-3">
+                    <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full">
+                  </div>
+                  <div>
+                    <p class="font-medium">Budi membalas topik Anda</p>
+                    <p class="text-sm text-gray-500">2 jam yang lalu</p>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="block px-4 py-3 hover:bg-gray-50 transition-colors duration-200">
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 mr-3">
+                    <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full">
+                  </div>
+                  <div>
+                    <p class="font-medium">Topik Anda mendapat 5 suka baru</p>
+                    <p class="text-sm text-gray-500">5 jam yang lalu</p>
+                  </div>
+                </div>
+              </a>
+              <div class="px-4 py-2 border-t border-gray-100 text-center">
+                <a href="#" class="text-orange-500 hover:text-orange-600 text-sm font-medium">Lihat semua notifikasi</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Cart -->
+          <div class="relative">
+            <a href="keranjang.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">
+              <i class="fas fa-shopping-cart text-xl"></i>
+            </a>
+          </div>
+          
+          <!-- User -->
+          <div class="relative group">
+            <a href="akun.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">
+              <i class="fas fa-user text-xl"></i>
+            </a>
+            <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 hidden group-hover:block">
+              <a href="akun.html" class="block px-4 py-2 hover:bg-gray-50 transition-colors duration-200">
+                <i class="fas fa-user-circle mr-2"></i> Profil Saya
+              </a>
+              <a href="pesanan.html" class="block px-4 py-2 hover:bg-gray-50 transition-colors duration-200">
+                <i class="fas fa-shopping-bag mr-2"></i> Pesanan Saya
+              </a>
+              <a href="wishlist.html" class="block px-4 py-2 hover:bg-gray-50 transition-colors duration-200">
+                <i class="fas fa-heart mr-2"></i> Wishlist
+              </a>
+              <div class="border-t border-gray-100 my-1"></div>
+              <a href="logout.html" class="block px-4 py-2 hover:bg-gray-50 transition-colors duration-200 text-red-500">
+                <i class="fas fa-sign-out-alt mr-2"></i> Keluar
+              </a>
+            </div>
+          </div>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-orange-500 transition-colors duration-200">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+        <div class="flex flex-col space-y-3">
+          <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200 py-2">Beranda</a>
+          <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200 py-2">Produk</a>
+          <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200 py-2">Blog</a>
+          <a href="forum.html" class="text-orange-500 font-medium py-2">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200 py-2">Tentang Kami</a>
+          <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200 py-2">Kontak</a>
+        </div>
+        <div class="mt-4 relative">
+          <input type="text" placeholder="Cari topik diskusi" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-100 py-2">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-orange-500 transition-colors duration-200">Beranda</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <span class="text-gray-800 font-medium">Forum</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forum Hero -->
+  <section class="bg-gradient-to-r from-orange-50 to-orange-100 py-16">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <h1 class="text-4xl font-bold mb-4 text-gray-800">Forum Rasa Nusantara</h1>
+          <p class="text-lg text-gray-600 mb-8 leading-relaxed">Bergabunglah dalam diskusi seputar kuliner Indonesia. Berbagi resep, tips memasak, atau tanyakan apa saja tentang masakan nusantara.</p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors duration-200 text-center shadow-md hover:shadow-lg transform hover:-translate-y-1">
+              <i class="fas fa-plus-circle mr-2"></i> Buat Topik Baru
+            </a>
+            <a href="#" class="bg-white hover:bg-gray-100 text-orange-500 border border-orange-500 px-6 py-3 rounded-lg transition-colors duration-200 text-center shadow-md hover:shadow-lg transform hover:-translate-y-1">
+              <i class="fas fa-compass mr-2"></i> Jelajahi Topik
+            </a>
+          </div>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+          <img src="https://via.placeholder.com/600x400" alt="Forum Hero" class="rounded-xl shadow-xl max-w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Forum Categories -->
+  <section class="py-8 bg-white shadow-md sticky top-16 z-40">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#" class="bg-orange-500 text-white px-5 py-2 rounded-full hover:bg-orange-600 transition-colors duration-200 shadow-sm">
+          <i class="fas fa-th-large mr-1"></i> Semua
+        </a>
+        <a href="#" class="bg-gray-200 text-gray-700 px-5 py-2 rounded-full hover:bg-orange-500 hover:text-white transition-colors duration-200 shadow-sm">
+          <i class="fas fa-utensils mr-1"></i> Resep
+        </a>
+        <a href="#" class="bg-gray-200 text-gray-700 px-5 py-2 rounded-full hover:bg-orange-500 hover:text-white transition-colors duration-200 shadow-sm">
+          <i class="fas fa-lightbulb mr-1"></i> Tips Memasak
+        </a>
+        <a href="#" class="bg-gray-200 text-gray-700 px-5 py-2 rounded-full hover:bg-orange-500 hover:text-white transition-colors duration-200 shadow-sm">
+          <i class="fas fa-question-circle mr-1"></i> Tanya Jawab
+        </a>
+        <a href="#" class="bg-gray-200 text-gray-700 px-5 py-2 rounded-full hover:bg-orange-500 hover:text-white transition-colors duration-200 shadow-sm">
+          <i class="fas fa-box mr-1"></i> Diskusi Produk
+        </a>
+        <a href="#" class="bg-gray-200 text-gray-700 px-5 py-2 rounded-full hover:bg-orange-500 hover:text-white transition-colors duration-200 shadow-sm">
+          <i class="fas fa-map-marker-alt mr-1"></i> Kuliner Daerah
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Forum Content -->
+  <section class="py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Main Content -->
+        <div class="lg:w-2/3">
+          <!-- Forum Header -->
+          <div class="flex flex-col sm:flex-row justify-between items-center mb-8 bg-white p-4 rounded-lg shadow-sm">
+            <h2 class="text-2xl font-bold mb-4 sm:mb-0">Diskusi Terbaru</h2>
+            <div class="flex items-center">
+              <span class="text-gray-600 mr-2">Urutkan:</span>
+              <select class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white shadow-sm">
+                <option value="newest">Terbaru</option>
+                <option value="popular">Terpopuler</option>
+                <option value="most-replies">Balasan Terbanyak</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Forum Topics -->
+          <div class="space-y-6">
+            <!-- Topic 1 -->
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden border border-gray-100">
+              <div class="p-6">
+                <div class="flex flex-col md:flex-row md:items-start">
+                  <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
+                    <img src="https://via.placeholder.com/50" alt="User" class="w-12 h-12 rounded-full border-2 border-orange-100">
+                  </div>
+                  <div class="flex-grow">
+                    <h3 class="text-xl font-bold mb-2">
+                      <a href="forum-detail.html" class="hover:text-orange-500 transition-colors duration-200">Tips Membuat Rendang yang Tahan Lama</a>
+                    </h3>
+                    <div class="flex flex-wrap items-center text-sm text-gray-500 mb-3 gap-2">
+                      <span>Oleh <a href="#" class="text-orange-500 hover:underline">Budi Santoso</a></span>
+                      <span class="hidden md:inline">•</span>
+                      <span><i class="far fa-calendar-alt mr-1"></i> 12 April 2025</span>
+                      <span class="hidden md:inline">•</span>
+                      <span class="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded-full"><i class="fas fa-utensils mr-1"></i> Resep</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 line-clamp-2">Halo teman-teman, saya ingin berbagi tips membuat rendang yang tahan lama hingga berminggu-minggu. Saya sudah mencoba beberapa metode dan ingin berbagi pengalaman...</p>
+                    
+                    <div class="flex flex-wrap justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                      <div class="flex items-center text-sm text-gray-500 space-x-4">
+                        <span><i class="far fa-eye mr-1"></i> 256 dilihat</span>
+                        <span><i class="far fa-comment mr-1"></i> 24 balasan</span>
+                        <span><i class="far fa-thumbs-up mr-1"></i> 42 suka</span>
+                      </div>
+                      <div class="flex items-center text-sm mt-2 sm:mt-0">
+                        <div class="flex -space-x-2 mr-2">
+                          <img src="https://via.placeholder.com/30" alt="User" class="w-6 h-6 rounded-full border border-white">
+                          <img src="https://via.placeholder.com/30" alt="User" class="w-6 h-6 rounded-full border border-white">
+                          <img src="https://via.placeholder.com/30" alt="User" class="w-6 h-6 rounded-full border border-white">
+                        </div>
+                        <span class="text-gray-500">Balasan terakhir <span class="text-orange-500">2 jam lalu</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Topic 2 -->
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden border border-gray-100">
+              <div class="p-6">
+                <div class="flex flex-col md:flex-row md:items-start">
+                  <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
+                    <img src="https://via.placeholder.com/50" alt="User" class="w-12 h-12 rounded-full border-2 border-orange-100">
+                  </div>
+                  <div class="flex-grow">
+                    <h3 class="text-xl font-bold mb-2">
+                      <a href="forum-detail.html" class="hover:text-orange-500 transition-colors duration-200">Rekomendasi Alat Masak untuk Pemula</a>
+                    </h3>
+                    <div class="flex flex-wrap items-center text-sm text-gray-500 mb-3 gap-2">
+                      <span>Oleh <a href="#" class="text-orange-500 hover:underline">Siti Rahma</a></span>
+                      <span class="hidden md:inline">•</span>
+                      <span><i class="far fa-calendar-alt mr-1"></i> 10 April 2025</span>
+                      <span class="hidden md:inline">•</span>
+                      <span class="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded-full"><i class="fas fa-lightbulb mr-1"></i> Tips Memasak</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 line-clamp-2">Saya baru mulai belajar memasak dan bingung harus membeli alat masak apa saja. Bagi yang sudah berpengalaman, bisa tolong rekomendasikan alat masak yang wajib dimiliki untuk pemula?</p>
+                    
+                    <div class="flex flex-wrap justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                      <div class="flex items-center text-sm text-gray-500 space-x-4">
+                        <span><i class="far fa-eye mr-1"></i> 189 dilihat</span>
+                        <span><i class="far fa-comment mr-1"></i> 18 balasan</span>
+                        <span><i class="far fa-thumbs-up mr-1"></i> 31 suka</span>
+                      </div>
+                      <div class="flex items-center text-sm mt-2 sm:mt-0">
+                        <div class="flex -space-x-2 mr-2">
+                          <img src="https://via.placeholder.com/30" alt="User" class="w-6 h-6 rounded-full border border-white">
+                          <img src="https://via.placeholder.com/30" alt="User" class="w-6 h-6 rounded-full border border-white">
+                        </div>
+                        <span class="text-gray-500">Balasan terakhir <span class="text-orange-500">5 jam lalu</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Topic 3 -->
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden border border-gray-100">
+              <div class="p-6">
+                <div class="flex flex-col md:flex-row md:items-start">
+                  <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
+                    <img src="https://via.placeholder.com/50" alt="User" class="w-12 h-12 rounded-full border-2 border-orange-100">
+                  </div>
+                  <div class="flex-grow">
+                    <h3 class="text-xl font-bold mb-2">
+                      <a href="forum-detail.html" class="hover:text-orange-500 transition-colors duration-200">Mencari Resep Kue Lapis Legit Tanpa Telur</a>
+                    </h3>
+                    <div class="flex flex-wrap items-center text-sm text-gray-500 mb-3 gap-2">
+                      <span>Oleh <a href="#" class="text-orange-500 hover:underline">Rini Wijaya</a></span>
+                      <span class="hidden md:inline">•</span>
+                      <span><i class="far fa-calendar-alt mr-1"></i> 8 April 2025</span>
+                      <span class="hidden md:inline">•</span>
+                      <span class="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded-full"><i class="fas fa-question-circle mr-1"></i> Tanya Jawab</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 line-clamp-2">Halo semua, saya sedang mencari resep kue lapis legit tanpa telur karena ada anggota keluarga yang alergi. Apakah ada yang punya resep atau alternatif pengganti telur yang bagus?</p>
+                    
+                    <div class="flex flex-wrap justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                      <div class="flex items-center text-sm text-gray-500 space-x-4">
+                        <span><i class="far fa-eye mr-1"></i> 142 dilihat</span>
+                        <span><i class="far fa-comment mr-1"></i> 12 balasan</span>
+                        <span><i class="far fa-thumbs-up mr-1"></i> 15 suka</span>
+                      </div>
+                      <div class="flex items-center text-sm mt-2 sm:mt-0">
+                        <div class="flex -space-x-2 mr-2">
+                          <img src="https://via.placeholder.com/30" alt="User" class="w-6 h-6 rounded-full border border-white">
+                        </div>
+                        <span class="text-gray-500">Balasan terakhir <span class="text-orange-500">1 hari lalu</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Topic 4 -->
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden border border-gray-100">
+              <div class="p-6">
+                <div class="flex flex-col md:flex-row md:items-start">
+                  <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
+                    <img src="https://via.placeholder.com/50" alt="User" class="w-12 h-12 rounded-full border-2 border-orange-100">
+                  </div>
+                  <div class="flex-grow">
+                    <h3 class="text-xl font-bold mb-2">
+                      <a href="forum-detail.html" class="hover:text-orange-500 transition-colors duration-200">Review Produk: Kue Lapis Legit Rasa Nusantara</a>
+                    </h3>
+                    <div class="flex flex-wrap items-center text-sm text-gray-500 mb-3 gap-2">
+                      <span>Oleh <a href="#" class="text-orange-500 hover:underline">Agus Pratama</a></span>
+                      <span class="hidden md:inline">•</span>
+                      <span><i class="far fa-calendar-alt mr-1"></i> 5 April 2025</span>
+                      <span class="hidden md:inline">•</span>
+                      <span class="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded-full"><i class="fas fa-box mr-1"></i> Diskusi Produk</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 line-clamp-2">Saya baru saja mencoba Kue Lapis Legit dari Rasa Nusantara dan ingin berbagi pengalaman. Teksturnya lembut, rasanya pas, dan aromanya harum. Berikut review lengkapnya...</p>
+                    
+                    <div class="flex flex-wrap justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                      <div class="flex items-center text-sm text-gray-500 space-x-4">
+                        <span><i class="far fa-eye mr-1"></i> 278 dilihat</span>
+                        <span><i class="far fa-comment mr-1"></i> 32 balasan</span>
+                        <span><i class="far fa-thumbs-up mr-1"></i> 53 suka</span>
+                      </div>
+                      <div class="flex items-center text-sm mt-2 sm:mt-0">
+                        <div class="flex -space-x-2 mr-2">
+                          <img src="https://via.placeholder.com/30" alt="User" class="w-6 h-6 rounded-full border border-white">
+                          <img src="https://via.placeholder.com/30" alt="User" class="w-6 h-6 rounded-full border border-white">
+                          <img src="https://via.placeholder.com/30" alt="User" class="w-6 h-6 rounded-full border border-white">
+                        </div>
+                        <span class="text-gray-500">Balasan terakhir <span class="text-orange-500">12 jam lalu</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Topic 5 -->
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden border border-gray-100">
+              <div class="p-6">
+                <div class="flex flex-col md:flex-row md:items-start">
+                  <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
+                    <img src="https://via.placeholder.com/50" alt="User" class="w-12 h-12 rounded-full border-2 border-orange-100">
+                  </div>
+                  <div class="flex-grow">
+                    <h3 class="text-xl font-bold mb-2">
+                      <a href="forum-detail.html" class="hover:text-orange-500 transition-colors duration-200">Kuliner Khas Sulawesi yang Wajib Dicoba</a>
+                    </h3>
+                    <div class="flex flex-wrap items-center text-sm text-gray-500 mb-3 gap-2">
+                      <span>Oleh <a href="#" class="text-orange-500 hover:underline">Dian Sulawesi</a></span>
+                      <span class="hidden md:inline">•</span>
+                      <span><i class="far fa-calendar-alt mr-1"></i> 2 April 2025</span>
+                      <span class="hidden md:inline">•</span>
+                      <span class="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded-full"><i class="fas fa-map-marker-alt mr-1"></i> Kuliner Daerah</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 line-clamp-2">Sebagai orang Sulawesi, saya ingin berbagi informasi tentang kuliner khas Sulawesi yang wajib dicoba. Mulai dari Coto Makassar, Konro, Pallu Basa, hingga makanan penutup seperti...</p>
+                    
+                    <div class="flex flex-wrap justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                      <div class="flex items-center text-sm text-gray-500 space-x-4">
+                        <span><i class="far fa-eye mr-1"></i> 215 dilihat</span>
+                        <span><i class="far fa-comment mr-1"></i> 27 balasan</span>
+                        <span><i class="far fa-thumbs-up mr-1"></i> 48 suka</span>
+                      </div>
+                      <div class="flex items-center text-sm mt-2 sm:mt-0">
+                        <div class="flex -space-x-2 mr-2">
+                          <img src="https://via.placeholder.com/30" alt="User" class="w-6 h-6 rounded-full border border-white">
+                          <img src="https://via.placeholder.com/30" alt="User" class="w-6 h-6 rounded-full border border-white">
+                        </div>
+                        <span class="text-gray-500">Balasan terakhir <span class="text-orange-500">2 hari lalu</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Pagination -->
+          <div class="mt-10 flex justify-center">
+            <nav class="inline-flex rounded-lg shadow-sm">
+              <a href="#" class="py-2 px-4 bg-white border border-gray-300 rounded-l-lg text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors duration-200">
+                <i class="fas fa-chevron-left"></i>
+              </a>
+              <a href="#" class="py-2 px-4 bg-orange-500 border border-orange-500 text-sm font-medium text-white">1</a>
+              <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors duration-200">2</a>
+              <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors duration-200">3</a>
+              <a href="#" class="py-2 px-4 bg-white border border-gray-300 rounded-r-lg text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors duration-200">
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            </nav>
+          </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="lg:w-1/3 space-y-6">
+          <!-- Create New Topic -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <h3 class="text-xl font-bold mb-4">Mulai Diskusi Baru</h3>
+            <p class="text-gray-600 mb-6">Punya pertanyaan atau ingin berbagi pengalaman? Mulai diskusi baru sekarang!</p>
+            <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 w-full block text-center shadow-md hover:shadow-lg transform hover:-translate-y-1">
+              <i class="fas fa-plus-circle mr-2"></i> Buat Topik Baru
+            </a>
+          </div>
+          
+          <!-- Trending Topics -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <h3 class="text-xl font-bold mb-4">Topik Populer</h3>
+            <ul class="space-y-4">
+              <li>
+                <a href="#" class="flex items-start hover:bg-gray-50 p-3 rounded-lg transition-colors duration-200 group">
+                  <div class="bg-orange-100 text-orange-600 rounded-lg px-3 py-1 text-sm font-medium mr-3 group-hover:bg-orange-200 transition-colors duration-200">1</div>
+                  <div>
+                    <h4 class="font-medium group-hover:text-orange-500 transition-colors duration-200">Tips Membuat Rendang yang Tahan Lama</h4>
+                    <p class="text-sm text-gray-500 mt-1"><i class="far fa-comment mr-1"></i> 24 balasan <span class="mx-1">•</span> <i class="far fa-eye mr-1"></i> 256 dilihat</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-start hover:bg-gray-50 p-3 rounded-lg transition-colors duration-200 group">
+                  <div class="bg-orange-100 text-orange-600 rounded-lg px-3 py-1 text-sm font-medium mr-3 group-hover:bg-orange-200 transition-colors duration-200">2</div>
+                  <div>
+                    <h4 class="font-medium group-hover:text-orange-500 transition-colors duration-200">Review Produk: Kue Lapis Legit Rasa Nusantara</h4>
+                    <p class="text-sm text-gray-500 mt-1"><i class="far fa-comment mr-1"></i> 32 balasan <span class="mx-1">•</span> <i class="far fa-eye mr-1"></i> 278 dilihat</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-start hover:bg-gray-50 p-3 rounded-lg transition-colors duration-200 group">
+                  <div class="bg-orange-100 text-orange-600 rounded-lg px-3 py-1 text-sm font-medium mr-3 group-hover:bg-orange-200 transition-colors duration-200">3</div>
+                  <div>
+                    <h4 class="font-medium group-hover:text-orange-500 transition-colors duration-200">Kuliner Khas Sulawesi yang Wajib Dicoba</h4>
+                    <p class="text-sm text-gray-500 mt-1"><i class="far fa-comment mr-1"></i> 27 balasan <span class="mx-1">•</span> <i class="far fa-eye mr-1"></i> 215 dilihat</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-start hover:bg-gray-50 p-3 rounded-lg transition-colors duration-200 group">
+                  <div class="bg-orange-100 text-orange-600 rounded-lg px-3 py-1 text-sm font-medium mr-3 group-hover:bg-orange-200 transition-colors duration-200">4</div>
+                  <div>
+                    <h4 class="font-medium group-hover:text-orange-500 transition-colors duration-200">Rekomendasi Alat Masak untuk Pemula</h4>
+                    <p class="text-sm text-gray-500 mt-1"><i class="far fa-comment mr-1"></i> 18 balasan <span class="mx-1">•</span> <i class="far fa-eye mr-1"></i> 189 dilihat</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-start hover:bg-gray-50 p-3 rounded-lg transition-colors duration-200 group">
+                  <div class="bg-orange-100 text-orange-600 rounded-lg px-3 py-1 text-sm font-medium mr-3 group-hover:bg-orange-200 transition-colors duration-200">5</div>
+                  <div>
+                    <h4 class="font-medium group-hover:text-orange-500 transition-colors duration-200">Mencari Resep Kue Lapis Legit Tanpa Telur</h4>
+                    <p class="text-sm text-gray-500 mt-1"><i class="far fa-comment mr-1"></i> 12 balasan <span class="mx-1">•</span> <i class="far fa-eye mr-1"></i> 142 dilihat</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Forum Stats -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <h3 class="text-xl font-bold mb-4">Statistik Forum</h3>
+            <ul class="space-y-4">
+              <li class="flex justify-between items-center p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                <span class="text-gray-600"><i class="fas fa-comments mr-2 text-orange-500"></i> Total Topik:</span>
+                <span class="font-medium bg-gray-100 px-3 py-1 rounded-lg">248</span>
+              </li>
+              <li class="flex justify-between items-center p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                <span class="text-gray-600"><i class="fas fa-reply-all mr-2 text-orange-500"></i> Total Balasan:</span>
+                <span class="font-medium bg-gray-100 px-3 py-1 rounded-lg">1,542</span>
+              </li>
+              <li class="flex justify-between items-center p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                <span class="text-gray-600"><i class="fas fa-users mr-2 text-orange-500"></i> Total Anggota:</span>
+                <span class="font-medium bg-gray-100 px-3 py-1 rounded-lg">3,875</span>
+              </li>
+              <li class="flex justify-between items-center p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                <span class="text-gray-600"><i class="fas fa-user-plus mr-2 text-orange-500"></i> Anggota Baru:</span>
+                <span class="font-medium text-orange-500">Dewi Kuliner</span>
+              </li>
+              <li class="flex justify-between items-center p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                <span class="text-gray-600"><i class="fas fa-calendar-plus mr-2 text-orange-500"></i> Topik Terbaru:</span>
+                <span class="font-medium">12 April 2025</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Forum Rules -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <h3 class="text-xl font-bold mb-4">Peraturan Forum</h3>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <span>Hormati semua anggota forum</span>
+              </li>
+              <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <span>Jangan posting konten yang tidak relevan</span>
+              </li>
+              <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <span>Hindari penggunaan kata-kata kasar</span>
+              </li>
+              <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <span>Jangan melakukan promosi yang tidak relevan</span>
+              </li>
+              <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <span>Hormati hak cipta dan kekayaan intelektual</span>
+              </li>
+            </ul>
+            <a href="#" class="text-orange-500 hover:text-orange-600 transition-colors duration-200 text-sm mt-4 inline-block font-medium">
+              <i class="fas fa-external-link-alt mr-1"></i> Baca peraturan lengkap
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-12 pb-6">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <!-- About -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Rasa Nusantara</h3>
+          <p class="text-gray-300 mb-4 leading-relaxed">Website e-commerce yang menyediakan berbagai produk kuliner tradisional Indonesia. Kami berkomitmen untuk melestarikan cita rasa nusantara dengan sentuhan modern.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-white hover:text-orange-300 transition-colors duration-200 bg-gray-700 hover:bg-gray-600 w-10 h-10 rounded-full flex items-center justify-center">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-white hover:text-orange-300 transition-colors duration-200 bg-gray-700 hover:bg-gray-600 w-10 h-10 rounded-full flex items-center justify-center">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-white hover:text-orange-300 transition-colors duration-200 bg-gray-700 hover:bg-gray-600 w-10 h-10 rounded-full flex items-center justify-center">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Tautan Cepat</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i> Beranda</a></li>
+            <li><a href="produk.html" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i> Produk</a></li>
+            <li><a href="blog.html" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i> Blog</a></li>
+            <li><a href="forum.html" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i> Forum</a></li>
+            <li><a href="tentang-kami.html" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i> Tentang Kami</a></li>
+            <li><a href="kontak.html" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i> Kontak</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Kontak Kami</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-orange-400"></i>
+              <span>Jl. Contoh No. 123, Kota Cimahi, Jawa Barat, 40511</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone-alt mr-3 text-orange-400"></i>
+              <span>+62 812-3456-7890</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-3 text-orange-400"></i>
+              <span>support@rasanusantara.com</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Hours -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Jam Operasional</h3>
+          <ul class="space-y-3">
+            <li class="flex justify-between items-center bg-gray-700 px-3 py-2 rounded-lg">
+              <span>Senin - Jumat:</span>
+              <span class="bg-orange-500 text-white px-2 py-1 rounded text-sm">08:00 - 17:00 WIB</span>
+            </li>
+            <li class="flex justify-between items-center bg-gray-700 px-3 py-2 rounded-lg">
+              <span>Sabtu:</span>
+              <span class="bg-orange-500 text-white px-2 py-1 rounded text-sm">09:00 - 15:00 WIB</span>
+            </li>
+            <li class="flex justify-between items-center bg-gray-700 px-3 py-2 rounded-lg">
+              <span>Minggu:</span>
+              <span class="bg-red-500 text-white px-2 py-1 rounded text-sm">Tutup</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="border-gray-700 mb-6">
+      
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">&copy; 2025 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Syarat & Ketentuan</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Kebijakan Privasi</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 bg-orange-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-orange-600 transition-colors duration-200 transform hover:scale-110 opacity-0 invisible">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+      
+      // Category filter
+      const categoryLinks = document.querySelectorAll('.category-link');
+      
+      if (categoryLinks) {
+        categoryLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all links
+            categoryLinks.forEach(l => l.classList.remove('bg-orange-500', 'text-white'));
+            categoryLinks.forEach(l => l.classList.add('bg-gray-200', 'text-gray-700'));
+            
+            // Add active class to clicked link
+            this.classList.remove('bg-gray-200', 'text-gray-700');
+            this.classList.add('bg-orange-500', 'text-white');
+            
+            // In a real app, you would filter topics by category here
+          });
+        });
+      }
+      
+      // Back to top button
+      const backToTopButton = document.getElementById('back-to-top');
+      
+      if (backToTopButton) {
+        window.addEventListener('scroll', function() {
+          if (window.pageYOffset > 300) {
+            backToTopButton.classList.remove('opacity-0', 'invisible');
+            backToTopButton.classList.add('opacity-100', 'visible');
+          } else {
+            backToTopButton.classList.remove('opacity-100', 'visible');
+            backToTopButton.classList.add('opacity-0', 'invisible');
+          }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartu Hadiah - Rasa Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #E57C23;
+            --secondary-color: #025464;
+            --accent-color: #E8AA42;
+            --light-color: #F8F1F1;
+            --dark-color: #333;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .social-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: white;
+        }
+        
+        .social-icon:hover {
+            color: var(--accent-color);
+        }
+        
+        .gift-card-container {
+            margin: 60px auto;
+        }
+        
+        .gift-card-header {
+            background-color: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .gift-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+        }
+        
+        .gift-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .gift-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .gift-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            padding: 20px;
+            color: white;
+        }
+        
+        .gift-card-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .amount-option {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px 10px 0;
+            border: 2px solid #dee2e6;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .amount-option:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .amount-option.selected {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .amount-option input {
+            display: none;
+        }
+        
+        .gift-card-design {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gift-card-design:hover {
+            transform: scale(1.05);
+        }
+        
+        .gift-card-design.selected {
+            box-shadow: 0 0 0 3px var(--primary-color);
+        }
+        
+        .gift-card-design input {
+            display: none;
+        }
+        
+        .gift-card-design img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gift-card-design .check-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 25px;
+            height: 25px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gift-card-design.selected .check-icon {
+            opacity: 1;
+        }
+        
+        .how-it-works-step {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Rasa Nusantara</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produk.html">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forum.html">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tentang-kami.html">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontak.html">Kontak</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="keranjang.html" class="btn position-relative me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3
+                        </span>
+                    </a>
+                    <a href="wishlist.html" class="btn position-relative me-3">
+                        <i class="fas fa-heart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            5
+                        </span>
+                    </a>
+                    <div class="dropdown">
+                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-1"></i> Budi Santoso
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="user-profile.html"><i class="fas fa-user-circle me-2"></i>Profil Saya</a></li>
+                            <li><a class="dropdown-item" href="order-history.html"><i class="fas fa-history me-2"></i>Riwayat Pesanan</a></li>
+                            <li><a class="dropdown-item" href="wishlist.html"><i class="fas fa-heart me-2"></i>Wishlist</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Gift Card Header -->
+    <div class="gift-card-header">
+        <div class="container">
+            <h1 class="mb-3">Kartu Hadiah Rasa Nusantara</h1>
+            <p class="lead mb-0">Berikan hadiah cita rasa Nusantara kepada orang yang Anda sayangi</p>
+        </div>
+    </div>
+
+    <!-- Gift Card Content -->
+    <div class="container gift-card-container">
+        <!-- Featured Gift Cards -->
+        <section class="mb-5">
+            <h2 class="text-center mb-4">Pilihan Kartu Hadiah</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="gift-card">
+                        <img src="/placeholder.svg?height=200&width=400" alt="Gift Card" class="gift-card-image">
+                        <div class="gift-card-overlay">
+                            <h4>Kartu Hadiah Klasik</h4>
+                            <p class="mb-0">Desain elegan dengan sentuhan tradisional</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="gift-card">
+                        <img src="/placeholder.svg?height=200&width=400" alt="Gift Card" class="gift-card-image">
+                        <div class="gift-card-overlay">
+                            <h4>Kartu Hadiah Batik</h4>
+                            <p class="mb-0">Dengan motif batik khas Indonesia</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="gift-card">
+                        <img src="/placeholder.svg?height=200&width=400" alt="Gift Card" class="gift-card-image">
+                        <div class="gift-card-overlay">
+                            <h4>Kartu Hadiah Spesial</h4>
+                            <p class="mb-0">Untuk momen istimewa dan perayaan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- How It Works -->
+        <section class="mb-5">
+            <h2 class="text-center mb-5">Cara Kerja</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="how-it-works-step">
+                        <div class="step-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h4>Pilih Kartu</h4>
+                        <p>Pilih desain kartu hadiah dan tentukan nominal yang diinginkan</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="how-it-works-step">
+                        <div class="step-icon">
+                            <i class="fas fa-pen"></i>
+                        </div>
+                        <h4>Personalisasi</h4>
+                        <p>Tambahkan pesan pribadi dan informasi penerima</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="how-it-works-step">
+                        <div class="step-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h4>Bayar</h4>
+                        <p>Selesaikan pembayaran dengan metode yang tersedia</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="how-it-works-step">
+                        <div class="step-icon">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                        <h4>Kirim</h4>
+                        <p>Kartu hadiah akan dikirim melalui email atau pesan ke penerima</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gift Card Form -->
+        <section class="mb-5">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="gift-card-form">
+                        <h3 class="text-center mb-4">Buat Kartu Hadiah</h3>
+                        <form>
+                            <!-- Amount Selection -->
+                            <div class="mb-4">
+                                <label class="form-label">Pilih Nominal*</label>
+                                <div class="d-flex flex-wrap">
+                                    <label class="amount-option">
+                                        <input type="radio" name="amount" value="100000">
+                                        Rp 100.000
+                                    </label>
+                                    <label class="amount-option">
+                                        <input type="radio" name="amount" value="200000">
+                                        Rp 200.000
+                                    </label>
+                                    <label class="amount-option">
+                                        <input type="radio" name="amount" value="300000">
+                                        Rp 300.000
+                                    </label>
+                                    <label class="amount-option">
+                                        <input type="radio" name="amount" value="500000">
+                                        Rp 500.000
+                                    </label>
+                                    <label class="amount-option">
+                                        <input type="radio" name="amount" value="custom">
+                                        Nominal Lain
+                                    </label>
+                                </div>
+                                <div class="mt-3 custom-amount-input" style="display: none;">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Rp</span>
+                                        <input type="number" class="form-control" placeholder="Masukkan nominal" min="50000" max="2000000" step="10000">
+                                    </div>
+                                    <small class="text-muted">Minimal Rp 50.000, maksimal Rp 2.000.000</small>
+                                </div>
+                            </div>
+                            
+                            <!-- Design Selection -->
+                            <div class="mb-4">
+                                <label class="form-label">Pilih Desain*</label>
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label class="gift-card-design">
+                                            <input type="radio" name="design" value="classic">
+                                            <img src="/placeholder.svg?height=200&width=200" alt="Classic Design">
+                                            <div class="check-icon">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="gift-card-design">
+                                            <input type="radio" name="design" value="batik">
+                                            <img src="/placeholder.svg?height=200&width=200" alt="Batik Design">
+                                            <div class="check-icon">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="gift-card-design">
+                                            <input type="radio" name="design" value="special">
+                                            <img src="/placeholder.svg?height=200&width=200" alt="Special Design">
+                                            <div class="check-icon">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Delivery Method -->
+                            <div class="mb-4">
+                                <label class="form-label">Metode Pengiriman*</label>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="deliveryMethod" id="emailDelivery" value="email" checked>
+                                    <label class="form-check-label" for="emailDelivery">
+                                        Email
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="deliveryMethod" id="smsDelivery" value="sms">
+                                    <label class="form-check-label" for="smsDelivery">
+                                        SMS
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="deliveryMethod" id="whatsappDelivery" value="whatsapp">
+                                    <label class="form-check-label" for="whatsappDelivery">
+                                        WhatsApp
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Recipient Information -->
+                            <div class="mb-4">
+                                <h5>Informasi Penerima</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="recipientName" class="form-label">Nama Penerima*</label>
+                                        <input type="text" class="form-control" id="recipientName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3 recipient-contact">
+                                        <label for="recipientEmail" class="form-label">Email Penerima*</label>
+                                        <input type="email" class="form-control" id="recipientEmail" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Personal Message -->
+                            <div class="mb-4">
+                                <label for="personalMessage" class="form-label">Pesan Pribadi (Opsional)</label>
+                                <textarea class="form-control" id="personalMessage" rows="3" maxlength="200" placeholder="Tulis pesan pribadi untuk penerima (maks. 200 karakter)"></textarea>
+                                <div class="d-flex justify-content-between mt-1">
+                                    <small class="text-muted">Pesan akan ditampilkan pada kartu hadiah</small>
+                                    <small class="text-muted"><span id="charCount">0</span>/200</small>
+                                </div>
+                            </div>
+                            
+                            <!-- Sender Information -->
+                            <div class="mb-4">
+                                <h5>Informasi Pengirim</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="senderName" class="form-label">Nama Pengirim*</label>
+                                        <input type="text" class="form-control" id="senderName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="senderEmail" class="form-label">Email Pengirim*</label>
+                                        <input type="email" class="form-control" id="senderEmail" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Delivery Date -->
+                            <div class="mb-4">
+                                <label for="deliveryDate" class="form-label">Tanggal Pengiriman*</label>
+                                <input type="date" class="form-control" id="deliveryDate" required>
+                                <small class="text-muted">Kartu hadiah akan dikirim pada tanggal yang dipilih</small>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Buat Kartu Hadiah</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ -->
+        <section class="mb-5">
+            <h3 class="text-center mb-4">Pertanyaan Umum</h3>
+            <div class="accordion" id="giftCardFaqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Berapa lama masa berlaku kartu hadiah?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#giftCardFaqAccordion">
+                        <div class="accordion-body">
+                            Kartu hadiah Rasa Nusantara berlaku selama 1 tahun sejak tanggal pembelian. Setelah periode tersebut, kartu hadiah tidak dapat digunakan lagi.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Bagaimana cara menggunakan kartu hadiah?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#giftCardFaqAccordion">
+                        <div class="accordion-body">
+                            Penerima kartu hadiah akan menerima kode unik melalui email atau SMS. Saat berbelanja di website Rasa Nusantara, penerima dapat memasukkan kode tersebut pada halaman checkout untuk menggunakan saldo kartu hadiah.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Apakah kartu hadiah dapat digunakan untuk pembelian sebagian?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#giftCardFaqAccordion">
+                        <div class="accordion-body">
+                            Ya, kartu hadiah dapat digunakan untuk pembelian sebagian. Jika nilai pembelian kurang dari saldo kartu hadiah, sisa saldo akan tetap tersimpan dan dapat digunakan untuk pembelian berikutnya selama masa berlaku kartu.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Apakah kartu hadiah dapat dikembalikan atau ditukar dengan uang tunai?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#giftCardFaqAccordion">
+                        <div class="accordion-body">
+                            Tidak, kartu hadiah tidak dapat dikembalikan, dibatalkan, atau ditukar dengan uang tunai kecuali diwajibkan oleh hukum. Kartu hadiah juga tidak dapat digunakan untuk membeli kartu hadiah lainnya.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Bagaimana jika kartu hadiah hilang atau dicuri?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#giftCardFaqAccordion">
+                        <div class="accordion-body">
+                            Perlakukan kartu hadiah Anda seperti uang tunai. Kami tidak bertanggung jawab atas kartu hadiah yang hilang, dicuri, atau digunakan tanpa izin. Namun, jika Anda memiliki bukti pembelian, hubungi layanan pelanggan kami untuk bantuan lebih lanjut.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">Rasa Nusantara</h5>
+                    <p>Menyajikan makanan khas Indonesia dengan kualitas terbaik dan rasa autentik sejak 2010.</p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Tautan Cepat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                        <li class="mb-2"><a href="produk.html" class="text-white text-decoration-none">Produk</a></li>
+                        <li class="mb-2"><a href="blog.html" class="text-white text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="forum.html" class="text-white text-decoration-none">Forum</a></li>
+                        <li class="mb-2"><a href="tentang-kami.html" class="text-white text-decoration-none">Tentang Kami</a></li>
+                        <li class="mb-2"><a href="kontak.html" class="text-white text-decoration-none">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Bantuan & Informasi</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="faq.html" class="text-white text-decoration-none">FAQ</a></li>
+                        <li class="mb-2"><a href="return-policy.html" class="text-white text-decoration-none">Kebijakan Pengembalian</a></li>
+                        <li class="mb-2"><a href="privacy-policy.html" class="text-white text-decoration-none">Kebijakan Privasi</a></li>
+                        <li class="mb-2"><a href="terms-conditions.html" class="text-white text-decoration-none">Syarat & Ketentuan</a></li>
+                        <li class="mb-2"><a href="size-guide.html" class="text-white text-decoration-none">Panduan Ukuran</a></li>
+                        <li class="mb-2"><a href="order-tracking.html" class="text-white text-decoration-none">Lacak Pesanan</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-4">Hubungi Kami</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Jl. Gatot Subroto No. 123, Jakarta</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> (021) 123-4567</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@rasanusantara.com</li>
+                    </ul>
+                    <h5 class="mb-3 mt-4">Metode Pembayaran</h5>
+                    <div class="d-flex flex-wrap">
+                        <i class="fab fa-cc-visa me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fab fa-cc-mastercard me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fab fa-cc-paypal me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fas fa-money-bill-wave me-3 mb-2" style="font-size: 24px;"></i>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2023 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Dibuat dengan <i class="fas fa-heart text-danger"></i> di Indonesia</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Amount option selection
+            const amountOptions = document.querySelectorAll('.amount-option');
+            const customAmountInput = document.querySelector('.custom-amount-input');
+            
+            amountOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    amountOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Check the radio button
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                    
+                    // Show/hide custom amount input
+                    if (radio.value === 'custom') {
+                        customAmountInput.style.display = 'block';
+                    } else {
+                        customAmountInput.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Design selection
+            const designOptions = document.querySelectorAll('.gift-card-design');
+            
+            designOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    designOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Check the radio button
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                });
+            });
+            
+            // Delivery method change
+            const deliveryMethods = document.querySelectorAll('input[name="deliveryMethod"]');
+            const recipientContact = document.querySelector('.recipient-contact');
+            
+            deliveryMethods.forEach(method => {
+                method.addEventListener('change', function() {
+                    const contactLabel = recipientContact.querySelector('label');
+                    const contactInput = recipientContact.querySelector('input');
+                    
+                    if (this.value === 'email') {
+                        contactLabel.textContent = 'Email Penerima*';
+                        contactInput.type = 'email';
+                        contactInput.placeholder = 'Masukkan email penerima';
+                    } else if (this.value === 'sms' || this.value === 'whatsapp') {
+                        contactLabel.textContent = 'Nomor Telepon Penerima*';
+                        contactInput.type = 'tel';
+                        contactInput.placeholder = 'Masukkan nomor telepon penerima';
+                    }
+                });
+            });
+            
+            // Character count for personal message
+            const personalMessage = document.getElementById('personalMessage');
+            const charCount = document.getElementById('charCount');
+            
+            personalMessage.addEventListener('input', function() {
+                const count = this.value.length;
+                charCount.textContent = count;
+                
+                if (count >= 200) {
+                    charCount.style.color = 'red';
+                } else {
+                    charCount.style.color = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

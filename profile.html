@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Saya - Rasa Nusantara</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .tab-active {
+      color: #ea580c;
+      border-bottom: 2px solid #ea580c;
+      font-weight: 500;
+    }
+    
+    .status-badge {
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    
+    .status-completed {
+      background-color: #dcfce7;
+      color: #16a34a;
+    }
+    
+    .status-shipped {
+      background-color: #dbeafe;
+      color: #2563eb;
+    }
+    
+    .status-processing {
+      background-color: #fef9c3;
+      color: #ca8a04;
+    }
+    
+    .status-pending {
+      background-color: #fee2e2;
+      color: #dc2626;
+    }
+    
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+    
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+    
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    
+    input:checked + .toggle-slider {
+      background-color: #ea580c;
+    }
+    
+    input:checked + .toggle-slider:before {
+      transform: translateX(26px);
+    }
+
+    /* Dark Mode Styles */
+    .dark-mode {
+      background-color: #1a202c;
+      color: #e2e8f0;
+    }
+
+    .dark-mode .bg-white {
+      background-color: #2d3748;
+    }
+
+    .dark-mode .bg-gray-50 {
+      background-color: #1a202c;
+    }
+
+    .dark-mode .text-gray-800 {
+      color: #e2e8f0;
+    }
+
+    .dark-mode .text-gray-700 {
+      color: #e2e8f0;
+    }
+
+    .dark-mode .text-gray-600 {
+      color: #cbd5e0;
+    }
+
+    .dark-mode .text-gray-500 {
+      color: #a0aec0;
+    }
+
+    .dark-mode .border-gray-300 {
+      border-color: #4a5568;
+    }
+
+    .dark-mode .border-gray-200 {
+      border-color: #2d3748;
+    }
+
+    .dark-mode .border-gray-100 {
+      border-color: #2d3748;
+    }
+
+    .dark-mode .shadow-md {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode .bg-orange-50 {
+      background-color: #3d2618;
+    }
+
+    .dark-mode .hover\:bg-orange-50:hover {
+      background-color: #3d2618;
+    }
+
+    .dark-mode .hover\:bg-gray-50:hover {
+      background-color: #2d3748;
+    }
+
+    .dark-mode .bg-gradient-to-br.from-orange-50.to-orange-100 {
+      background: linear-gradient(to bottom right, #3d2618, #4d2d1a);
+    }
+
+    .dark-mode .bg-gradient-to-br.from-green-50.to-green-100 {
+      background: linear-gradient(to bottom right, #1c3b2b, #1e4835);
+    }
+
+    .dark-mode .bg-gradient-to-br.from-blue-50.to-blue-100 {
+      background: linear-gradient(to bottom right, #172a45, #1a365d);
+    }
+
+    .dark-mode .bg-white.p-4.rounded-full.shadow-sm {
+      background-color: #4a5568;
+    }
+
+    .dark-mode .badge-level {
+      background-color: #ea580c;
+    }
+
+    .dark-mode .progress-bar {
+      background-color: #ea580c;
+    }
+
+    .dark-mode .navbar {
+      background-color: #2d3748;
+    }
+
+    .dark-mode footer {
+      background-color: #1a202c;
+    }
+
+    /* Review Stars */
+    .star-rating {
+      display: inline-flex;
+      font-size: 1.25rem;
+      color: #f59e0b;
+    }
+
+    /* Address Card */
+    .address-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .address-card:hover {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .address-card .badge {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+    }
+
+    .dark-mode .address-card {
+      border-color: #4a5568;
+    }
+
+    /* Wishlist Item */
+    .wishlist-item {
+      position: relative;
+    }
+
+    .wishlist-item .remove-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 9999px;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ef4444;
+      transition: all 0.3s ease;
+    }
+
+    .wishlist-item .remove-btn:hover {
+      background-color: #ef4444;
+      color: white;
+    }
+
+    .dark-mode .wishlist-item .remove-btn {
+      background-color: rgba(45, 55, 72, 0.9);
+    }
+
+    /* Loyalty Points */
+    .loyalty-points {
+      background: linear-gradient(to right, #ea580c, #f97316);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loyalty-points::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+    }
+
+    /* Tabs */
+    .profile-tab {
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .profile-tab:hover {
+      background-color: #f3f4f6;
+    }
+
+    .profile-tab.active {
+      background-color: #ea580c;
+      color: white;
+    }
+
+    .dark-mode .profile-tab:hover {
+      background-color: #2d3748;
+    }
+
+    .dark-mode .profile-tab.active {
+      background-color: #ea580c;
+    }
+
+    /* Review Item */
+    .review-item {
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .review-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .dark-mode .review-item {
+      border-color: #4a5568;
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <a href="index.html" class="text-2xl font-bold text-orange-600 flex items-center">
+          <i class="fas fa-utensils mr-2"></i>
+          Rasa Nusantara
+        </a>
+        
+        <!-- Navigation - Desktop -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Beranda</a>
+          <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Produk</a>
+          <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Blog</a>
+          <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Tentang Kami</a>
+          <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Kontak</a>
+        </nav>
+        
+        <!-- Right Menu -->
+        <div class="flex items-center space-x-6">
+          <!-- Search -->
+          <div class="relative hidden md:block">
+            <input type="text" placeholder="Cari produk atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-64 text-sm">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+          
+          <!-- Dark Mode Toggle -->
+          <button id="dark-mode-toggle" class="text-gray-700 hover:text-orange-500 transition-colors">
+            <i class="fas fa-moon text-xl"></i>
+          </button>
+          
+          <!-- Notifications -->
+          <div class="relative">
+            <a href="#" class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-bell text-xl"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
+            </a>
+          </div>
+          
+          <!-- Cart -->
+          <div class="relative">
+            <a href="keranjang.html" class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+            </a>
+          </div>
+          
+          <!-- User -->
+          <div class="relative">
+            <a href="profil.html" class="text-orange-500">
+              <i class="fas fa-user-circle text-xl"></i>
+            </a>
+          </div>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+        <div class="flex flex-col space-y-4">
+          <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Beranda</a>
+          <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Produk</a>
+          <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Blog</a>
+          <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Tentang Kami</a>
+          <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Kontak</a>
+        </div>
+        <div class="mt-4 relative">
+          <input type="text" placeholder="Cari produk atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full text-sm">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-100 py-3">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-orange-500">Beranda</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <span class="text-orange-500 font-medium">Profil Saya</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Section -->
+  <section class="py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Sidebar -->
+        <div class="lg:w-1/4">
+          <div class="bg-white rounded-xl shadow-md p-6 sticky top-24">
+            <!-- User Info -->
+            <div class="flex flex-col items-center mb-8 border-b pb-6">
+              <div class="relative mb-4">
+                <img src="https://via.placeholder.com/100" alt="Budi Santoso" class="w-24 h-24 rounded-full object-cover border-2 border-orange-500">
+                <div class="absolute bottom-0 right-0 bg-green-500 w-4 h-4 rounded-full border-2 border-white"></div>
+              </div>
+              <h3 class="font-bold text-lg text-center">Budi Santoso</h3>
+              <p class="text-gray-600 text-sm mb-2">budi.santoso@email.com</p>
+              <span class="bg-orange-100 text-orange-600 text-xs px-3 py-1 rounded-full font-medium">Level Gold</span>
+              
+              <!-- Loyalty Points -->
+              <div class="w-full mt-4">
+                <div class="flex justify-between items-center text-sm mb-1">
+                  <span class="text-gray-600">Poin Loyalitas</span>
+                  <span class="font-medium">750/1000</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-orange-500 h-2 rounded-full" style="width: 75%"></div>
+                </div>
+                <p class="text-xs text-gray-500 mt-1">250 poin lagi untuk level Platinum</p>
+              </div>
+            </div>
+            
+            <!-- Navigation -->
+            <nav>
+              <ul class="space-y-1">
+                <li>
+                  <a href="#dashboard" class="profile-tab active flex items-center py-3 px-4 rounded-lg font-medium">
+                    <i class="fas fa-tachometer-alt mr-3 w-5 text-center"></i>
+                    <span>Dashboard</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#pesanan" class="profile-tab flex items-center py-3 px-4 text-gray-700 rounded-lg transition-colors font-medium">
+                    <i class="fas fa-shopping-bag mr-3 w-5 text-center"></i>
+                    <span>Pesanan Saya</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#wishlist" class="profile-tab flex items-center py-3 px-4 text-gray-700 rounded-lg transition-colors font-medium">
+                    <i class="fas fa-heart mr-3 w-5 text-center"></i>
+                    <span>Wishlist</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#ulasan" class="profile-tab flex items-center py-3 px-4 text-gray-700 rounded-lg transition-colors font-medium">
+                    <i class="fas fa-star mr-3 w-5 text-center"></i>
+                    <span>Ulasan Saya</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#alamat" class="profile-tab flex items-center py-3 px-4 text-gray-700 rounded-lg transition-colors font-medium">
+                    <i class="fas fa-map-marker-alt mr-3 w-5 text-center"></i>
+                    <span>Alamat</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#pembayaran" class="profile-tab flex items-center py-3 px-4 text-gray-700 rounded-lg transition-colors font-medium">
+                    <i class="fas fa-credit-card mr-3 w-5 text-center"></i>
+                    <span>Metode Pembayaran</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#pengaturan" class="profile-tab flex items-center py-3 px-4 text-gray-700 rounded-lg transition-colors font-medium">
+                    <i class="fas fa-cog mr-3 w-5 text-center"></i>
+                    <span>Pengaturan Akun</span>
+                  </a>
+                </li>
+              </ul>
+              <div class="mt-6 pt-6 border-t">
+                <a href="#" class="flex items-center py-3 px-4 text-red-500 hover:bg-red-50 rounded-lg transition-colors font-medium">
+                  <i class="fas fa-sign-out-alt mr-3 w-5 text-center"></i>
+                  <span>Keluar</span>
+                </a>
+              </div>
+            </nav>
+          </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="lg:w-3/4">
+          <!-- Dashboard Section -->
+          <div id="dashboard" class="profile-section bg-white rounded-xl shadow-md p-8 mb-8">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+              <i class="fas fa-tachometer-alt mr-3 text-orange-500"></i>
+              Dashboard
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+              <!-- Stats Card 1 -->
+              <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 card-hover">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-gray-600 font-medium">Total Pesanan</p>
+                    <h3 class="text-3xl font-bold mt-2 text-orange-600">12</h3>
+                  </div>
+                  <div class="bg-white p-4 rounded-full shadow-sm">
+                    <i class="fas fa-shopping-bag text-orange-500 text-xl"></i>
+                  </div>
+                </div>
+                <div class="mt-4 text-sm text-gray-500">
+                  <span class="text-green-500 font-medium"><i class="fas fa-arrow-up mr-1"></i> 8%</span> dari bulan lalu
+                </div>
+              </div>
+              
+              <!-- Stats Card 2 -->
+              <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 card-hover">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-gray-600 font-medium">Poin Reward</p>
+                    <h3 class="text-3xl font-bold mt-2 text-green-600">750</h3>
+                  </div>
+                  <div class="bg-white p-4 rounded-full shadow-sm">
+                    <i class="fas fa-star text-green-500 text-xl"></i>
+                  </div>
+                </div>
+                <div class="mt-4 text-sm text-gray-500">
+                  <span class="text-green-500 font-medium"><i class="fas fa-arrow-up mr-1"></i> 12%</span> dari bulan lalu
+                </div>
+              </div>
+              
+              <!-- Stats Card 3 -->
+              <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 card-hover">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-gray-600 font-medium">Wishlist</p>
+                    <h3 class="text-3xl font-bold mt-2 text-blue-600">8</h3>
+                  </div>
+                  <div class="bg-white p-4 rounded-full shadow-sm">
+                    <i class="fas fa-heart text-blue-500 text-xl"></i>
+                  </div>
+                </div>
+                <div class="mt-4 text-sm text-gray-500">
+                  <span class="text-green-500 font-medium"><i class="fas fa-arrow-up mr-1"></i> 5%</span> dari bulan lalu
+                </div>
+              </div>
+            </div>
+            
+            <!-- Recent Orders -->
+            <div>
+              <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold flex items-center">
+                  <i class="fas fa-clock mr-2 text-orange-500"></i>
+                  Pesanan Terbaru
+                </h3>
+                <a href="#pesanan" class="text-orange-500 hover:text-orange-600 transition-colors text-sm font-medium flex items-center">
+                  Lihat Semua
+                  <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+              
+              <div class="overflow-x-auto bg-white rounded-xl border">
+                <table class="w-full">
+                  <thead>
+                    <tr class="bg-gray-50 text-left">
+                      <th class="py-4 px-6 text-sm font-medium text-gray-600">No. Pesanan</th>
+                      <th class="py-4 px-6 text-sm font-medium text-gray-600">Tanggal</th>
+                      <th class="py-4 px-6 text-sm font-medium text-gray-600">Total</th>
+                      <th class="py-4 px-6 text-sm font-medium text-gray-600">Status</th>
+                      <th class="py-4 px-6 text-sm font-medium text-gray-600">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-t border-gray-100 hover:bg-gray-50 transition-colors">
+                      <td class="py-4 px-6 text-sm font-medium">#RN-2025-0012</td>
+                      <td class="py-4 px-6 text-sm">12 Mei 2025</td>
+                      <td class="py-4 px-6 text-sm font-medium">Rp 199.000</td>
+                      <td class="py-4 px-6 text-sm">
+                        <span class="status-badge status-completed">Selesai</span>
+                      </td>
+                      <td class="py-4 px-6 text-sm">
+                        <a href="#" class="text-orange-500 hover:text-orange-600 transition-colors font-medium">Detail</a>
+                      </td>
+                    </tr>
+                    <tr class="border-t border-gray-100 hover:bg-gray-50 transition-colors">
+                      <td class="py-4 px-6 text-sm font-medium">#RN-2025-0011</td>
+                      <td class="py-4 px-6 text-sm">5 Mei 2025</td>
+                      <td class="py-4 px-6 text-sm font-medium">Rp 145.000</td>
+                      <td class="py-4 px-6 text-sm">
+                        <span class="status-badge status-shipped">Dikirim</span>
+                      </td>
+                      <td class="py-4 px-6 text-sm">
+                        <a href="#" class="text-orange-500 hover:text-orange-600 transition-colors font-medium">Detail</a>
+                      </td>
+                    </tr>
+                    <tr class="border-t border-gray-100 hover:bg-gray-50 transition-colors">
+                      <td class="py-4 px-6 text-sm font-medium">#RN-2025-0010</td>
+                      <td class="py-4 px-6 text-sm">28 April 2025</td>
+                      <td class="py-4 px-6 text-sm font-medium">Rp 87.000</td>
+                      <td class="py-4 px-6 text-sm">
+                        <span class="status-badge status-completed">Selesai</span>
+                      </td>
+                      <td class="py-4 px-6 text-sm">
+                        <a href="#" class="text-orange-500 hover:text-orange-600 transition-colors font-medium">Detail</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Saved Carts -->
+            <div class="mt-10">
+              <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold flex items-center">
+                  <i class="fas fa-bookmark mr-2 text-orange-500"></i>
+                  Keranjang Tersimpan
+                </h3>
+                <a href="saved-carts.html" class="text-orange-500 hover:text-orange-600 transition-colors text-sm font-medium flex items-center">
+                  Lihat Semua
+                  <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Saved Cart 1 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <div class="bg-gray-50 p-4 flex justify-between items-center">
+                    <div>
+                      <h6 class="font-medium">Belanja Bulanan</h6>
+                      <p class="text-xs text-gray-500">Disimpan pada 10 Mei 2025</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <span class="text-sm font-medium">Rp 350.000</span>
+                      <button class="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-shopping-cart"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="p-4">
+                    <div class="flex items-center space-x-2 mb-3">
+                      <img src="https://via.placeholder.com/40" alt="Produk" class="w-10 h-10 rounded-md object-cover">
+                      <img src="https://via.placeholder.com/40" alt="Produk" class="w-10 h-10 rounded-md object-cover">
+                      <img src="https://via.placeholder.com/40" alt="Produk" class="w-10 h-10 rounded-md object-cover">
+                      <div class="w-10 h-10 rounded-md bg-gray-200 flex items-center justify-center text-gray-500 text-xs">+4</div>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-500">7 produk</span>
+                      <a href="#" class="text-orange-500 hover:text-orange-600 text-sm font-medium">Lihat Detail</a>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Saved Cart 2 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <div class="bg-gray-50 p-4 flex justify-between items-center">
+                    <div>
+                      <h6 class="font-medium">Makanan Favorit</h6>
+                      <p class="text-xs text-gray-500">Disimpan pada 2 Mei 2025</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <span class="text-sm font-medium">Rp 175.000</span>
+                      <button class="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-shopping-cart"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="p-4">
+                    <div class="flex items-center space-x-2 mb-3">
+                      <img src="https://via.placeholder.com/40" alt="Produk" class="w-10 h-10 rounded-md object-cover">
+                      <img src="https://via.placeholder.com/40" alt="Produk" class="w-10 h-10 rounded-md object-cover">
+                      <img src="https://via.placeholder.com/40" alt="Produk" class="w-10 h-10 rounded-md object-cover">
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-500">3 produk</span>
+                      <a href="#" class="text-orange-500 hover:text-orange-600 text-sm font-medium">Lihat Detail</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Orders Section -->
+          <div id="pesanan" class="profile-section bg-white rounded-xl shadow-md p-8 mb-8 hidden">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+              <i class="fas fa-shopping-bag mr-3 text-orange-500"></i>
+              Pesanan Saya
+            </h2>
+            
+            <!-- Order Tabs -->
+            <div class="border-b border-gray-200 mb-8">
+              <div class="flex flex-wrap -mb-px overflow-x-auto whitespace-nowrap">
+                <button class="mr-8 py-3 tab-active">
+                  Semua
+                </button>
+                <button class="mr-8 py-3 text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors">
+                  Menunggu Pembayaran
+                </button>
+                <button class="mr-8 py-3 text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors">
+                  Diproses
+                </button>
+                <button class="mr-8 py-3 text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors">
+                  Dikirim
+                </button>
+                <button class="mr-8 py-3 text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors">
+                  Selesai
+                </button>
+                <button class="py-3 text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors">
+                  Dibatalkan
+                </button>
+              </div>
+            </div>
+            
+            <!-- Order List -->
+            <div class="space-y-8">
+              <!-- Order 1 -->
+              <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <div class="bg-gray-50 p-5 flex justify-between items-center">
+                  <div>
+                    <div class="flex items-center">
+                      <p class="text-sm text-gray-600">No. Pesanan: <span class="font-medium text-gray-800">#RN-2025-0012</span></p>
+                      <span class="mx-2 text-gray-300">|</span>
+                      <p class="text-sm text-gray-600">12 Mei 2025</p>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      <i class="fas fa-truck mr-1"></i> JNE Express (J&T123456789)
+                    </p>
+                  </div>
+                  <div>
+                    <span class="status-badge status-completed">Selesai</span>
+                  </div>
+                </div>
+                
+                <div class="p-5 border-b border-gray-100">
+                  <div class="flex items-start">
+                    <img src="https://via.placeholder.com/100" alt="Rendang Padang" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                    <div class="flex-grow">
+                      <h3 class="font-bold text-lg">Rendang Padang</h3>
+                      <p class="text-sm text-gray-500">Kemasan 250 gram</p>
+                      <div class="flex justify-between mt-2">
+                        <span class="text-sm">1 x Rp 85.000</span>
+                        <span class="font-medium">Rp 85.000</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="p-5 border-b border-gray-100">
+                  <div class="flex items-start">
+                    <img src="https://via.placeholder.com/100" alt="Sambal Bawang" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                    <div class="flex-grow">
+                      <h3 class="font-bold text-lg">Sambal Bawang</h3>
+                      <p class="text-sm text-gray-500">Kemasan 100 gram</p>
+                      <div class="flex justify-between mt-2">
+                        <span class="text-sm">2 x Rp 35.000</span>
+                        <span class="font-medium">Rp 70.000</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="p-5 border-b border-gray-100">
+                  <div class="flex items-start">
+                    <img src="https://via.placeholder.com/100" alt="Bumbu Rawon" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                    <div class="flex-grow">
+                      <h3 class="font-bold text-lg">Bumbu Rawon</h3>
+                      <p class="text-sm text-gray-500">Kemasan 50 gram</p>
+                      <div class="flex justify-between mt-2">
+                        <span class="text-sm">1 x Rp 32.000</span>
+                        <span class="font-medium">Rp 32.000</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="p-5 flex justify-between items-center">
+                  <div>
+                    <p class="text-sm text-gray-600">Total Pesanan:</p>
+                    <p class="text-xl font-bold text-orange-500">Rp 199.000</p>
+                    <p class="text-xs text-gray-500 mt-1">Termasuk ongkos kirim Rp 12.000</p>
+                  </div>
+                  <div class="flex space-x-3">
+                    <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm transition-colors font-medium flex items-center">
+                      <i class="fas fa-redo-alt mr-2"></i>
+                      Beli Lagi
+                    </button>
+                    <button class="border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm transition-colors font-medium flex items-center">
+                      <i class="fas fa-info-circle mr-2"></i>
+                      Detail Pesanan
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Order 2 -->
+              <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <div class="bg-gray-50 p-5 flex justify-between items-center">
+                  <div>
+                    <div class="flex items-center">
+                      <p class="text-sm text-gray-600">No. Pesanan: <span class="font-medium text-gray-800">#RN-2025-0011</span></p>
+                      <span class="mx-2 text-gray-300">|</span>
+                      <p class="text-sm text-gray-600">5 Mei 2025</p>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      <i class="fas fa-truck mr-1"></i> SiCepat REG (SC987654321)
+                    </p>
+                  </div>
+                  <div>
+                    <span class="status-badge status-shipped">Dikirim</span>
+                  </div>
+                </div>
+                
+                <div class="p-5 border-b border-gray-100">
+                  <div class="flex items-start">
+                    <img src="https://via.placeholder.com/100" alt="Gulai Ayam" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                    <div class="flex-grow">
+                      <h3 class="font-bold text-lg">Gulai Ayam</h3>
+                      <p class="text-sm text-gray-500">Kemasan 500 gram</p>
+                      <div class="flex justify-between mt-2">
+                        <span class="text-sm">1 x Rp 65.000</span>
+                        <span class="font-medium">Rp 65.000</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="p-5 border-b border-gray-100">
+                  <div class="flex items-start">
+                    <img src="https://via.placeholder.com/100" alt="Keripik Tempe" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                    <div class="flex-grow">
+                      <h3 class="font-bold text-lg">Keripik Tempe</h3>
+                      <p class="text-sm text-gray-500">Kemasan 200 gram</p>
+                      <div class="flex justify-between mt-2">
+                        <span class="text-sm">2 x Rp 25.000</span>
+                        <span class="font-medium">Rp 50.000</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="p-5 flex justify-between items-center">
+                  <div>
+                    <p class="text-sm text-gray-600">Total Pesanan:</p>
+                    <p class="text-xl font-bold text-orange-500">Rp 145.000</p>
+                    <p class="text-xs text-gray-500 mt-1">Termasuk ongkos kirim Rp 30.000</p>
+                  </div>
+                  <div class="flex space-x-3">
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors font-medium flex items-center">
+                      <i class="fas fa-map-marker-alt mr-2"></i>
+                      Lacak Pengiriman
+                    </button>
+                    <button class="border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm transition-colors font-medium flex items-center">
+                      <i class="fas fa-info-circle mr-2"></i>
+                      Detail Pesanan
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="flex justify-center mt-10">
+              <nav class="inline-flex rounded-lg shadow-sm">
+                <a href="#" class="py-2 px-4 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 rounded-l-lg flex items-center justify-center transition-colors">
+                  <i class="fas fa-chevron-left"></i>
+                </a>
+                <a href="#" class="py-2 px-4 border-t border-b border-gray-300 bg-orange-500 text-white flex items-center justify-center font-medium">
+                  1
+                </a>
+                <a href="#" class="py-2 px-4 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50 flex items-center justify-center transition-colors">
+                  2
+                </a>
+                <a href="#" class="py-2 px-4 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 rounded-r-lg flex items-center justify-center transition-colors">
+                  <i class="fas fa-chevron-right"></i>
+                </a>
+              </nav>
+            </div>
+          </div>
+          
+          <!-- Wishlist Section -->
+          <div id="wishlist" class="profile-section bg-white rounded-xl shadow-md p-8 mb-8 hidden">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+              <i class="fas fa-heart mr-3 text-orange-500"></i>
+              Wishlist Saya
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Wishlist Item 1 -->
+              <div class="wishlist-item border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <button class="remove-btn">
+                  <i class="fas fa-times"></i>
+                </button>
+                <div class="relative">
+                  <img src="https://via.placeholder.com/300x200" alt="Rendang Padang" class="w-full h-48 object-cover">
+                  <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <span class="text-white font-medium">Rp 85.000</span>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-bold text-lg mb-1">Rendang Padang</h3>
+                  <div class="flex items-center mb-3">
+                    <div class="star-rating">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="text-gray-500 text-sm ml-1">(120)</span>
+                  </div>
+                  <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg transition-colors font-medium">
+                    <i class="fas fa-shopping-cart mr-2"></i>
+                    Tambah ke Keranjang
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Wishlist Item 2 -->
+              <div class="wishlist-item border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <button class="remove-btn">
+                  <i class="fas fa-times"></i>
+                </button>
+                <div class="relative">
+                  <img src="https://via.placeholder.com/300x200" alt="Sambal Bawang" class="w-full h-48 object-cover">
+                  <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <span class="text-white font-medium">Rp 35.000</span>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-bold text-lg mb-1">Sambal Bawang</h3>
+                  <div class="flex items-center mb-3">
+                    <div class="star-rating">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
+                    </div>
+                    <span class="text-gray-500 text-sm ml-1">(85)</span>
+                  </div>
+                  <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg transition-colors font-medium">
+                    <i class="fas fa-shopping-cart mr-2"></i>
+                    Tambah ke Keranjang
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Wishlist Item 3 -->
+              <div class="wishlist-item border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <button class="remove-btn">
+                  <i class="fas fa-times"></i>
+                </button>
+                <div class="relative">
+                  <img src="https://via.placeholder.com/300x200" alt="Gudeg Yogyakarta" class="w-full h-48 object-cover">
+                  <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <span class="text-white font-medium">Rp 65.000</span>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-bold text-lg mb-1">Gudeg Yogyakarta</h3>
+                  <div class="flex items-center mb-3">
+                    <div class="star-rating">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                    <span class="text-gray-500 text-sm ml-1">(210)</span>
+                  </div>
+                  <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg transition-colors font-medium">
+                    <i class="fas fa-shopping-cart mr-2"></i>
+                    Tambah ke Keranjang
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Wishlist Item 4 -->
+              <div class="wishlist-item border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <button class="remove-btn">
+                  <i class="fas fa-times"></i>
+                </button>
+                <div class="relative">
+                  <img src="https://via.placeholder.com/300x200" alt="Bumbu Rawon" class="w-full h-48 object-cover">
+                  <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <span class="text-white font-medium">Rp 35.000</span>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-bold text-lg mb-1">Bumbu Rawon</h3>
+                  <div class="flex items-center mb-3">
+                    <div class="star-rating">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
+                    </div>
+                    <span class="text-gray-500 text-sm ml-1">(45)</span>
+                  </div>
+                  <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg transition-colors font-medium">
+                    <i class="fas fa-shopping-cart mr-2"></i>
+                    Tambah ke Keranjang
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Reviews Section -->
+          <div id="ulasan" class="profile-section bg-white rounded-xl shadow-md p-8 mb-8 hidden">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+              <i class="fas fa-star mr-3 text-orange-500"></i>
+              Ulasan Saya
+            </h2>
+            
+            <div class="space-y-6">
+              <!-- Review 1 -->
+              <div class="review-item">
+                <div class="flex items-start">
+                  <img src="https://via.placeholder.com/100" alt="Rendang Padang" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                  <div class="flex-grow">
+                    <div class="flex justify-between items-start">
+                      <h3 class="font-bold text-lg">Rendang Padang</h3>
+                      <span class="text-sm text-gray-500">18 Mei 2025</span>
+                    </div>
+                    <div class="star-rating my-2">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700">Rendang ini sangat lezat! Dagingnya empuk dan bumbunya meresap sempurna. Pengiriman juga cepat dan packaging aman. Akan beli lagi!</p>
+                    <div class="flex justify-between items-center mt-3">
+                      <div class="flex items-center text-sm text-gray-500">
+                        <span class="mr-3"><i class="fas fa-thumbs-up mr-1"></i> 12</span>
+                        <span><i class="fas fa-comment mr-1"></i> 2</span>
+                      </div>
+                      <div>
+                        <button class="text-orange-500 hover:text-orange-600 text-sm font-medium">Edit</button>
+                        <button class="text-red-500 hover:text-red-600 text-sm font-medium ml-3">Hapus</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Review 2 -->
+              <div class="review-item">
+                <div class="flex items-start">
+                  <img src="https://via.placeholder.com/100" alt="Sambal Bawang" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                  <div class="flex-grow">
+                    <div class="flex justify-between items-start">
+                      <h3 class="font-bold text-lg">Sambal Bawang</h3>
+                      <span class="text-sm text-gray-500">5 Mei 2025</span>
+                    </div>
+                    <div class="star-rating my-2">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
+                    </div>
+                    <p class="text-gray-700">Sambalnya enak dan pedas pas. Cocok untuk teman makan apa saja. Hanya saja kemasannya agak kecil untuk harganya.</p>
+                    <div class="flex justify-between items-center mt-3">
+                      <div class="flex items-center text-sm text-gray-500">
+                        <span class="mr-3"><i class="fas fa-thumbs-up mr-1"></i> 8</span>
+                        <span><i class="fas fa-comment mr-1"></i> 1</span>
+                      </div>
+                      <div>
+                        <button class="text-orange-500 hover:text-orange-600 text-sm font-medium">Edit</button>
+                        <button class="text-red-500 hover:text-red-600 text-sm font-medium ml-3">Hapus</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Review 3 -->
+              <div class="review-item">
+                <div class="flex items-start">
+                  <img src="https://via.placeholder.com/100" alt="Pempek Palembang" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                  <div class="flex-grow">
+                    <div class="flex justify-between items-start">
+                      <h3 class="font-bold text-lg">Pempek Palembang</h3>
+                      <span class="text-sm text-gray-500">10 April 2025</span>
+                    </div>
+                    <div class="star-rating my-2">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700">Pempeknya enak sekali, rasanya otentik seperti di Palembang. Cuka dan sambalnya juga pas, tidak terlalu asam dan tidak terlalu pedas. Porsinya juga banyak, cocok untuk acara keluarga. Sangat merekomendasikan produk ini!</p>
+                    <div class="flex justify-between items-center mt-3">
+                      <div class="flex items-center text-sm text-gray-500">
+                        <span class="mr-3"><i class="fas fa-thumbs-up mr-1"></i> 15</span>
+                        <span><i class="fas fa-comment mr-1"></i> 3</span>
+                      </div>
+                      <div>
+                        <button class="text-orange-500 hover:text-orange-600 text-sm font-medium">Edit</button>
+                        <button class="text-red-500 hover:text-red-600 text-sm font-medium ml-3">Hapus</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Address Section -->
+          <div id="alamat" class="profile-section bg-white rounded-xl shadow-md p-8 mb-8 hidden">
+            <div class="flex justify-between items-center mb-8">
+              <h2 class="text-2xl font-bold flex items-center">
+                <i class="fas fa-map-marker-alt mr-3 text-orange-500"></i>
+                Alamat Saya
+              </h2>
+              <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm transition-colors font-medium flex items-center">
+                <i class="fas fa-plus mr-2"></i>
+                Tambah Alamat Baru
+              </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Address 1 -->
+              <div class="address-card">
+                <span class="absolute top-3 right-3 bg-orange-500 text-white text-xs px-2 py-1 rounded-full">Utama</span>
+                <h3 class="font-bold text-lg mb-2">Rumah</h3>
+                <p class="text-gray-700 mb-1">Budi Santoso</p>
+                <p class="text-gray-700 mb-1">Jl. Merdeka No. 123, RT 05/RW 02</p>
+                <p class="text-gray-700 mb-1">Kelurahan Sukajadi, Kecamatan Sukajaya</p>
+                <p class="text-gray-700 mb-1">Jakarta Selatan, DKI Jakarta 12345</p>
+                <p class="text-gray-700 mb-3">Telepon: +62 812-3456-7890</p>
+                <div class="flex space-x-2 mt-4">
+                  <button class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded-lg text-sm transition-colors">
+                    <i class="fas fa-edit mr-1"></i> Edit
+                  </button>
+                  <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm transition-colors">
+                    <i class="fas fa-trash-alt mr-1"></i> Hapus
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Address 2 -->
+              <div class="address-card">
+                <h3 class="font-bold text-lg mb-2">Kantor</h3>
+                <p class="text-gray-700 mb-1">Budi Santoso</p>
+                <p class="text-gray-700 mb-1">Gedung Menara Tinggi, Lantai 15</p>
+                <p class="text-gray-700 mb-1">Jl. Jendral Sudirman Kav. 45-46</p>
+                <p class="text-gray-700 mb-1">Jakarta Pusat, DKI Jakarta 10210</p>
+                <p class="text-gray-700 mb-3">Telepon: +62 812-3456-7890</p>
+                <div class="flex space-x-2 mt-4">
+                  <button class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded-lg text-sm transition-colors">
+                    <i class="fas fa-edit mr-1"></i> Edit
+                  </button>
+                  <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm transition-colors">
+                    <i class="fas fa-trash-alt mr-1"></i> Hapus
+                  </button>
+                  <button class="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded-lg text-sm transition-colors">
+                    <i class="fas fa-check-circle mr-1"></i> Jadikan Utama
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Payment Methods Section -->
+          <div id="pembayaran" class="profile-section bg-white rounded-xl shadow-md p-8 mb-8 hidden">
+            <div class="flex justify-between items-center mb-8">
+              <h2 class="text-2xl font-bold flex items-center">
+                <i class="fas fa-credit-card mr-3 text-orange-500"></i>
+                Metode Pembayaran
+              </h2>
+              <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm transition-colors font-medium flex items-center">
+                <i class="fas fa-plus mr-2"></i>
+                Tambah Metode Pembayaran
+              </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Payment Method 1 -->
+              <div class="address-card">
+                <span class="absolute top-3 right-3 bg-orange-500 text-white text-xs px-2 py-1 rounded-full">Utama</span>
+                <div class="flex items-center mb-3">
+                  <i class="fab fa-cc-visa text-blue-600 text-3xl mr-3"></i>
+                  <div>
+                    <h3 class="font-bold text-lg">Visa</h3>
+                    <p class="text-gray-700">**** **** **** 1234</p>
+                  </div>
+                </div>
+                <p class="text-gray-700 mb-1">Budi Santoso</p>
+                <p class="text-gray-700 mb-3">Berlaku hingga: 05/2027</p>
+                <div class="flex space-x-2 mt-4">
+                  <button class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded-lg text-sm transition-colors">
+                    <i class="fas fa-edit mr-1"></i> Edit
+                  </button>
+                  <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm transition-colors">
+                    <i class="fas fa-trash-alt mr-1"></i> Hapus
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Payment Method 2 -->
+              <div class="address-card">
+                <div class="flex items-center mb-3">
+                  <i class="fab fa-cc-mastercard text-red-600 text-3xl mr-3"></i>
+                  <div>
+                    <h3 class="font-bold text-lg">Mastercard</h3>
+                    <p class="text-gray-700">**** **** **** 5678</p>
+                  </div>
+                </div>
+                <p class="text-gray-700 mb-1">Budi Santoso</p>
+                <p class="text-gray-700 mb-3">Berlaku hingga: 08/2026</p>
+                <div class="flex space-x-2 mt-4">
+                  <button class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded-lg text-sm transition-colors">
+                    <i class="fas fa-edit mr-1"></i> Edit
+                  </button>
+                  <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm transition-colors">
+                    <i class="fas fa-trash-alt mr-1"></i> Hapus
+                  </button>
+                  <button class="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded-lg text-sm transition-colors">
+                    <i class="fas fa-check-circle mr-1"></i> Jadikan Utama
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Account Settings -->
+          <div id="pengaturan" class="profile-section bg-white rounded-xl shadow-md p-8 hidden">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+              <i class="fas fa-cog mr-3 text-orange-500"></i>
+              Pengaturan Akun
+            </h2>
+            
+            <div class="mb-10">
+              <h3 class="text-lg font-bold mb-6 border-b pb-2">Informasi Pribadi</h3>
+              <form>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label for="first-name" class="block text-gray-700 mb-2 font-medium">Nama Depan</label>
+                    <input type="text" id="first-name" name="first-name" value="Budi" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors">
+                  </div>
+                  <div>
+                    <label for="last-name" class="block text-gray-700 mb-2 font-medium">Nama Belakang</label>
+                    <input type="text" id="last-name" name="last-name" value="Santoso" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors">
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label for="email" class="block text-gray-700 mb-2 font-medium">Email</label>
+                    <input type="email" id="email" name="email" value="budi.santoso@email.com" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors">
+                  </div>
+                  <div>
+                    <label for="phone" class="block text-gray-700 mb-2 font-medium">Nomor Telepon</label>
+                    <input type="tel" id="phone" name="phone" value="+62 812-3456-7890" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors">
+                  </div>
+                </div>
+                <div class="mb-6">
+                  <label for="birth-date" class="block text-gray-700 mb-2 font-medium">Tanggal Lahir</label>
+                  <input type="date" id="birth-date" name="birth-date" value="1990-05-15" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors">
+                </div>
+                <div class="mb-6">
+                  <label class="block text-gray-700 mb-2 font-medium">Jenis Kelamin</label>
+                  <div class="flex space-x-6">
+                    <div class="flex items-center">
+                      <input type="radio" id="gender-male" name="gender" value="male" class="w-5 h-5 text-orange-500 focus:ring-orange-500" checked>
+                      <label for="gender-male" class="ml-2">Laki-laki</label>
+                    </div>
+                    <div class="flex items-center">
+                      <input type="radio" id="gender-female" name="gender" value="female" class="w-5 h-5 text-orange-500 focus:ring-orange-500">
+                      <label for="gender-female" class="ml-2">Perempuan</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex justify-end">
+                  <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors font-medium flex items-center">
+                    <i class="fas fa-save mr-2"></i>
+                    Simpan Perubahan
+                  </button>
+                </div>
+              </form>
+            </div>
+            
+            <div class="mb-10">
+              <h3 class="text-lg font-bold mb-6 border-b pb-2">Ubah Password</h3>
+              <form>
+                <div class="mb-6">
+                  <label for="current-password" class="block text-gray-700 mb-2 font-medium">Password Saat Ini</label>
+                  <input type="password" id="current-password" name="current-password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors">
+                </div>
+                <div class="mb-6">
+                  <label for="new-password" class="block text-gray-700 mb-2 font-medium">Password Baru</label>
+                  <input type="password" id="new-password" name="new-password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors">
+                  <p class="text-xs text-gray-500 mt-1">Password harus memiliki minimal 8 karakter, termasuk huruf besar, huruf kecil, dan angka.</p>
+                </div>
+                <div class="mb-6">
+                  <label for="confirm-password" class="block text-gray-700 mb-2 font-medium">Konfirmasi Password Baru</label>
+                  <input type="password" id="confirm-password" name="confirm-password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors">
+                </div>
+                <div class="flex justify-end">
+                  <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors font-medium flex items-center">
+                    <i class="fas fa-key mr-2"></i>
+                    Ubah Password
+                  </button>
+                </div>
+              </form>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-6 border-b pb-2">Preferensi Notifikasi</h3>
+              <form>
+                <div class="space-y-6">
+                  <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div>
+                      <p class="font-medium">Email Promosi</p>
+                      <p class="text-sm text-gray-600">Dapatkan informasi tentang promo dan diskon terbaru</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                  <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div>
+                      <p class="font-medium">Status Pesanan</p>
+                      <p class="text-sm text-gray-600">Dapatkan notifikasi tentang status pesanan Anda</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                  <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div>
+                      <p class="font-medium">Newsletter</p>
+                      <p class="text-sm text-gray-600">Dapatkan artikel dan resep terbaru</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox">
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="flex justify-end mt-6">
+                  <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors font-medium flex items-center">
+                    <i class="fas fa-bell mr-2"></i>
+                    Simpan Preferensi
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-16 pb-8 mt-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+        <!-- About -->
+        <div>
+          <h3 class="text-xl font-bold mb-6 flex items-center">
+            <i class="fas fa-utensils mr-2 text-orange-400"></i>
+            Rasa Nusantara
+          </h3>
+          <p class="text-gray-300 mb-6 leading-relaxed">Website e-commerce yang menyediakan berbagai produk kuliner tradisional Indonesia. Kami berkomitmen untuk melestarikan cita rasa nusantara dengan sentuhan modern.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="bg-gray-700 hover:bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fab fa-facebook-f text-white"></i>
+            </a>
+            <a href="#" class="bg-gray-700 hover:bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fab fa-instagram text-white"></i>
+            </a>
+            <a href="#" class="bg-gray-700 hover:bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fab fa-twitter text-white"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-6">Tautan Cepat</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Beranda
+              </a>
+            </li>
+            <li>
+              <a href="produk.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Produk
+              </a>
+            </li>
+            <li>
+              <a href="blog.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="forum.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Forum
+              </a>
+            </li>
+            <li>
+              <a href="tentang-kami.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Tentang Kami
+              </a>
+            </li>
+            <li>
+              <a href="kontak.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Kontak
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h3 class="text-xl font-bold mb-6">Kontak Kami</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-orange-400"></i>
+              <span>Jl. Contoh No. 123, Kota Cimahi, Jawa Barat, 40511</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone-alt mr-3 text-orange-400"></i>
+              <span>+62 812-3456-7890</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-3 text-orange-400"></i>
+              <span>support@rasanusantara.com</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Hours -->
+        <div>
+          <h3 class="text-xl font-bold mb-6">Jam Operasional</h3>
+          <ul class="space-y-3">
+            <li class="flex justify-between items-center pb-2 border-b border-gray-700">
+              <span>Senin - Jumat:</span>
+              <span class="text-orange-400">08:00 - 17:00 WIB</span>
+            </li>
+            <li class="flex justify-between items-center pb-2 border-b border-gray-700">
+              <span>Sabtu:</span>
+              <span class="text-orange-400">09:00 - 15:00 WIB</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <span>Minggu:</span>
+              <span class="text-orange-400">Tutup</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="border-gray-700 mb-8">
+      
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">&copy; 2025 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Syarat & Ketentuan</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Kebijakan Privasi</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/dark-mode.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+      
+      // Tab navigation
+      const profileTabs = document.querySelectorAll('.profile-tab');
+      const profileSections = document.querySelectorAll('.profile-section');
+      
+      profileTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          
+          // Hide all sections
+          profileSections.forEach(section => {
+            section.classList.add('hidden');
+          });
+          
+          // Show target section
+          document.querySelector(targetId).classList.remove('hidden');
+          
+          // Update active state
+          profileTabs.forEach(tab => {
+            tab.classList.remove('active');
+          });
+          
+          this.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rendang Padang - Rasa Nusantara</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <a href="index.html" class="text-2xl font-bold text-orange-600">Rasa Nusantara</a>
+        
+        <!-- Navigation - Desktop -->
+        <nav class="hidden md:flex space-x-6">
+          <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors">Beranda</a>
+          <a href="produk.html" class="text-orange-500 font-medium">Produk</a>
+          <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors">Blog</a>
+          <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors">Tentang Kami</a>
+          <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors">Kontak</a>
+        </nav>
+        
+        <!-- Right Menu -->
+        <div class="flex items-center space-x-4">
+          <!-- Search -->
+          <div class="relative hidden md:block">
+            <input type="text" placeholder="Cari produk atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-64">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+          
+          <!-- Notifications -->
+          <div class="relative">
+            <a href="#" class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-bell"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">2</span>
+            </a>
+          </div>
+          
+          <!-- Cart -->
+          <div class="relative">
+            <a href="keranjang.html" class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+            </a>
+          </div>
+          
+          <!-- User -->
+          <div class="relative">
+            <a href="akun.html" class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-user"></i>
+            </a>
+          </div>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-orange-500 transition-colors">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+        <div class="flex flex-col space-y-3">
+          <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors">Beranda</a>
+          <a href="produk.html" class="text-orange-500 font-medium">Produk</a>
+          <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors">Blog</a>
+          <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors">Tentang Kami</a>
+          <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors">Kontak</a>
+        </div>
+        <div class="mt-4 relative">
+          <input type="text" placeholder="Cari produk atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-100 py-3">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-orange-500 transition-colors">Beranda</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <a href="produk.html" class="text-gray-600 hover:text-orange-500 transition-colors">Produk</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <span class="text-gray-800 font-medium">Rendang Padang</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Detail -->
+  <section class="py-8 md:py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Product Images -->
+        <div class="lg:w-1/2">
+          <div class="bg-white rounded-xl shadow-md p-4 mb-4">
+            <div class="relative overflow-hidden rounded-lg">
+              <img src="https://via.placeholder.com/600x600" alt="Rendang Padang" class="w-full h-auto rounded-lg transition-transform duration-300 hover:scale-105" id="main-image">
+              <button class="absolute top-4 right-4 bg-white rounded-full p-2.5 text-gray-600 hover:text-orange-500 transition-colors shadow-md hover:shadow-lg">
+                <i class="far fa-heart text-xl"></i>
+              </button>
+              <div class="absolute top-4 left-4 flex flex-col gap-2">
+                <span class="bg-red-500 text-white text-xs px-3 py-1.5 rounded-full font-medium">Terlaris</span>
+                <span class="bg-green-500 text-white text-xs px-3 py-1.5 rounded-full font-medium">Stok Tersedia</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 gap-3">
+            <div class="bg-white rounded-lg shadow-md p-2 cursor-pointer border-2 border-orange-500 transition-all hover:shadow-lg" onclick="changeImage(this, 'https://via.placeholder.com/600x600')">
+              <img src="https://via.placeholder.com/150x150" alt="Rendang Padang Thumbnail 1" class="w-full h-auto rounded-md">
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-2 cursor-pointer border-2 border-transparent transition-all hover:shadow-lg hover:border-orange-300" onclick="changeImage(this, 'https://via.placeholder.com/600x600?text=Image+2')">
+              <img src="https://via.placeholder.com/150x150?text=Image+2" alt="Rendang Padang Thumbnail 2" class="w-full h-auto rounded-md">
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-2 cursor-pointer border-2 border-transparent transition-all hover:shadow-lg hover:border-orange-300" onclick="changeImage(this, 'https://via.placeholder.com/600x600?text=Image+3')">
+              <img src="https://via.placeholder.com/150x150?text=Image+3" alt="Rendang Padang Thumbnail 3" class="w-full h-auto rounded-md">
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-2 cursor-pointer border-2 border-transparent transition-all hover:shadow-lg hover:border-orange-300" onclick="changeImage(this, 'https://via.placeholder.com/600x600?text=Image+4')">
+              <img src="https://via.placeholder.com/150x150?text=Image+4" alt="Rendang Padang Thumbnail 4" class="w-full h-auto rounded-md">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product Info -->
+        <div class="lg:w-1/2">
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <h1 class="text-3xl font-bold mb-3">Rendang Padang</h1>
+            
+            <div class="flex items-center mb-4">
+              <div class="flex items-center text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span class="text-gray-700 ml-2 font-medium">4.8</span>
+              </div>
+              <span class="text-gray-500 ml-2">(120 ulasan)</span>
+              <span class="mx-3 text-gray-300">|</span>
+              <span class="text-green-600 flex items-center">
+                <i class="fas fa-check-circle mr-1"></i>
+                <span>Terjual 500+</span>
+              </span>
+            </div>
+            
+            <div class="mb-6">
+              <p class="text-3xl font-bold text-orange-500">Rp 85.000</p>
+            </div>
+            
+            <div class="border-t border-b border-gray-200 py-5 mb-6">
+              <p class="text-gray-700 mb-4 leading-relaxed">Rendang daging sapi asli Padang dengan bumbu rempah pilihan. Dimasak dengan cara tradisional selama berjam-jam untuk menghasilkan cita rasa yang kaya dan otentik. Cocok untuk lauk sehari-hari atau hidangan spesial.</p>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>100% Daging Sapi Pilihan</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Tanpa Pengawet</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Bersertifikat Halal MUI</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Tahan hingga 7 hari</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="space-y-5 mb-6">
+              <div>
+                <span class="text-gray-700 font-medium block mb-3">Varian:</span>
+                <div class="flex flex-wrap gap-3">
+                  <button class="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg font-medium bg-orange-50 hover:bg-orange-100 transition-colors">Original</button>
+                  <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:border-orange-500 hover:text-orange-500 hover:bg-orange-50 transition-colors">Pedas</button>
+                  <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:border-orange-500 hover:text-orange-500 hover:bg-orange-50 transition-colors">Extra Pedas</button>
+                </div>
+              </div>
+              
+              <div>
+                <span class="text-gray-700 font-medium block mb-3">Ukuran:</span>
+                <div class="flex flex-wrap gap-3">
+                  <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:border-orange-500 hover:text-orange-500 hover:bg-orange-50 transition-colors">100gr</button>
+                  <button class="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg font-medium bg-orange-50 hover:bg-orange-100 transition-colors">250gr</button>
+                  <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:border-orange-500 hover:text-orange-500 hover:bg-orange-50 transition-colors">500gr</button>
+                </div>
+              </div>
+              
+              <div class="flex items-center">
+                <span class="text-gray-700 font-medium mr-4">Jumlah:</span>
+                <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+                  <button class="px-4 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 transition-colors" onclick="decrementQuantity()">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <input type="number" id="quantity" value="1" min="1" class="w-14 text-center border-0 focus:outline-none focus:ring-0">
+                  <button class="px-4 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 transition-colors" onclick="incrementQuantity()">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+                <span class="ml-4 text-gray-600">Tersedia: <span class="font-medium">50 pcs</span></span>
+              </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button class="flex-1 bg-white border-2 border-orange-500 text-orange-500 hover:bg-orange-50 py-3 px-6 rounded-lg transition-colors flex items-center justify-center font-medium">
+                <i class="fas fa-shopping-cart mr-2"></i>
+                Tambah ke Keranjang
+              </button>
+              <button class="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-lg transition-colors flex items-center justify-center font-medium">
+                <i class="fas fa-bolt mr-2"></i>
+                Beli Sekarang
+              </button>
+            </div>
+          </div>
+          
+          <!-- Seller Info -->
+          <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+            <div class="flex items-center">
+              <img src="https://via.placeholder.com/60" alt="Toko Padang Raya" class="w-12 h-12 rounded-full mr-4 border-2 border-orange-200">
+              <div>
+                <h3 class="font-bold">Toko Padang Raya</h3>
+                <div class="flex items-center">
+                  <div class="flex items-center text-yellow-400 text-sm">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span class="text-gray-700 ml-1">(4.8)</span>
+                  </div>
+                  <span class="mx-2 text-gray-300">|</span>
+                  <span class="text-gray-600 text-sm">Aktif 2 jam lalu</span>
+                </div>
+              </div>
+              <div class="ml-auto">
+                <button class="bg-white border border-orange-500 text-orange-500 hover:bg-orange-50 px-4 py-2 rounded-lg transition-colors">
+                  <i class="fas fa-store mr-1"></i>
+                  Kunjungi Toko
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Share -->
+          <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+            <h3 class="font-bold mb-4">Bagikan Produk</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="bg-blue-400 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="bg-pink-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="bg-green-500 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="#" class="bg-gray-200 text-gray-600 w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
+                <i class="fas fa-link"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Tabs -->
+  <section class="py-8">
+    <div class="container mx-auto px-4">
+      <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <!-- Tabs -->
+        <div class="flex overflow-x-auto scrollbar-hide border-b border-gray-200">
+          <button class="px-6 py-4 text-orange-500 border-b-2 border-orange-500 font-medium whitespace-nowrap" onclick="openTab(event, 'deskripsi')">
+            Deskripsi
+          </button>
+          <button class="px-6 py-4 text-gray-600 hover:text-gray-800 transition-colors whitespace-nowrap" onclick="openTab(event, 'spesifikasi')">
+            Spesifikasi
+          </button>
+          <button class="px-6 py-4 text-gray-600 hover:text-gray-800 transition-colors whitespace-nowrap" onclick="openTab(event, 'ulasan')">
+            Ulasan (120)
+          </button>
+          <button class="px-6 py-4 text-gray-600 hover:text-gray-800 transition-colors whitespace-nowrap" onclick="openTab(event, 'diskusi')">
+            Diskusi
+          </button>
+        </div>
+        
+        <!-- Tab Content -->
+        <div class="p-6">
+          <!-- Description Tab -->
+          <div id="deskripsi" class="tab-content">
+            <h3 class="text-xl font-bold mb-4">Deskripsi Produk</h3>
+            <div class="text-gray-700 space-y-4">
+              <p>Rendang Padang adalah salah satu masakan tradisional Minangkabau yang terkenal di seluruh dunia. Rendang kami dibuat dengan daging sapi pilihan yang dimasak dengan santan dan bumbu rempah tradisional selama berjam-jam hingga menghasilkan rendang yang kering, berwarna hitam kecoklatan, dan memiliki cita rasa yang kaya.</p>
+              
+              <p>Bumbu rendang kami terdiri dari berbagai rempah pilihan seperti serai, lengkuas, bawang merah, bawang putih, cabai, dan berbagai rempah rahasia lainnya yang diracik dengan proporsi yang tepat untuk menghasilkan rendang dengan cita rasa otentik Padang.</p>
+              
+              <p>Keunggulan Rendang Padang kami:</p>
+              <ul class="list-disc list-inside ml-4 space-y-1">
+                <li>Dibuat dengan daging sapi pilihan berkualitas tinggi</li>
+                <li>Dimasak dengan cara tradisional selama 6-8 jam</li>
+                <li>Tanpa bahan pengawet dan MSG</li>
+                <li>Bersertifikat Halal MUI</li>
+                <li>Dikemas dengan teknologi vacuum sealing untuk menjaga kesegaran</li>
+                <li>Tahan hingga 7 hari dalam suhu ruang dan 1 bulan dalam lemari pendingin</li>
+              </ul>
+              
+              <p>Cara penyajian:</p>
+              <ol class="list-decimal list-inside ml-4 space-y-1">
+                <li>Panaskan rendang dalam microwave selama 2 menit atau di atas panci dengan api kecil selama 5 menit</li>
+                <li>Sajikan dengan nasi putih hangat</li>
+                <li>Untuk menambah kenikmatan, dapat ditambahkan kerupuk atau lalapan segar</li>
+              </ol>
+              
+              <p>Tersedia dalam 3 varian:</p>
+              <ul class="list-disc list-inside ml-4 space-y-1">
+                <li>Original - Cita rasa rendang klasik dengan tingkat kepedasan sedang</li>
+                <li>Pedas - Rendang dengan tambahan cabai untuk pecinta pedas</li>
+                <li>Extra Pedas - Rendang dengan level kepedasan tinggi untuk tantangan lidah Anda</li>
+              </ul>
+              
+              <p>Tersedia dalam 3 ukuran kemasan:</p>
+              <ul class="list-disc list-inside ml-4 space-y-1">
+                <li>100 gram - Cocok untuk 1 porsi</li>
+                <li>250 gram - Cocok untuk 2-3 porsi</li>
+                <li>500 gram - Cocok untuk keluarga atau acara kumpul-kumpul</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Specifications Tab -->
+          <div id="spesifikasi" class="tab-content hidden">
+            <h3 class="text-xl font-bold mb-4">Spesifikasi Produk</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-gray-50 p-5 rounded-lg">
+                <h4 class="font-bold mb-3 text-lg">Informasi Dasar</h4>
+                <table class="w-full">
+                  <tbody>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-3 text-gray-600">Kategori</td>
+                      <td class="py-3 font-medium">Makanan Siap Saji</td>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-3 text-gray-600">Asal Daerah</td>
+                      <td class="py-3 font-medium">Sumatera Barat</td>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-3 text-gray-600">Berat Bersih</td>
+                      <td class="py-3 font-medium">250 gram</td>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-3 text-gray-600">Bahan Utama</td>
+                      <td class="py-3 font-medium">Daging Sapi</td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 text-gray-600">Level Pedas</td>
+                      <td class="py-3 font-medium">Sedang (Original)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="bg-gray-50 p-5 rounded-lg">
+                <h4 class="font-bold mb-3 text-lg">Informasi Tambahan</h4>
+                <table class="w-full">
+                  <tbody>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-3 text-gray-600">Sertifikasi</td>
+                      <td class="py-3 font-medium">Halal MUI, BPOM</td>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-3 text-gray-600">Masa Simpan</td>
+                      <td class="py-3 font-medium">7 hari (suhu ruang), 30 hari (refrigerator)</td>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-3 text-gray-600">Cara Penyimpanan</td>
+                      <td class="py-3 font-medium">Simpan di tempat sejuk dan kering</td>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-3 text-gray-600">Kemasan</td>
+                      <td class="py-3 font-medium">Vacuum Sealed Pack</td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 text-gray-600">Diproduksi oleh</td>
+                      <td class="py-3 font-medium">Toko Padang Raya</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div class="mt-8 bg-gray-50 p-5 rounded-lg">
+              <h4 class="font-bold mb-3 text-lg">Informasi Nutrisi (per 100g)</h4>
+              <table class="w-full">
+                <thead class="bg-gray-100 rounded-t-lg">
+                  <tr>
+                    <th class="py-3 px-4 text-left text-gray-600 font-medium">Nutrisi</th>
+                    <th class="py-3 px-4 text-left text-gray-600 font-medium">Jumlah</th>
+                    <th class="py-3 px-4 text-left text-gray-600 font-medium">% AKG*</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-gray-200">
+                    <td class="py-3 px-4">Energi</td>
+                    <td class="py-3 px-4">285 kkal</td>
+                    <td class="py-3 px-4">14%</td>
+                  </tr>
+                  <tr class="border-b border-gray-200">
+                    <td class="py-3 px-4">Protein</td>
+                    <td class="py-3 px-4">22.6 g</td>
+                    <td class="py-3 px-4">38%</td>
+                  </tr>
+                  <tr class="border-b border-gray-200">
+                    <td class="py-3 px-4">Lemak Total</td>
+                    <td class="py-3 px-4">20.2 g</td>
+                    <td class="py-3 px-4">31%</td>
+                  </tr>
+                  <tr class="border-b border-gray-200">
+                    <td class="py-3 px-4">Karbohidrat</td>
+                    <td class="py-3 px-4">5.8 g</td>
+                    <td class="py-3 px-4">2%</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4">Sodium</td>
+                    <td class="py-3 px-4">380 mg</td>
+                    <td class="py-3 px-4">16%</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="text-sm text-gray-600 mt-3">*AKG: Angka Kecukupan Gizi berdasarkan kebutuhan energi 2000 kkal</p>
+            </div>
+          </div>
+          
+          <!-- Reviews Tab -->
+          <div id="ulasan" class="tab-content hidden">
+            <div class="flex flex-col md:flex-row gap-8">
+              <!-- Review Summary -->
+              <div class="md:w-1/3">
+                <h3 class="text-xl font-bold mb-4">Penilaian Pembeli</h3>
+                <div class="flex items-center mb-6 bg-gray-50 p-4 rounded-lg">
+                  <div class="text-5xl font-bold text-orange-500 mr-4">4.8</div>
+                  <div>
+                    <div class="flex items-center text-yellow-400 text-xl mb-1">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600">Berdasarkan 120 ulasan</p>
+                  </div>
+                </div>
+                
+                <div class="space-y-2 bg-gray-50 p-4 rounded-lg mb-6">
+                  <div class="flex items-center">
+                    <span class="text-sm text-gray-600 w-16">5 Bintang</span>
+                    <div class="flex-grow h-2 bg-gray-200 rounded-full mx-2">
+                      <div class="h-2 bg-yellow-400 rounded-full" style="width: 85%"></div>
+                    </div>
+                    <span class="text-sm text-gray-600 w-8">85%</span>
+                  </div>
+                  <div class="flex items-center">
+                    <span class="text-sm text-gray-600 w-16">4 Bintang</span>
+                    <div class="flex-grow h-2 bg-gray-200 rounded-full mx-2">
+                      <div class="h-2 bg-yellow-400 rounded-full" style="width: 10%"></div>
+                    </div>
+                    <span class="text-sm text-gray-600 w-8">10%</span>
+                  </div>
+                  <div class="flex items-center">
+                    <span class="text-sm text-gray-600 w-16">3 Bintang</span>
+                    <div class="flex-grow h-2 bg-gray-200 rounded-full mx-2">
+                      <div class="h-2 bg-yellow-400 rounded-full" style="width: 3%"></div>
+                    </div>
+                    <span class="text-sm text-gray-600 w-8">3%</span>
+                  </div>
+                  <div class="flex items-center">
+                    <span class="text-sm text-gray-600 w-16">2 Bintang</span>
+                    <div class="flex-grow h-2 bg-gray-200 rounded-full mx-2">
+                      <div class="h-2 bg-yellow-400 rounded-full" style="width: 1%"></div>
+                    </div>
+                    <span class="text-sm text-gray-600 w-8">1%</span>
+                  </div>
+                  <div class="flex items-center">
+                    <span class="text-sm text-gray-600 w-16">1 Bintang</span>
+                    <div class="flex-grow h-2 bg-gray-200 rounded-full mx-2">
+                      <div class="h-2 bg-yellow-400 rounded-full" style="width: 1%"></div>
+                    </div>
+                    <span class="text-sm text-gray-600 w-8">1%</span>
+                  </div>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <h4 class="font-bold mb-3">Filter Ulasan</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <button class="px-3 py-1.5 bg-orange-100 text-orange-500 rounded-full text-sm font-medium">Semua</button>
+                    <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-orange-100 hover:text-orange-500 transition-colors">5 Bintang</button>
+                    <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-orange-100 hover:text-orange-500 transition-colors">4 Bintang</button>
+                    <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-orange-100 hover:text-orange-500 transition-colors">3 Bintang</button>
+                    <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-orange-100 hover:text-orange-500 transition-colors">2 Bintang</button>
+                    <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-orange-100 hover:text-orange-500 transition-colors">1 Bintang</button>
+                    <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-orange-100 hover:text-orange-500 transition-colors">Dengan Foto</button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Review List -->
+              <div class="md:w-2/3">
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="text-xl font-bold">Ulasan Produk</h3>
+                  <select class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white">
+                    <option>Terbaru</option>
+                    <option>Tertinggi</option>
+                    <option>Terendah</option>
+                  </select>
+                </div>
+                
+                <!-- Review Item 1 -->
+                <div class="border border-gray-200 rounded-lg p-5 mb-5 hover:shadow-md transition-shadow">
+                  <div class="flex items-start mb-4">
+                    <img src="https://via.placeholder.com/50" alt="Ahmad S." class="w-10 h-10 rounded-full mr-3">
+                    <div>
+                      <h4 class="font-bold">Ahmad S.</h4>
+                      <div class="flex items-center">
+                        <div class="flex items-center text-yellow-400 text-sm">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-gray-500 text-sm ml-2">10 Mei 2025</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <p class="text-gray-700 mb-4">Rendang ini benar-benar lezat! Rasanya sangat otentik seperti rendang yang saya makan di Padang. Daging empuk dan bumbu meresap sempurna. Saya pesan yang varian original dan tingkat kepedasannya pas. Pengiriman juga cepat dan kemasan aman. Pasti akan beli lagi!</p>
+                  
+                  <div class="flex gap-2 mb-4">
+                    <img src="https://via.placeholder.com/100" alt="Review Image" class="w-20 h-20 object-cover rounded-md hover:opacity-80 transition-opacity cursor-pointer">
+                    <img src="https://via.placeholder.com/100" alt="Review Image" class="w-20 h-20 object-cover rounded-md hover:opacity-80 transition-opacity cursor-pointer">
+                  </div>
+                  
+                  <div class="flex items-center text-sm">
+                    <button class="flex items-center text-gray-500 hover:text-orange-500 transition-colors">
+                      <i class="far fa-thumbs-up mr-1"></i>
+                      <span>Membantu (15)</span>
+                    </button>
+                    <span class="mx-2 text-gray-300">|</span>
+                    <button class="text-gray-500 hover:text-orange-500 transition-colors">
+                      Laporkan
+                    </button>
+                  </div>
+                  
+                  <!-- Seller Response -->
+                  <div class="bg-gray-50 p-4 rounded-lg mt-4">
+                    <div class="flex items-center mb-2">
+                      <img src="https://via.placeholder.com/40" alt="Toko Padang Raya" class="w-6 h-6 rounded-full mr-2">
+                      <span class="font-medium">Toko Padang Raya</span>
+                      <span class="text-gray-500 text-sm ml-2">11 Mei 2025</span>
+                    </div>
+                    <p class="text-gray-700 text-sm">Terima kasih atas ulasan positifnya, Ahmad! Kami senang Anda menikmati rendang kami. Kami selalu berusaha menjaga kualitas dan keaslian rasa. Ditunggu pesanan berikutnya ya!</p>
+                  </div>
+                </div>
+                
+                <!-- Review Item 2 -->
+                <div class="border border-gray-200 rounded-lg p-5 mb-5 hover:shadow-md transition-shadow">
+                  <div class="flex items-start mb-4">
+                    <img src="https://via.placeholder.com/50" alt="Siti R." class="w-10 h-10 rounded-full mr-3">
+                    <div>
+                      <h4 class="font-bold">Siti R.</h4>
+                      <div class="flex items-center">
+                        <div class="flex items-center text-yellow-400 text-sm">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-gray-500 text-sm ml-2">5 Mei 2025</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <p class="text-gray-700 mb-4">Rendang ini enak sekali! Saya suka dengan tekstur dagingnya yang empuk dan bumbu yang meresap. Saya beli yang ukuran 250gr dan cukup untuk 2-3 porsi. Saya berikan 4.5 bintang karena kemasannya agak sulit dibuka, tapi secara keseluruhan sangat puas dengan produknya.</p>
+                  
+                  <div class="flex items-center text-sm">
+                    <button class="flex items-center text-gray-500 hover:text-orange-500 transition-colors">
+                      <i class="far fa-thumbs-up mr-1"></i>
+                      <span>Membantu (8)</span>
+                    </button>
+                    <span class="mx-2 text-gray-300">|</span>
+                    <button class="text-gray-500 hover:text-orange-500 transition-colors">
+                      Laporkan
+                    </button>
+                  </div>
+                </div>
+                
+                <!-- Review Item 3 -->
+                <div class="border border-gray-200 rounded-lg p-5 mb-5 hover:shadow-md transition-shadow">
+                  <div class="flex items-start mb-4">
+                    <img src="https://via.placeholder.com/50" alt="Budi W." class="w-10 h-10 rounded-full mr-3">
+                    <div>
+                      <h4 class="font-bold">Budi W.</h4>
+                      <div class="flex items-center">
+                        <div class="flex items-center text-yellow-400 text-sm">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-gray-500 text-sm ml-2">28 April 2025</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <p class="text-gray-700 mb-4">Saya sudah mencoba berbagai rendang instan, dan ini adalah yang terbaik! Rasanya sangat autentik dan tidak kalah dengan rendang restoran. Saya suka dengan varian pedas yang benar-benar pedas tapi tidak menghilangkan cita rasa rendangnya. Pengiriman cepat dan kemasan aman. Sangat direkomendasikan!</p>
+                  
+                  <div class="flex gap-2 mb-4">
+                    <img src="https://via.placeholder.com/100" alt="Review Image" class="w-20 h-20 object-cover rounded-md hover:opacity-80 transition-opacity cursor-pointer">
+                  </div>
+                  
+                  <div class="flex items-center text-sm">
+                    <button class="flex items-center text-gray-500 hover:text-orange-500 transition-colors">
+                      <i class="far fa-thumbs-up mr-1"></i>
+                      <span>Membantu (12)</span>
+                    </button>
+                    <span class="mx-2 text-gray-300">|</span>
+                    <button class="text-gray-500 hover:text-orange-500 transition-colors">
+                      Laporkan
+                    </button>
+                  </div>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="flex justify-center mt-8">
+                  <nav class="inline-flex rounded-lg shadow">
+                    <a href="#" class="py-2 px-4 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 rounded-l-lg">
+                      <i class="fas fa-chevron-left"></i>
+                    </a>
+                    <a href="#" class="py-2 px-4 border-t border-b border-gray-300 bg-orange-500 text-white">
+                      1
+                    </a>
+                    <a href="#" class="py-2 px-4 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                      2
+                    </a>
+                    <a href="#" class="py-2 px-4 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                      3
+                    </a>
+                    <a href="#" class="py-2 px-4 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 rounded-r-lg">
+                      <i class="fas fa-chevron-right"></i>
+                    </a>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Discussion Tab -->
+          <div id="diskusi" class="tab-content hidden">
+            <div class="flex justify-between items-center mb-6">
+              <h3 class="text-xl font-bold">Diskusi Produk</h3>
+              <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors">
+                Ajukan Pertanyaan
+              </button>
+            </div>
+            
+            <!-- Discussion Item 1 -->
+            <div class="border border-gray-200 rounded-lg p-5 mb-5 hover:shadow-md transition-shadow">
+              <div class="flex items-start mb-4">
+                <img src="https://via.placeholder.com/50" alt="Dian P." class="w-10 h-10 rounded-full mr-3">
+                <div class="flex-grow">
+                  <div class="flex justify-between">
+                    <h4 class="font-bold">Dian P.</h4>
+                    <span class="text-gray-500 text-sm">8 Mei 2025</span>
+                  </div>
+                  <p class="text-gray-700 mt-1">Apakah rendang ini bisa tahan berapa lama ya kalau disimpan di freezer?</p>
+                </div>
+              </div>
+              
+              <!-- Seller Response -->
+              <div class="ml-12 bg-gray-50 p-4 rounded-lg">
+                <div class="flex justify-between">
+                  <div class="flex items-center">
+                    <img src="https://via.placeholder.com/40" alt="Toko Padang Raya" class="w-6 h-6 rounded-full mr-2">
+                    <span class="font-medium">Toko Padang Raya</span>
+                    <span class="bg-orange-100 text-orange-500 text-xs px-2 py-1 rounded-full ml-2">Penjual</span>
+                  </div>
+                  <span class="text-gray-500 text-sm">8 Mei 2025</span>
+                </div>
+                <p class="text-gray-700 mt-1">Halo Dian, rendang kami bisa bertahan hingga 3 bulan jika disimpan dalam freezer dengan suhu -18°C. Pastikan kemasan tertutup rapat ya. Terima kasih.</p>
+              </div>
+            </div>
+            
+            <!-- Discussion Item 2 -->
+            <div class="border border-gray-200 rounded-lg p-5 mb-5 hover:shadow-md transition-shadow">
+              <div class="flex items-start mb-4">
+                <img src="https://via.placeholder.com/50" alt="Rudi H." class="w-10 h-10 rounded-full mr-3">
+                <div class="flex-grow">
+                  <div class="flex justify-between">
+                    <h4 class="font-bold">Rudi H.</h4>
+                    <span class="text-gray-500 text-sm">2 Mei 2025</span>
+                  </div>
+                  <p class="text-gray-700 mt-1">Untuk varian extra pedas, seberapa pedas ya? Saya suka makanan yang sangat pedas.</p>
+                </div>
+              </div>
+              
+              <!-- Seller Response -->
+              <div class="ml-12 bg-gray-50 p-4 rounded-lg mb-4">
+                <div class="flex justify-between">
+                  <div class="flex items-center">
+                    <img src="https://via.placeholder.com/40" alt="Toko Padang Raya" class="w-6 h-6 rounded-full mr-2">
+                    <span class="font-medium">Toko Padang Raya</span>
+                    <span class="bg-orange-100 text-orange-500 text-xs px-2 py-1 rounded-full ml-2">Penjual</span>
+                  </div>
+                  <span class="text-gray-500 text-sm">2 Mei 2025</span>
+                </div>
+                <p class="text-gray-700 mt-1">Halo Rudi, varian extra pedas kami menggunakan cabai rawit merah pilihan dengan level kepedasan yang cukup tinggi. Banyak pelanggan yang suka pedas mengatakan level ini sudah sangat memuaskan. Jika Anda benar-benar suka pedas, ini cocok untuk Anda.</p>
+              </div>
+              
+              <!-- User Reply -->
+              <div class="ml-12">
+                <div class="flex items-start mb-4">
+                  <img src="https://via.placeholder.com/50" alt="Rudi H." class="w-10 h-10 rounded-full mr-3">
+                  <div class="flex-grow">
+                    <div class="flex justify-between">
+                      <h4 class="font-bold">Rudi H.</h4>
+                      <span class="text-gray-500 text-sm">3 Mei 2025</span>
+                    </div>
+                    <p class="text-gray-700 mt-1">Terima kasih infonya! Saya akan coba pesan yang extra pedas.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Discussion Item 3 -->
+            <div class="border border-gray-200 rounded-lg p-5 mb-5 hover:shadow-md transition-shadow">
+              <div class="flex items-start mb-4">
+                <img src="https://via.placeholder.com/50" alt="Maya L." class="w-10 h-10 rounded-full mr-3">
+                <div class="flex-grow">
+                  <div class="flex justify-between">
+                    <h4 class="font-bold">Maya L.</h4>
+                    <span class="text-gray-500 text-sm">25 April 2025</span>
+                  </div>
+                  <p class="text-gray-700 mt-1">Apakah produk ini mengandung MSG atau pengawet?</p>
+                </div>
+              </div>
+              
+              <!-- Seller Response -->
+              <div class="ml-12 bg-gray-50 p-4 rounded-lg">
+                <div class="flex justify-between">
+                  <div class="flex items-center">
+                    <img src="https://via.placeholder.com/40" alt="Toko Padang Raya" class="w-6 h-6 rounded-full mr-2">
+                    <span class="font-medium">Toko Padang Raya</span>
+                    <span class="bg-orange-100 text-orange-500 text-xs px-2 py-1 rounded-full ml-2">Penjual</span>
+                  </div>
+                  <span class="text-gray-500 text-sm">25 April 2025</span>
+                </div>
+                <p class="text-gray-700 mt-1">Halo Maya, rendang kami 100% tidak mengandung MSG atau bahan pengawet buatan. Kami hanya menggunakan rempah-rempah alami dan teknik pengolahan tradisional untuk menghasilkan rendang yang tahan lama. Daya tahan rendang kami berasal dari proses memasak yang lama dan kandungan rempah alami yang berfungsi sebagai pengawet alami.</p>
+              </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="flex justify-center mt-8">
+              <nav class="inline-flex rounded-lg shadow">
+                <a href="#" class="py-2 px-4 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 rounded-l-lg">
+                  <i class="fas fa-chevron-left"></i>
+                </a>
+                <a href="#" class="py-2 px-4 border-t border-b border-gray-300 bg-orange-500 text-white">
+                  1
+                </a>
+                <a href="#" class="py-2 px-4 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                  2
+                </a>
+                <a href="#" class="py-2 px-4 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 rounded-r-lg">
+                  <i class="fas fa-chevron-right"></i>
+                </a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-8">Produk Terkait</h2>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Product 1 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+          <div class="relative">
+            <a href="detail-produk.html">
+              <img src="https://via.placeholder.com/300x300" alt="Gulai Ayam" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+            </a>
+            <div class="absolute top-2 right-2">
+              <button class="bg-white rounded-full p-2 text-gray-600 hover:text-orange-500 transition-colors shadow-md">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-4">
+            <a href="detail-produk.html" class="block">
+              <h3 class="font-bold mb-1 hover:text-orange-500 transition-colors">Gulai Ayam</h3>
+            </a>
+            <div class="flex items-center mb-2">
+              <div class="flex items-center text-yellow-400 text-xs">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span class="text-gray-500 text-xs ml-1">(67)</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-3">Gulai ayam khas Padang dengan kuah santan yang kental dan gurih.</p>
+            <div class="flex justify-between items-center">
+              <p class="text-orange-500 font-bold">Rp 65.000</p>
+              <button class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 rounded-lg text-sm transition-colors">
+                <i class="fas fa-shopping-cart mr-1"></i> Beli
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+          <div class="relative">
+            <a href="detail-produk.html">
+              <img src="https://via.placeholder.com/300x300" alt="Sambal Bawang" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+            </a>
+            <div class="absolute top-2 right-2">
+              <button class="bg-white rounded-full p-2 text-gray-600 hover:text-orange-500 transition-colors shadow-md">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-4">
+            <a href="detail-produk.html" class="block">
+              <h3 class="font-bold mb-1 hover:text-orange-500 transition-colors">Sambal Bawang</h3>
+            </a>
+            <div class="flex items-center mb-2">
+              <div class="flex items-center text-yellow-400 text-xs">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="text-gray-500 text-xs ml-1">(98)</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-3">Sambal bawang pedas dengan bahan-bahan alami tanpa pengawet.</p>
+            <div class="flex justify-between items-center">
+              <p class="text-orange-500 font-bold">Rp 35.000</p>
+              <button class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 rounded-lg text-sm transition-colors">
+                <i class="fas fa-shopping-cart mr-1"></i> Beli
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+          <div class="relative">
+            <a href="detail-produk.html">
+              <img src="https://via.placeholder.com/300x300" alt="Dendeng Balado" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+            </a>
+            <div class="absolute top-2 left-2">
+              <span class="bg-green-500 text-white text-xs px-3 py-1 rounded-full font-medium">Baru</span>
+            </div>
+            <div class="absolute top-2 right-2">
+              <button class="bg-white rounded-full p-2 text-gray-600 hover:text-orange-500 transition-colors shadow-md">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-4">
+            <a href="detail-produk.html" class="block">
+              <h3 class="font-bold mb-1 hover:text-orange-500 transition-colors">Dendeng Balado</h3>
+            </a>
+            <div class="flex items-center mb-2">
+              <div class="flex items-center text-yellow-400 text-xs">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="text-gray-500 text-xs ml-1">(42)</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-3">Dendeng sapi tipis dengan balado pedas khas Padang.</p>
+            <div class="flex justify-between items-center">
+              <p class="text-orange-500 font-bold">Rp 95.000</p>
+              <button class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 rounded-lg text-sm transition-colors">
+                <i class="fas fa-shopping-cart mr-1"></i> Beli
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 4 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+          <div class="relative">
+            <a href="detail-produk.html">
+              <img src="https://via.placeholder.com/300x300" alt="Bumbu Rawon" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+            </a>
+            <div class="absolute top-2 left-2">
+              <span class="bg-green-500 text-white text-xs px-3 py-1 rounded-full font-medium">Diskon 20%</span>
+            </div>
+            <div class="absolute top-2 right-2">
+              <button class="bg-white rounded-full p-2 text-gray-600 hover:text-orange-500 transition-colors shadow-md">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-4">
+            <a href="detail-produk.html" class="block">
+              <h3 class="font-bold mb-1 hover:text-orange-500 transition-colors">Bumbu Rawon</h3>
+            </a>
+            <div class="flex items-center mb-2">
+              <div class="flex items-center text-yellow-400 text-xs">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="text-gray-500 text-xs ml-1">(55)</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-3">Bumbu rawon instan dengan rempah-rempah pilihan.</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-gray-500 text-sm line-through">Rp 40.000</p>
+                <p class="text-orange-500 font-bold">Rp 32.000</p>
+              </div>
+              <button class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 rounded-lg text-sm transition-colors">
+                <i class="fas fa-shopping-cart mr-1"></i> Beli
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 bg-orange-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-2xl font-bold mb-4">Dapatkan Info Terbaru</h2>
+        <p class="text-gray-600 mb-6">Berlangganan newsletter kami untuk mendapatkan informasi terbaru tentang produk, resep, dan promo spesial.</p>
+        <div class="flex flex-col sm:flex-row gap-2">
+          <input type="email" placeholder="Alamat email Anda" class="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+          <button class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors font-medium">
+            Berlangganan
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-12 pb-6">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <!-- About -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Rasa Nusantara</h3>
+          <p class="text-gray-300 mb-4">Website e-commerce yang menyediakan berbagai produk kuliner tradisional Indonesia. Kami berkomitmen untuk melestarikan cita rasa nusantara dengan sentuhan modern.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-white hover:text-orange-300 transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-white hover:text-orange-300 transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-white hover:text-orange-300 transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Tautan Cepat</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Beranda</a></li>
+            <li><a href="produk.html" class="text-gray-300 hover:text-white transition-colors">Produk</a></li>
+            <li><a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+            <li><a href="forum.html" class="text-gray-300 hover:text-white transition-colors">Forum</a></li>
+            <li><a href="tentang-kami.html" class="text-gray-300 hover:text-white transition-colors">Tentang Kami</a></li>
+            <li><a href="kontak.html" class="text-gray-300 hover:text-white transition-colors">Kontak</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Kontak Kami</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+              <span>Jl. Contoh No. 123, Kota Cimahi, Jawa Barat, 40511</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone-alt mr-2"></i>
+              <span>+62 812-3456-7890</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-2"></i>
+              <span>support@rasanusantara.com</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Hours -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Jam Operasional</h3>
+          <ul class="space-y-2">
+            <li class="flex justify-between">
+              <span>Senin - Jumat:</span>
+              <span>08:00 - 17:00 WIB</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Sabtu:</span>
+              <span>09:00 - 15:00 WIB</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Minggu:</span>
+              <span>Tutup</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="border-gray-700 mb-6">
+      
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">&copy; 2025 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Syarat & Ketentuan</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Kebijakan Privasi</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+      
+      // Product image gallery
+      window.changeImage = function(thumbnail, imageUrl) {
+        // Update main image
+        document.getElementById('main-image').src = imageUrl;
+        
+        // Update active thumbnail
+        const thumbnails = document.querySelectorAll('.grid-cols-4 > div');
+        thumbnails.forEach(thumb => {
+          thumb.classList.remove('border-orange-500');
+          thumb.classList.add('border-transparent');
+        });
+        
+        thumbnail.classList.remove('border-transparent');
+        thumbnail.classList.add('border-orange-500');
+      }
+      
+      // Quantity controls
+      window.incrementQuantity = function() {
+        const quantityInput = document.getElementById('quantity');
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+      }
+      
+      window.decrementQuantity = function() {
+        const quantityInput = document.getElementById('quantity');
+        const currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+          quantityInput.value = currentValue - 1;
+        }
+      }
+      
+      // Tab controls
+      window.openTab = function(evt, tabName) {
+        // Hide all tab content
+        const tabContents = document.getElementsByClassName('tab-content');
+        for (let i = 0; i < tabContents.length; i++) {
+          tabContents[i].classList.add('hidden');
+        }
+        
+        // Remove active class from all tab buttons
+        const tabButtons = evt.currentTarget.parentElement.getElementsByTagName('button');
+        for (let i = 0; i < tabButtons.length; i++) {
+          tabButtons[i].classList.remove('text-orange-500', 'border-orange-500');
+          tabButtons[i].classList.add('text-gray-600', 'hover:text-gray-800', 'border-transparent');
+        }
+        
+        // Show the selected tab content
+        document.getElementById(tabName).classList.remove('hidden');
+        
+        // Add active class to the clicked button
+        evt.currentTarget.classList.remove('text-gray-600', 'hover:text-gray-800', 'border-transparent');
+        evt.currentTarget.classList.add('text-orange-500', 'border-orange-500');
+      }
+    });
+  </script>
+</body>
+</html>

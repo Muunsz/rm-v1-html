@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist - Rasa Nusantara</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="font-sans bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+      <div class="container mx-auto px-4 py-3">
+          <div class="flex justify-between items-center">
+              <!-- Logo -->
+              <a href="index.html" class="text-2xl font-bold text-orange-600">Rasa Nusantara</a>
+              
+              <!-- Navigation - Desktop -->
+              <nav class="hidden md:flex space-x-6">
+                  <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors">Beranda</a>
+                  <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors">Produk</a>
+                  <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors">Blog</a>
+                  <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors">Forum</a>
+                  <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors">Tentang Kami</a>
+                  <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors">Kontak</a>
+              </nav>
+              
+              <!-- Right Menu -->
+              <div class="flex items-center space-x-4">
+                  <!-- Search -->
+                  <div class="relative hidden md:block">
+                      <input type="text" placeholder="Cari produk atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-64">
+                      <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                  </div>
+                  
+                  <!-- Notifications -->
+                  <div class="relative">
+                      <a href="#" class="text-gray-700">
+                          <i class="fas fa-bell"></i>
+                          <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">2</span>
+                      </a>
+                  </div>
+                  
+                  <!-- Cart -->
+                  <div class="relative">
+                      <a href="keranjang.html" class="text-gray-700">
+                          <i class="fas fa-shopping-cart"></i>
+                          <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+                      </a>
+                  </div>
+                  
+                  <!-- User -->
+                  <div class="relative">
+                      <a href="akun.html" class="text-gray-700">
+                          <i class="fas fa-user"></i>
+                      </a>
+                  </div>
+                  
+                  <!-- Mobile Menu Button -->
+                  <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                      <i class="fas fa-bars"></i>
+                  </button>
+              </div>
+          </div>
+          
+          <!-- Mobile Menu -->
+          <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+              <div class="flex flex-col space-y-3">
+                  <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors">Beranda</a>
+                  <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors">Produk</a>
+                  <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors">Blog</a>
+                  <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors">Forum</a>
+                  <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors">Tentang Kami</a>
+                  <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors">Kontak</a>
+              </div>
+              <div class="mt-4">
+                  <input type="text" placeholder="Cari produk atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full">
+                  <i class="fas fa-search absolute left-7 top-[7.5rem] transform -translate-y-1/2 text-gray-400"></i>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-100 py-2">
+      <div class="container mx-auto px-4">
+          <div class="flex items-center text-sm">
+              <a href="index.html" class="text-gray-600 hover:text-orange-500">Beranda</a>
+              <span class="mx-2 text-gray-400">/</span>
+              <a href="akun.html" class="text-gray-600 hover:text-orange-500">Akun Saya</a>
+              <span class="mx-2 text-gray-400">/</span>
+              <span class="text-gray-800">Wishlist</span>
+          </div>
+      </div>
+  </div>
+
+  <!-- Wishlist Section -->
+  <section class="py-12">
+      <div class="container mx-auto px-4">
+          <h1 class="text-3xl font-bold mb-8">Wishlist Saya</h1>
+          
+          <!-- Wishlist Items -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+              <!-- Header -->
+              <div class="bg-gray-50 p-4 border-b border-gray-200">
+                  <div class="grid grid-cols-12 gap-4 font-medium text-gray-600">
+                      <div class="col-span-6 md:col-span-7">Produk</div>
+                      <div class="col-span-2 text-center hidden md:block">Harga</div>
+                      <div class="col-span-2 text-center hidden md:block">Stok</div>
+                      <div class="col-span-6 md:col-span-1 text-right">Aksi</div>
+                  </div>
+              </div>
+              
+              <!-- Items -->
+              <div class="divide-y divide-gray-200">
+                  <!-- Item 1 -->
+                  <div class="p-4 hover:bg-gray-50 transition-colors">
+                      <div class="grid grid-cols-12 gap-4 items-center">
+                          <div class="col-span-6 md:col-span-7">
+                              <div class="flex items-center">
+                                  <div class="w-16 h-16 flex-shrink-0">
+                                      <img src="https://via.placeholder.com/150" alt="Rendang Sapi Kemasan" class="w-full h-full object-cover rounded">
+                                  </div>
+                                  <div class="ml-4">
+                                      <a href="detail-produk.html" class="font-medium hover:text-orange-500 transition-colors">Rendang Sapi Kemasan Premium</a>
+                                      <div class="flex items-center mt-1">
+                                          <div class="flex text-orange-400 text-sm">
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star-half-alt"></i>
+                                          </div>
+                                          <span class="text-gray-500 text-xs ml-2">(128)</span>
+                                      </div>
+                                      <p class="text-orange-600 font-medium md:hidden mt-1">Rp 90.000</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-span-2 text-center hidden md:block">
+                              <p class="font-medium text-orange-600">Rp 90.000</p>
+                          </div>
+                          <div class="col-span-2 text-center hidden md:block">
+                              <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Tersedia</span>
+                          </div>
+                          <div class="col-span-6 md:col-span-1 flex justify-end md:justify-center space-x-2">
+                              <button class="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded transition-colors" title="Tambah ke Keranjang">
+                                  <i class="fas fa-shopping-cart"></i>
+                              </button>
+                              <button class="bg-red-500 hover:bg-red-600 text-white p-2 rounded transition-colors" title="Hapus dari Wishlist">
+                                  <i class="fas fa-trash-alt"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <!-- Item 2 -->
+                  <div class="p-4 hover:bg-gray-50 transition-colors">
+                      <div class="grid grid-cols-12 gap-4 items-center">
+                          <div class="col-span-6 md:col-span-7">
+                              <div class="flex items-center">
+                                  <div class="w-16 h-16 flex-shrink-0">
+                                      <img src="https://via.placeholder.com/150" alt="Sambal Bawang Premium" class="w-full h-full object-cover rounded">
+                                  </div>
+                                  <div class="ml-4">
+                                      <a href="detail-produk.html" class="font-medium hover:text-orange-500 transition-colors">Sambal Bawang Premium</a>
+                                      <div class="flex items-center mt-1">
+                                          <div class="flex text-orange-400 text-sm">
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                              <i class="far fa-star"></i>
+                                          </div>
+                                          <span class="text-gray-500 text-xs ml-2">(95)</span>
+                                      </div>
+                                      <p class="text-orange-600 font-medium md:hidden mt-1">Rp 45.000</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-span-2 text-center hidden md:block">
+                              <p class="font-medium text-orange-600">Rp 45.000</p>
+                          </div>
+                          <div class="col-span-2 text-center hidden md:block">
+                              <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Tersedia</span>
+                          </div>
+                          <div class="col-span-6 md:col-span-1 flex justify-end md:justify-center space-x-2">
+                              <button class="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded transition-colors" title="Tambah ke Keranjang">
+                                  <i class="fas fa-shopping-cart"></i>
+                              </button>
+                              <button class="bg-red-500 hover:bg-red-600 text-white p-2 rounded transition-colors" title="Hapus dari Wishlist">
+                                  <i class="fas fa-trash-alt"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <!-- Item 3 -->
+                  <div class="p-4 hover:bg-gray-50 transition-colors">
+                      <div class="grid grid-cols-12 gap-4 items-center">
+                          <div class="col-span-6 md:col-span-7">
+                              <div class="flex items-center">
+                                  <div class="w-16 h-16 flex-shrink-0">
+                                      <img src="https://via.placeholder.com/150" alt="Kue Lapis Legit" class="w-full h-full object-cover rounded">
+                                  </div>
+                                  <div class="ml-4">
+                                      <a href="detail-produk.html" class="font-medium hover:text-orange-500 transition-colors">Kue Lapis Legit Spesial</a>
+                                      <div class="flex items-center mt-1">
+                                          <div class="flex text-orange-400 text-sm">
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                          </div>
+                                          <span class="text-gray-500 text-xs ml-2">(87)</span>
+                                      </div>
+                                      <p class="text-orange-600 font-medium md:hidden mt-1">Rp 120.000</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-span-2 text-center hidden md:block">
+                              <p class="font-medium text-orange-600">Rp 120.000</p>
+                          </div>
+                          <div class="col-span-2 text-center hidden md:block">
+                              <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">Stok Terbatas</span>
+                          </div>
+                          <div class="col-span-6 md:col-span-1 flex justify-end md:justify-center space-x-2">
+                              <button class="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded transition-colors" title="Tambah ke Keranjang">
+                                  <i class="fas fa-shopping-cart"></i>
+                              </button>
+                              <button class="bg-red-500 hover:bg-red-600 text-white p-2 rounded transition-colors" title="Hapus dari Wishlist">
+                                  <i class="fas fa-trash-alt"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <!-- Item 4 -->
+                  <div class="p-4 hover:bg-gray-50 transition-colors">
+                      <div class="grid grid-cols-12 gap-4 items-center">
+                          <div class="col-span-6 md:col-span-7">
+                              <div class="flex items-center">
+                                  <div class="w-16 h-16 flex-shrink-0">
+                                      <img src="https://via.placeholder.com/150" alt="Kopi Luwak" class="w-full h-full object-cover rounded">
+                                  </div>
+                                  <div class="ml-4">
+                                      <a href="detail-produk.html" class="font-medium hover:text-orange-500 transition-colors">Kopi Luwak Premium</a>
+                                      <div class="flex items-center mt-1">
+                                          <div class="flex text-orange-400 text-sm">
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star"></i>
+                                              <i class="fas fa-star-half-alt"></i>
+                                          </div>
+                                          <span class="text-gray-500 text-xs ml-2">(56)</span>
+                                      </div>
+                                      <p class="text-orange-600 font-medium md:hidden mt-1">Rp 85.000</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-span-2 text-center hidden md:block">
+                              <p class="font-medium text-orange-600">Rp 85.000</p>
+                          </div>
+                          <div class="col-span-2 text-center hidden md:block">
+                              <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">Habis</span>
+                          </div>
+                          <div class="col-span-6 md:col-span-1 flex justify-end md:justify-center space-x-2">
+                              <button class="bg-gray-300 text-gray-500 p-2 rounded cursor-not-allowed" title="Tambah ke Keranjang" disabled>
+                                  <i class="fas fa-shopping-cart"></i>
+                              </button>
+                              <button class="bg-red-500 hover:bg-red-600 text-white p-2 rounded transition-colors" title="Hapus dari Wishlist">
+                                  <i class="fas fa-trash-alt"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <!-- Empty State (Hidden by default) -->
+              <div class="p-8 text-center hidden">
+                  <div class="w-20 h-20 mx-auto mb-4 text-gray-300">
+                      <i class="fas fa-heart-broken text-5xl"></i>
+                  </div>
+                  <h3 class="text-xl font-medium mb-2">Wishlist Anda Kosong</h3>
+                  <p class="text-gray-500 mb-6">Anda belum menambahkan produk ke wishlist.</p>
+                  <a href="produk.html" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-md font-medium transition-colors inline-block">
+                      Jelajahi Produk
+                  </a>
+              </div>
+          </div>
+          
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4">
+              <button class="bg-orange-500 hover:bg-orange-600 text-white py-2 px-6 rounded-md font-medium transition-colors">
+                  Tambahkan Semua ke Keranjang
+              </button>
+              <button class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-2 px-6 rounded-md font-medium transition-colors">
+                  Hapus Semua
+              </button>
+          </div>
+      </div>
+  </section>
+
+  <!-- Recommended Products -->
+  <section class="py-12 bg-gray-50">
+      <div class="container mx-auto px-4">
+          <h2 class="text-2xl font-bold mb-8">Rekomendasi untuk Anda</h2>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+              <!-- Product 1 -->
+              <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                  <a href="detail-produk.html">
+                      <img src="https://via.placeholder.com/300x200" alt="Keripik Tempe" class="w-full h-48 object-cover">
+                  </a>
+                  <div class="p-4">
+                      <a href="detail-produk.html">
+                          <h3 class="font-medium text-lg mb-2 hover:text-orange-500 transition-colors">Keripik Tempe Premium</h3>
+                      </a>
+                      <div class="flex items-center mb-2">
+                          <div class="flex text-orange-400">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star-half-alt"></i>
+                          </div>
+                          <span class="text-gray-500 text-sm ml-2">(42)</span>
+                      </div>
+                      <p class="text-orange-600 font-bold mb-2">Rp 35.000</p>
+                      <div class="flex space-x-2">
+                          <button class="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md font-medium transition-colors">
+                              Tambah ke Keranjang
+                          </button>
+                          <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2 rounded-md transition-colors">
+                              <i class="far fa-heart"></i>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              
+              <!-- Product 2 -->
+              <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                  <a href="detail-produk.html">
+                      <img src="https://via.placeholder.com/300x200" alt="Dodol Betawi" class="w-full h-48 object-cover">
+                  </a>
+                  <div class="p-4">
+                      <a href="detail-produk.html">
+                          <h3 class="font-medium text-lg mb-2 hover:text-orange-500 transition-colors">Dodol Betawi Asli</h3>
+                      </a>
+                      <div class="flex items-center mb-2">
+                          <div class="flex text-orange-400">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="far fa-star"></i>
+                          </div>
+                          <span class="text-gray-500 text-sm ml-2">(36)</span>
+                      </div>
+                      <p class="text-orange-600 font-bold mb-2">Rp 55.000</p>
+                      <div class="flex space-x-2">
+                          <button class="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md font-medium transition-colors">
+                              Tambah ke Keranjang
+                          </button>
+                          <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2 rounded-md transition-colors">
+                              <i class="far fa-heart"></i>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              
+              <!-- Product 3 -->
+              <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                  <a href="detail-produk.html">
+                      <img src="https://via.placeholder.com/300x200" alt="Teh Rosella" class="w-full h-48 object-cover">
+                  </a>
+                  <div class="p-4">
+                      <a href="detail-produk.html">
+                          <h3 class="font-medium text-lg mb-2 hover:text-orange-500 transition-colors">Teh Rosella Organik</h3>
+                      </a>
+                      <div class="flex items-center mb-2">
+                          <div class="flex text-orange-400">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="far fa-star"></i>
+                          </div>
+                          <span class="text-gray-500 text-sm ml-2">(29)</span>
+                      </div>
+                      <p class="text-orange-600 font-bold mb-2">Rp 45.000</p>
+                      <div class="flex space-x-2">
+                          <button class="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md font-medium transition-colors">
+                              Tambah ke Keranjang
+                          </button>
+                          <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2 rounded-md transition-colors">
+                              <i class="far fa-heart"></i>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              
+              <!-- Product 4 -->
+              <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                  <a href="detail-produk.html">
+                      <img src="https://via.placeholder.com/300x200" alt="Bakpia Pathok" class="w-full h-48 object-cover">
+                  </a>
+                  <div class="p-4">
+                      <a href="detail-produk.html">
+                          <h3 class="font-medium text-lg mb-2 hover:text-orange-500 transition-colors">Bakpia Pathok Kacang Hijau</h3>
+                      </a>
+                      <div class="flex items-center mb-2">
+                          <div class="flex text-orange-400">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star-half-alt"></i>
+                              <i class="far fa-star"></i>
+                          </div>
+                          <span class="text-gray-500 text-sm ml-2">(23)</span>
+                      </div>
+                      <p class="text-orange-600 font-bold mb-2">Rp 65.000</p>
+                      <div class="flex space-x-2">
+                          <button class="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md font-medium transition-colors">
+                              Tambah ke Keranjang
+                          </button>
+                          <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2 rounded-md transition-colors">
+                              <i class="far fa-heart"></i>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-12 pb-6">
+      <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              <!-- About -->
+              <div>
+                  <h3 class="text-xl font-bold mb-4">Rasa Nusantara</h3>
+                  <p class="text-gray-300 mb-4">Website e-commerce yang menyediakan berbagai produk kuliner tradisional Indonesia. Kami berkomitmen untuk melestarikan cita rasa nusantara dengan sentuhan modern.</p>
+                  <div class="flex space-x-4">
+                      <a href="#" class="text-white hover:text-orange-300 transition-colors">
+                          <i class="fab fa-facebook-f"></i>
+                      </a>
+                      <a href="#" class="text-white hover:text-orange-300 transition-colors">
+                          <i class="fab fa-instagram"></i>
+                      </a>
+                      <a href="#" class="text-white hover:text-orange-300 transition-colors">
+                          <i class="fab fa-twitter"></i>
+                      </a>
+                  </div>
+              </div>
+              
+              <!-- Links -->
+              <div>
+                  <h3 class="text-xl font-bold mb-4">Tautan Cepat</h3>
+                  <ul class="space-y-2">
+                      <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Beranda</a></li>
+                      <li><a href="produk.html" class="text-gray-300 hover:text-white transition-colors">Produk</a></li>
+                      <li><a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+                      <li><a href="forum.html" class="text-gray-300 hover:text-white transition-colors">Forum</a></li>
+                      <li><a href="tentang-kami.html" class="text-gray-300 hover:text-white transition-colors">Tentang Kami</a></li>
+                      <li><a href="kontak.html" class="text-gray-300 hover:text-white transition-colors">Kontak</a></li>
+                  </ul>
+              </div>
+              
+              <!-- Contact -->
+              <div>
+                  <h3 class="text-xl font-bold mb-4">Kontak Kami</h3>
+                  <ul class="space-y-2">
+                      <li class="flex items-start">
+                          <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                          <span>Jl. Contoh No. 123, Kota Cimahi, Jawa Barat, 40511</span>
+                      </li>
+                      <li class="flex items-center">
+                          <i class="fas fa-phone-alt mr-2"></i>
+                          <span>+62 812-3456-7890</span>
+                      </li>
+                      <li class="flex items-center">
+                          <i class="fas fa-envelope mr-2"></i>
+                          <span>support@rasanusantara.com</span>
+                      </li>
+                  </ul>
+              </div>
+              
+              <!-- Hours -->
+              <div>
+                  <h3 class="text-xl font-bold mb-4">Jam Operasional</h3>
+                  <ul class="space-y-2">
+                      <li class="flex justify-between">
+                          <span>Senin - Jumat:</span>
+                          <span>08:00 - 17:00 WIB</span>
+                      </li>
+                      <li class="flex justify-between">
+                          <span>Sabtu:</span>
+                          <span>09:00 - 15:00 WIB</span>
+                      </li>
+                      <li class="flex justify-between">
+                          <span>Minggu:</span>
+                          <span>Tutup</span>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          
+          <hr class="border-gray-700 mb-6">
+          
+          <div class="flex flex-col md:flex-row justify-between items-center">
+              <p class="text-gray-400 text-sm">&copy; 2025 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+              <div class="flex space-x-4 mt-4 md:mt-0">
+                  <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Syarat & Ketentuan</a>
+                  <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Kebijakan Privasi</a>
+                  <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">FAQ</a>
+              </div>
+          </div>
+      </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          // Mobile menu toggle
+          const mobileMenuButton = document.getElementById('mobile-menu-button');
+          const mobileMenu = document.getElementById('mobile-menu');
+
+          if (mobileMenuButton && mobileMenu) {
+              mobileMenuButton.addEventListener('click', function() {
+                  mobileMenu.classList.toggle('hidden');
+              });
+          }
+      });
+  </script>
+</body>
+</html>

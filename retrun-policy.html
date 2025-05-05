@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebijakan Pengembalian - Rasa Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #E57C23;
+            --secondary-color: #025464;
+            --accent-color: #E8AA42;
+            --light-color: #F8F1F1;
+            --dark-color: #333;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .social-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: white;
+        }
+        
+        .social-icon:hover {
+            color: var(--accent-color);
+        }
+        
+        .policy-container {
+            margin: 60px auto;
+        }
+        
+        .policy-header {
+            background-color: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .policy-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .policy-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .step-box {
+            background-color: var(--light-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -50px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+        }
+        
+        .timeline-content {
+            background-color: var(--light-color);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .timeline-content h5 {
+            margin-top: 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Rasa Nusantara</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produk.html">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forum.html">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tentang-kami.html">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontak.html">Kontak</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="keranjang.html" class="btn position-relative me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3
+                        </span>
+                    </a>
+                    <a href="wishlist.html" class="btn position-relative me-3">
+                        <i class="fas fa-heart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            5
+                        </span>
+                    </a>
+                    <div class="dropdown">
+                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-1"></i> Budi Santoso
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="user-profile.html"><i class="fas fa-user-circle me-2"></i>Profil Saya</a></li>
+                            <li><a class="dropdown-item" href="order-history.html"><i class="fas fa-history me-2"></i>Riwayat Pesanan</a></li>
+                            <li><a class="dropdown-item" href="wishlist.html"><i class="fas fa-heart me-2"></i>Wishlist</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Return Policy Header -->
+    <div class="policy-header">
+        <div class="container">
+            <h1 class="mb-3">Kebijakan Pengembalian</h1>
+            <p class="lead mb-0">Informasi lengkap tentang proses pengembalian dan penukaran produk Rasa Nusantara</p>
+        </div>
+    </div>
+
+    <!-- Return Policy Content -->
+    <div class="container policy-container">
+        <!-- Introduction -->
+        <div class="policy-section">
+            <h3>Pendahuluan</h3>
+            <p>Di Rasa Nusantara, kepuasan pelanggan adalah prioritas utama kami. Kami berkomitmen untuk menyediakan produk berkualitas tinggi dan layanan yang memuaskan. Namun, kami memahami bahwa terkadang produk mungkin tidak sesuai dengan harapan Anda atau mengalami kerusakan selama pengiriman.</p>
+            <p>Kebijakan pengembalian ini dirancang untuk memastikan proses pengembalian dan penukaran produk berjalan dengan lancar dan transparan. Kebijakan ini berlaku untuk semua pembelian yang dilakukan melalui website Rasa Nusantara.</p>
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle me-2"></i> Dengan melakukan pembelian di Rasa Nusantara, Anda dianggap telah membaca, memahami, dan menyetujui kebijakan pengembalian ini.
+            </div>
+        </div>
+        
+        <!-- Eligible Returns -->
+        <div class="policy-section">
+            <h3>Produk yang Dapat Dikembalikan</h3>
+            <p>Anda dapat mengembalikan produk dalam kondisi berikut:</p>
+            <ul>
+                <li>Produk rusak atau cacat saat diterima</li>
+                <li>Produk tidak sesuai dengan deskripsi di website</li>
+                <li>Produk yang diterima salah atau tidak sesuai dengan pesanan</li>
+                <li>Produk belum dibuka dan masih dalam kemasan asli (untuk pengembalian karena berubah pikiran)</li>
+            </ul>
+            <p><strong>Catatan:</strong> Untuk produk makanan dan minuman, pengembalian hanya dapat dilakukan jika produk rusak, cacat, atau tidak sesuai dengan pesanan. Pengembalian karena alasan lain (seperti tidak suka rasa) tidak dapat diterima untuk kategori produk ini.</p>
+        </div>
+        
+        <!-- Return Period -->
+        <div class="policy-section">
+            <h3>Periode Pengembalian</h3>
+            <p>Anda dapat mengajukan pengembalian dalam jangka waktu berikut:</p>
+            <ul>
+                <li><strong>7 hari kalender</strong> sejak produk diterima untuk produk rusak, cacat, atau tidak sesuai pesanan</li>
+                <li><strong>3 hari kalender</strong> sejak produk diterima untuk pengembalian karena berubah pikiran (produk harus dalam kondisi asli dan belum dibuka)</li>
+            </ul>
+            <p>Permintaan pengembalian yang diajukan setelah periode ini tidak akan diproses kecuali dalam keadaan khusus yang disetujui oleh tim layanan pelanggan kami.</p>
+        </div>
+        
+        <!-- Return Process -->
+        <div class="policy-section">
+            <h3>Proses Pengembalian</h3>
+            <p>Untuk mengembalikan produk, ikuti langkah-langkah berikut:</p>
+            
+            <div class="step-box">
+                <div class="step-number">1</div>
+                <h5>Ajukan Permintaan Pengembalian</h5>
+                <p>Login ke akun Anda dan kunjungi halaman "Riwayat Pesanan". Pilih pesanan yang ingin dikembalikan dan klik tombol "Ajukan Pengembalian". Isi formulir pengembalian dengan informasi yang diperlukan, termasuk alasan pengembalian dan foto produk (jika diperlukan).</p>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">2</div>
+                <h5>Verifikasi Permintaan</h5>
+                <p>Tim kami akan meninjau permintaan pengembalian Anda dalam waktu 1-2 hari kerja. Jika disetujui, Anda akan menerima email konfirmasi dengan instruksi pengiriman dan label pengembalian (jika diperlukan).</p>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">3</div>
+                <h5>Kirim Produk</h5>
+                <p>Kemas produk dengan aman dalam kemasan asli atau kemasan yang sesuai. Lampirkan label pengembalian yang diberikan dan kirim produk ke alamat yang ditentukan dalam waktu 5 hari kerja setelah menerima konfirmasi.</p>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">4</div>
+                <h5>Inspeksi Produk</h5>
+                <p>Setelah kami menerima produk yang dikembalikan, tim kami akan melakukan inspeksi untuk memverifikasi kondisi produk dan alasan pengembalian.</p>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">5</div>
+                <h5>Penyelesaian</h5>
+                <p>Setelah inspeksi selesai, kami akan memproses pengembalian dana, penukaran, atau solusi lain sesuai dengan pilihan Anda. Anda akan menerima email konfirmasi setelah proses selesai.</p>
+            </div>
+        </div>
+        
+        <!-- Refund Options -->
+        <div class="policy-section">
+            <h3>Opsi Pengembalian Dana</h3>
+            <p>Anda dapat memilih salah satu opsi berikut untuk pengembalian dana:</p>
+            <ul>
+                <li><strong>Pengembalian ke metode pembayaran asli</strong> - Dana akan dikembalikan ke kartu kredit/debit atau metode pembayaran yang Anda gunakan saat melakukan pembelian.</li>
+                <li><strong>Kredit toko</strong> - Dana akan dikembalikan sebagai kredit toko yang dapat digunakan untuk pembelian berikutnya di Rasa Nusantara.</li>
+                <li><strong>Penukaran produk</strong> - Anda dapat menukar produk dengan produk lain dengan nilai yang sama atau lebih tinggi (dengan membayar selisih harga).</li>
+            </ul>
+            <p><strong>Waktu Pemrosesan:</strong> Pengembalian dana biasanya diproses dalam waktu 7-14 hari kerja setelah produk diterima dan diinspeksi. Waktu yang dibutuhkan untuk dana muncul di rekening Anda tergantung pada kebijakan bank atau penyedia pembayaran Anda.</p>
+        </div>
+        
+        <!-- Return Shipping -->
+        <div class="policy-section">
+            <h3>Biaya Pengiriman Pengembalian</h3>
+            <p>Kebijakan biaya pengiriman untuk pengembalian adalah sebagai berikut:</p>
+            <ul>
+                <li><strong>Produk rusak, cacat, atau tidak sesuai pesanan</strong> - Biaya pengiriman pengembalian ditanggung oleh Rasa Nusantara. Kami akan menyediakan label pengiriman prabayar.</li>
+                <li><strong>Pengembalian karena berubah pikiran</strong> - Biaya pengiriman pengembalian ditanggung oleh pelanggan, kecuali dinyatakan lain dalam promosi atau penawaran khusus.</li>
+            </ul>
+            <p>Untuk pengembalian karena kesalahan kami (produk rusak, cacat, atau tidak sesuai pesanan), kami juga akan mengembalikan biaya pengiriman awal yang telah Anda bayarkan.</p>
+        </div>
+        
+        <!-- Non-Returnable Items -->
+        <div class="policy-section">
+            <h3>Produk yang Tidak Dapat Dikembalikan</h3>
+            <p>Beberapa produk tidak dapat dikembalikan karena alasan kesehatan, keamanan, atau alasan lainnya:</p>
+            <ul>
+                <li>Produk makanan dan minuman yang telah dibuka atau digunakan</li>
+                <li>Produk dengan segel keamanan yang rusak atau hilang</li>
+                <li>Produk yang dibeli dengan diskon lebih dari 50% (kecuali jika rusak atau cacat)</li>
+                <li>Produk yang dibeli sebagai bagian dari paket atau bundel (kecuali seluruh paket dikembalikan)</li>
+                <li>Kartu hadiah dan voucher</li>
+                <li>Produk yang telah dimodifikasi atau disesuaikan sesuai permintaan pelanggan</li>
+            </ul>
+        </div>
+        
+        <!-- Return Timeline -->
+        <div class="policy-section">
+            <h3>Timeline Proses Pengembalian</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h5>Hari 1-2</h5>
+                        <p>Pengajuan permintaan pengembalian dan verifikasi oleh tim kami</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h5>Hari 3-7</h5>
+                        <p>Pengiriman produk kembali ke gudang kami</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h5>Hari 8-10</h5>
+                        <p>Penerimaan dan inspeksi produk oleh tim kami</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h5>Hari 11-14</h5>
+                        <p>Pemrosesan pengembalian dana atau penukaran produk</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h5>Hari 15-21</h5>
+                        <p>Dana muncul di rekening pelanggan (tergantung pada bank atau penyedia pembayaran)</p>
+                    </div>
+                </div>
+            </div>
+            <p><strong>Catatan:</strong> Timeline di atas adalah perkiraan dan dapat bervariasi tergantung pada lokasi, volume pengembalian, dan faktor lainnya.</p>
+        </div>
+        
+        <!-- FAQ -->
+        <div class="policy-section">
+            <h3>Pertanyaan Umum</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question">Apakah saya bisa mengembalikan sebagian dari pesanan saya?</div>
+                <div class="faq-answer">
+                    <p>Ya, Anda dapat mengembalikan satu atau beberapa item dari pesanan Anda tanpa harus mengembalikan seluruh pesanan. Namun, untuk produk yang dibeli sebagai bagian dari paket atau bundel, seluruh paket harus dikembalikan.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Bagaimana jika saya menerima produk yang rusak?</div>
+                <div class="faq-answer">
+                    <p>Jika Anda menerima produk yang rusak, segera laporkan dalam waktu 24 jam dengan mengirimkan foto produk rusak ke layanan pelanggan kami. Kami akan memproses pengembalian atau penggantian produk secepat mungkin.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Apakah saya akan mendapatkan pengembalian dana penuh?</div>
+                <div class="faq-answer">
+                    <p>Untuk pengembalian karena produk rusak, cacat, atau tidak sesuai pesanan, Anda akan mendapatkan pengembalian dana penuh termasuk biaya pengiriman awal. Untuk pengembalian karena berubah pikiran, biaya pengiriman awal tidak akan dikembalikan.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Bagaimana cara melacak status pengembalian saya?</div>
+                <div class="faq-answer">
+                    <p>Anda dapat melacak status pengembalian dengan login ke akun Anda dan mengunjungi halaman "Riwayat Pesanan". Pilih pesanan yang relevan dan klik "Lihat Detail Pengembalian". Anda juga akan menerima email update saat ada perubahan status pengembalian.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Apakah saya bisa menukar produk dengan ukuran atau varian lain?</div>
+                <div class="faq-answer">
+                    <p>Ya, Anda dapat menukar produk dengan ukuran atau varian lain jika tersedia. Pilih opsi "Penukaran Produk" saat mengajukan pengembalian dan tentukan produk yang Anda inginkan. Jika ada perbedaan harga, Anda akan diminta untuk membayar selisihnya atau menerima pengembalian dana untuk selisih tersebut.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact -->
+        <div class="policy-section">
+            <h3>Hubungi Kami</h3>
+            <p>Jika Anda memiliki pertanyaan atau memerlukan bantuan terkait pengembalian produk, jangan ragu untuk menghubungi tim layanan pelanggan kami:</p>
+            <ul>
+                <li>Email: <a href="mailto:returns@rasanusantara.com">returns@rasanusantara.com</a></li>
+                <li>Telepon: (021) 123-4567 (Senin-Jumat, 09.00-17.00 WIB)</li>
+                <li>WhatsApp: 0812-3456-7890</li>
+                <li>Live Chat: Tersedia di website kami selama jam kerja</li>
+            </ul>
+            <div class="text-center mt-4">
+                <a href="kontak.html" class="btn btn-primary">Hubungi Kami</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">Rasa Nusantara</h5>
+                    <p>Menyajikan makanan khas Indonesia dengan kualitas terbaik dan rasa autentik sejak 2010.</p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Tautan Cepat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                        <li class="mb-2"><a href="produk.html" class="text-white text-decoration-none">Produk</a></li>
+                        <li class="mb-2"><a href="blog.html" class="text-white text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="forum.html" class="text-white text-decoration-none">Forum</a></li>
+                        <li class="mb-2"><a href="tentang-kami.html" class="text-white text-decoration-none">Tentang Kami</a></li>
+                        <li class="mb-2"><a href="kontak.html" class="text-white text-decoration-none">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Bantuan & Informasi</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="faq.html" class="text-white text-decoration-none">FAQ</a></li>
+                        <li class="mb-2"><a href="return-policy.html" class="text-white text-decoration-none">Kebijakan Pengembalian</a></li>
+                        <li class="mb-2"><a href="privacy-policy.html" class="text-white text-decoration-none">Kebijakan Privasi</a></li>
+                        <li class="mb-2"><a href="terms-conditions.html" class="text-white text-decoration-none">Syarat & Ketentuan</a></li>
+                        <li class="mb-2"><a href="size-guide.html" class="text-white text-decoration-none">Panduan Ukuran</a></li>
+                        <li class="mb-2"><a href="order-tracking.html" class="text-white text-decoration-none">Lacak Pesanan</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-4">Hubungi Kami</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Jl. Gatot Subroto No. 123, Jakarta</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> (021) 123-4567</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@rasanusantara.com</li>
+                    </ul>
+                    <h5 class="mb-3 mt-4">Metode Pembayaran</h5>
+                    <div class="d-flex flex-wrap">
+                        <i class="fab fa-cc-visa me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fab fa-cc-mastercard me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fab fa-cc-paypal me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fas fa-money-bill-wave me-3 mb-2" style="font-size: 24px;"></i>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2023 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Dibuat dengan <i class="fas fa-heart text-danger"></i> di Indonesia</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

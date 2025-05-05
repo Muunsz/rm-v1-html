@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Rasa Nusantara</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .step-item {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .step-line {
+      position: relative;
+      z-index: 0;
+    }
+    
+    .step-active {
+      background-color: #ea580c;
+      color: white;
+    }
+    
+    .step-completed {
+      background-color: #22c55e;
+      color: white;
+    }
+    
+    .step-inactive {
+      background-color: #e5e7eb;
+      color: #6b7280;
+    }
+    
+    .line-active {
+      background-color: #ea580c;
+    }
+    
+    .line-completed {
+      background-color: #22c55e;
+    }
+    
+    .line-inactive {
+      background-color: #e5e7eb;
+    }
+    
+    .address-card {
+      transition: all 0.3s ease;
+    }
+    
+    .address-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .address-card.selected {
+      border-color: #ea580c;
+      background-color: #fff7ed;
+    }
+    
+    .shipping-method {
+      transition: all 0.3s ease;
+    }
+    
+    .shipping-method:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .shipping-method.selected {
+      border-color: #ea580c;
+      background-color: #fff7ed;
+    }
+    
+    .payment-method {
+      transition: all 0.3s ease;
+    }
+    
+    .payment-method:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .payment-method.selected {
+      border-color: #ea580c;
+      background-color: #fff7ed;
+    }
+    
+    .product-card {
+      transition: all 0.3s ease;
+    }
+    
+    .product-card:hover {
+      background-color: #f9fafb;
+    }
+    
+    .sticky-summary {
+      position: sticky;
+      top: 2rem;
+    }
+    
+    /* Custom checkbox styling */
+    .custom-checkbox {
+      position: relative;
+      padding-left: 35px;
+      cursor: pointer;
+      user-select: none;
+    }
+    
+    .custom-checkbox input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+    
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 22px;
+      width: 22px;
+      background-color: #fff;
+      border: 2px solid #d1d5db;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    
+    .custom-checkbox:hover input ~ .checkmark {
+      border-color: #ea580c;
+    }
+    
+    .custom-checkbox input:checked ~ .checkmark {
+      background-color: #ea580c;
+      border-color: #ea580c;
+    }
+    
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+    
+    .custom-checkbox input:checked ~ .checkmark:after {
+      display: block;
+    }
+    
+    .custom-checkbox .checkmark:after {
+      left: 7px;
+      top: 3px;
+      width: 6px;
+      height: 11px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    
+    /* Custom radio button styling */
+    .custom-radio {
+      position: relative;
+      padding-left: 35px;
+      cursor: pointer;
+      user-select: none;
+    }
+    
+    .custom-radio input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+    
+    .radio-mark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 22px;
+      width: 22px;
+      background-color: #fff;
+      border: 2px solid #d1d5db;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+    
+    .custom-radio:hover input ~ .radio-mark {
+      border-color: #ea580c;
+    }
+    
+    .custom-radio input:checked ~ .radio-mark {
+      border-color: #ea580c;
+    }
+    
+    .radio-mark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+    
+    .custom-radio input:checked ~ .radio-mark:after {
+      display: block;
+    }
+    
+    .custom-radio .radio-mark:after {
+      top: 4px;
+      left: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ea580c;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    .btn-primary {
+      background-color: #ea580c;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background-color: #c2410c;
+    }
+    
+    .btn-outline {
+      border: 1px solid #ea580c;
+      color: #ea580c;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-outline:hover {
+      background-color: #fff7ed;
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <a href="index.html" class="text-2xl font-bold text-orange-600 flex items-center">
+          <i class="fas fa-utensils mr-2"></i>
+          Rasa Nusantara
+        </a>
+        
+        <!-- Navigation - Desktop -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Beranda</a>
+          <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Produk</a>
+          <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Blog</a>
+          <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Tentang Kami</a>
+          <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Kontak</a>
+        </nav>
+        
+        <!-- Right Menu -->
+        <div class="flex items-center space-x-6">
+          <!-- Search -->
+          <div class="relative hidden md:block">
+            <input type="text" placeholder="Cari produk atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-64 text-sm">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+          
+          <!-- Notifications -->
+          <div class="relative">
+            <a href="#" class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-bell text-xl"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
+            </a>
+          </div>
+          
+          <!-- Cart -->
+          <div class="relative">
+            <a href="keranjang.html" class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+            </a>
+          </div>
+          
+          <!-- User -->
+          <div class="relative">
+            <a href="akun.html" class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-user-circle text-xl"></i>
+            </a>
+          </div>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+        <div class="flex flex-col space-y-4">
+          <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Beranda</a>
+          <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Produk</a>
+          <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Blog</a>
+          <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Tentang Kami</a>
+          <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Kontak</a>
+        </div>
+        <div class="mt-4 relative">
+          <input type="text" placeholder="Cari produk atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full text-sm">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-100 py-3">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-orange-500">Beranda</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <a href="keranjang.html" class="text-gray-600 hover:text-orange-500">Keranjang</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <span class="text-orange-500 font-medium">Checkout</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Steps -->
+  <section class="py-8">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <h1 class="text-3xl font-bold mb-6 md:mb-0">Checkout</h1>
+        <div class="flex items-center">
+          <div class="flex flex-col items-center step-item">
+            <div class="w-12 h-12 step-active rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">1</div>
+            <span class="text-sm mt-2 text-orange-500 font-medium">Pengiriman</span>
+          </div>
+          <div class="w-20 h-1 step-line line-inactive mx-1"></div>
+          <div class="flex flex-col items-center step-item">
+            <div class="w-12 h-12 step-inactive rounded-full flex items-center justify-center font-bold text-lg shadow-md">2</div>
+            <span class="text-sm mt-2 text-gray-500">Pembayaran</span>
+          </div>
+          <div class="w-20 h-1 step-line line-inactive mx-1"></div>
+          <div class="flex flex-col items-center step-item">
+            <div class="w-12 h-12 step-inactive rounded-full flex items-center justify-center font-bold text-lg shadow-md">3</div>
+            <span class="text-sm mt-2 text-gray-500">Konfirmasi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Checkout Content -->
+  <section class="py-8">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Checkout Form -->
+        <div class="lg:w-2/3">
+          <!-- Shipping Information -->
+          <div class="bg-white rounded-xl shadow-md p-8 mb-8 fade-in">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+              <i class="fas fa-map-marker-alt text-orange-500 mr-3"></i>
+              Informasi Pengiriman
+            </h2>
+            
+            <div class="mb-8">
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="text-lg font-bold">Alamat Pengiriman</h3>
+                <button class="text-orange-500 hover:text-orange-600 transition-colors text-sm flex items-center bg-orange-50 px-4 py-2 rounded-lg">
+                  <i class="fas fa-plus-circle mr-2"></i> Tambah Alamat Baru
+                </button>
+              </div>
+              
+              <div class="space-y-4">
+                <div class="border-2 rounded-xl p-5 address-card selected">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <div class="flex items-center mb-3">
+                        <label class="custom-radio flex items-center">
+                          <input type="radio" name="shipping-address" checked>
+                          <span class="radio-mark"></span>
+                          <div class="ml-2">
+                            <span class="font-bold text-lg">Rumah</span>
+                            <span class="ml-2 bg-orange-500 text-white text-xs px-3 py-1 rounded-full">Utama</span>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="ml-9">
+                        <p class="text-gray-700 font-medium">Budi Santoso</p>
+                        <p class="text-gray-600">+62 812-3456-7890</p>
+                        <p class="text-gray-600 mt-1">Jl. Merdeka No. 123, Kelurahan Sukajadi, Kecamatan Sukajadi, Kota Bandung, Jawa Barat, 40161</p>
+                      </div>
+                    </div>
+                    <div class="flex space-x-2">
+                      <button class="text-gray-500 hover:text-orange-500 transition-colors p-2 rounded-full hover:bg-orange-50">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="text-gray-500 hover:text-red-500 transition-colors p-2 rounded-full hover:bg-red-50">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="border-2 border-gray-200 rounded-xl p-5 address-card">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <div class="flex items-center mb-3">
+                        <label class="custom-radio flex items-center">
+                          <input type="radio" name="shipping-address">
+                          <span class="radio-mark"></span>
+                          <div class="ml-2">
+                            <span class="font-bold text-lg">Kantor</span>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="ml-9">
+                        <p class="text-gray-700 font-medium">Budi Santoso</p>
+                        <p class="text-gray-600">+62 812-3456-7890</p>
+                        <p class="text-gray-600 mt-1">Jl. Asia Afrika No. 45, Kelurahan Braga, Kecamatan Sumur Bandung, Kota Bandung, Jawa Barat, 40111</p>
+                      </div>
+                    </div>
+                    <div class="flex space-x-2">
+                      <button class="text-gray-500 hover:text-orange-500 transition-colors p-2 rounded-full hover:bg-orange-50">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="text-gray-500 hover:text-red-500 transition-colors p-2 rounded-full hover:bg-red-50">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-6">Metode Pengiriman</h3>
+              <div class="space-y-4">
+                <div class="border-2 rounded-xl p-5 shipping-method selected">
+                  <div class="flex items-center justify-between">
+                    <label class="custom-radio flex items-center w-full cursor-pointer">
+                      <input type="radio" name="shipping-method" checked>
+                      <span class="radio-mark"></span>
+                      <div class="flex items-center justify-between w-full ml-2">
+                        <div class="flex items-center">
+                          <img src="https://via.placeholder.com/60x30" alt="JNE" class="h-8 mr-3 rounded">
+                          <span class="font-medium">JNE Regular (2-3 hari)</span>
+                        </div>
+                        <span class="font-bold text-orange-500">Rp 20.000</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="border-2 border-gray-200 rounded-xl p-5 shipping-method">
+                  <div class="flex items-center justify-between">
+                    <label class="custom-radio flex items-center w-full cursor-pointer">
+                      <input type="radio" name="shipping-method">
+                      <span class="radio-mark"></span>
+                      <div class="flex items-center justify-between w-full ml-2">
+                        <div class="flex items-center">
+                          <img src="https://via.placeholder.com/60x30" alt="J&T" class="h-8 mr-3 rounded">
+                          <span class="font-medium">J&T Express (2-3 hari)</span>
+                        </div>
+                        <span class="font-bold">Rp 22.000</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="border-2 border-gray-200 rounded-xl p-5 shipping-method">
+                  <div class="flex items-center justify-between">
+                    <label class="custom-radio flex items-center w-full cursor-pointer">
+                      <input type="radio" name="shipping-method">
+                      <span class="radio-mark"></span>
+                      <div class="flex items-center justify-between w-full ml-2">
+                        <div class="flex items-center">
+                          <img src="https://via.placeholder.com/60x30" alt="SiCepat" class="h-8 mr-3 rounded">
+                          <span class="font-medium">SiCepat REG (2-3 hari)</span>
+                        </div>
+                        <span class="font-bold">Rp 21.000</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="border-2 border-gray-200 rounded-xl p-5 shipping-method">
+                  <div class="flex items-center justify-between">
+                    <label class="custom-radio flex items-center w-full cursor-pointer">
+                      <input type="radio" name="shipping-method">
+                      <span class="radio-mark"></span>
+                      <div class="flex items-center justify-between w-full ml-2">
+                        <div class="flex items-center">
+                          <img src="https://via.placeholder.com/60x30" alt="AnterAja" class="h-8 mr-3 rounded">
+                          <span class="font-medium">AnterAja (2-3 hari)</span>
+                        </div>
+                        <span class="font-bold">Rp 19.000</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Order Notes -->
+          <div class="bg-white rounded-xl shadow-md p-8 mb-8 fade-in">
+            <h2 class="text-2xl font-bold mb-6 flex items-center">
+              <i class="fas fa-sticky-note text-orange-500 mr-3"></i>
+              Catatan Pesanan
+            </h2>
+            <textarea rows="4" class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-none" placeholder="Tambahkan catatan untuk pesanan Anda (opsional)"></textarea>
+          </div>
+          
+          <!-- Navigation Buttons -->
+          <div class="flex flex-col sm:flex-row justify-between gap-4">
+            <a href="keranjang.html" class="btn-outline py-3 px-6 rounded-xl flex items-center justify-center">
+              <i class="fas fa-arrow-left mr-2"></i> Kembali ke Keranjang
+            </a>
+            <button id="next-step" class="btn-primary py-3 px-6 rounded-xl flex items-center justify-center">
+              Lanjut ke Pembayaran <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Order Summary -->
+        <div class="lg:w-1/3">
+          <div class="bg-white rounded-xl shadow-md overflow-hidden sticky-summary">
+            <div class="p-8">
+              <h2 class="text-2xl font-bold mb-6 flex items-center">
+                <i class="fas fa-shopping-basket text-orange-500 mr-3"></i>
+                Ringkasan Pesanan
+              </h2>
+              
+              <div class="space-y-6 mb-6">
+                <!-- Product 1 -->
+                <div class="flex items-start product-card p-3 rounded-lg">
+                  <img src="https://via.placeholder.com/100" alt="Rendang Padang" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                  <div class="flex-grow">
+                    <h3 class="font-bold text-gray-800">Rendang Padang</h3>
+                    <p class="text-sm text-gray-500">Kemasan 250 gram</p>
+                    <div class="flex justify-between mt-2">
+                      <span class="text-sm text-gray-600">1 x Rp 85.000</span>
+                      <span class="font-medium text-gray-800">Rp 85.000</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="flex items-start product-card p-3 rounded-lg">
+                  <img src="https://via.placeholder.com/100" alt="Sambal Bawang" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                  <div class="flex-grow">
+                    <h3 class="font-bold text-gray-800">Sambal Bawang</h3>
+                    <p class="text-sm text-gray-500">Kemasan 100 gram</p>
+                    <div class="flex justify-between mt-2">
+                      <span class="text-sm text-gray-600">2 x Rp 35.000</span>
+                      <span class="font-medium text-gray-800">Rp 70.000</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="flex items-start product-card p-3 rounded-lg">
+                  <img src="https://via.placeholder.com/100" alt="Bumbu Rawon" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                  <div class="flex-grow">
+                    <h3 class="font-bold text-gray-800">Bumbu Rawon</h3>
+                    <p class="text-sm text-gray-500">Kemasan 50 gram</p>
+                    <div class="flex justify-between mt-2">
+                      <span class="text-sm text-gray-600">1 x Rp 32.000</span>
+                      <span class="font-medium text-gray-800">Rp 32.000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="border-t border-gray-200 pt-6 mb-6 space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Subtotal</span>
+                  <span class="font-medium">Rp 187.000</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Diskon</span>
+                  <span class="font-medium text-green-500">- Rp 8.000</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Pengiriman (JNE Regular)</span>
+                  <span class="font-medium">Rp 20.000</span>
+                </div>
+              </div>
+              
+              <div class="border-t border-gray-200 pt-6 mb-8">
+                <div class="flex justify-between">
+                  <span class="text-xl font-bold">Total</span>
+                  <span class="text-xl font-bold text-orange-500">Rp 199.000</span>
+                </div>
+              </div>
+              
+              <!-- Coupon Code -->
+              <div class="mb-8">
+                <div class="flex">
+                  <input type="text" placeholder="Kode promo" class="flex-grow border border-gray-300 rounded-l-xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                  <button class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-r-xl transition-colors font-medium">
+                    Terapkan
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Payment Methods Preview -->
+              <div>
+                <h3 class="font-bold mb-3">Metode Pembayaran</h3>
+                <p class="text-gray-600 text-sm mb-4">Pilih metode pembayaran pada langkah selanjutnya</p>
+                <div class="flex flex-wrap gap-3">
+                  <img src="https://via.placeholder.com/60x30" alt="Visa" class="h-8 object-contain grayscale hover:grayscale-0 transition-all rounded">
+                  <img src="https://via.placeholder.com/60x30" alt="Mastercard" class="h-8 object-contain grayscale hover:grayscale-0 transition-all rounded">
+                  <img src="https://via.placeholder.com/60x30" alt="BCA" class="h-8 object-contain grayscale hover:grayscale-0 transition-all rounded">
+                  <img src="https://via.placeholder.com/60x30" alt="Mandiri" class="h-8 object-contain grayscale hover:grayscale-0 transition-all rounded">
+                  <img src="https://via.placeholder.com/60x30" alt="GoPay" class="h-8 object-contain grayscale hover:grayscale-0 transition-all rounded">
+                  <img src="https://via.placeholder.com/60x30" alt="OVO" class="h-8 object-contain grayscale hover:grayscale-0 transition-all rounded">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Payment Step (Hidden by default, shown via JavaScript) -->
+  <section id="payment-step" class="py-8 hidden">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Payment Form -->
+        <div class="lg:w-2/3">
+          <!-- Payment Methods -->
+          <div class="bg-white rounded-xl shadow-md p-8 mb-8 fade-in">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+              <i class="fas fa-credit-card text-orange-500 mr-3"></i>
+              Metode Pembayaran
+            </h2>
+            
+            <div class="space-y-6">
+              <!-- Credit/Debit Card -->
+              <div class="border-2 rounded-xl p-5 payment-method selected">
+                <div class="flex items-start">
+                  <label class="custom-radio flex items-start w-full cursor-pointer">
+                    <input type="radio" name="payment-method" checked>
+                    <span class="radio-mark mt-1"></span>
+                    <div class="flex-grow ml-2">
+                      <div class="flex items-center">
+                        <span class="font-bold text-lg">Kartu Kredit/Debit</span>
+                        <div class="flex ml-4 space-x-2">
+                          <img src="https://via.placeholder.com/60x30" alt="Visa" class="h-6 object-contain rounded">
+                          <img src="https://via.placeholder.com/60x30" alt="Mastercard" class="h-6 object-contain rounded">
+                        </div>
+                      </div>
+                      
+                      <div class="mt-6 space-y-4">
+                        <div>
+                          <label class="block text-gray-700 text-sm mb-2 font-medium">Nomor Kartu</label>
+                          <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="flex gap-4">
+                          <div class="w-1/2">
+                            <label class="block text-gray-700 text-sm mb-2 font-medium">Tanggal Kadaluarsa</label>
+                            <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="MM/YY">
+                          </div>
+                          <div class="w-1/2">
+                            <label class="block text-gray-700 text-sm mb-2 font-medium">CVV</label>
+                            <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="123">
+                          </div>
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 text-sm mb-2 font-medium">Nama pada Kartu</label>
+                          <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="NAMA LENGKAP">
+                        </div>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              
+              <!-- Bank Transfer -->
+              <div class="border-2 border-gray-200 rounded-xl p-5 payment-method">
+                <div class="flex items-start">
+                  <label class="custom-radio flex items-start w-full cursor-pointer">
+                    <input type="radio" name="payment-method">
+                    <span class="radio-mark mt-1"></span>
+                    <div class="flex-grow ml-2">
+                      <div class="flex items-center">
+                        <span class="font-bold text-lg">Transfer Bank</span>
+                        <div class="flex ml-4 space-x-2">
+                          <img src="https://via.placeholder.com/60x30" alt="BCA" class="h-6 object-contain rounded">
+                          <img src="https://via.placeholder.com/60x30" alt="Mandiri" class="h-6 object-contain rounded">
+                          <img src="https://via.placeholder.com/60x30" alt="BNI" class="h-6 object-contain rounded">
+                        </div>
+                      </div>
+                      
+                      <div class="mt-6 space-y-4 hidden" id="bank-transfer-details">
+                        <div class="space-y-3">
+                          <label class="custom-radio flex items-center">
+                            <input type="radio" name="bank">
+                            <span class="radio-mark"></span>
+                            <div class="flex items-center ml-2">
+                              <img src="https://via.placeholder.com/60x30" alt="BCA" class="h-6 mr-2 rounded">
+                              <span class="font-medium">Bank BCA</span>
+                            </div>
+                          </label>
+                          <label class="custom-radio flex items-center">
+                            <input type="radio" name="bank">
+                            <span class="radio-mark"></span>
+                            <div class="flex items-center ml-2">
+                              <img src="https://via.placeholder.com/60x30" alt="Mandiri" class="h-6 mr-2 rounded">
+                              <span class="font-medium">Bank Mandiri</span>
+                            </div>
+                          </label>
+                          <label class="custom-radio flex items-center">
+                            <input type="radio" name="bank">
+                            <span class="radio-mark"></span>
+                            <div class="flex items-center ml-2">
+                              <img src="https://via.placeholder.com/60x30" alt="BNI" class="h-6 mr-2 rounded">
+                              <span class="font-medium">Bank BNI</span>
+                            </div>
+                          </label>
+                        </div>
+                        <p class="text-gray-600 text-sm bg-blue-50 p-4 rounded-lg border border-blue-100">Setelah melakukan pembayaran, Anda akan menerima instruksi pembayaran melalui email.</p>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              
+              <!-- E-Wallet -->
+              <div class="border-2 border-gray-200 rounded-xl p-5 payment-method">
+                <div class="flex items-start">
+                  <label class="custom-radio flex items-start w-full cursor-pointer">
+                    <input type="radio" name="payment-method">
+                    <span class="radio-mark mt-1"></span>
+                    <div class="flex-grow ml-2">
+                      <div class="flex items-center">
+                        <span class="font-bold text-lg">E-Wallet</span>
+                        <div class="flex ml-4 space-x-2">
+                          <img src="https://via.placeholder.com/60x30" alt="GoPay" class="h-6 object-contain rounded">
+                          <img src="https://via.placeholder.com/60x30" alt="OVO" class="h-6 object-contain rounded">
+                          <img src="https://via.placeholder.com/60x30" alt="DANA" class="h-6 object-contain rounded">
+                        </div>
+                      </div>
+                      
+                      <div class="mt-6 space-y-4 hidden" id="ewallet-details">
+                        <div class="space-y-3">
+                          <label class="custom-radio flex items-center">
+                            <input type="radio" name="ewallet">
+                            <span class="radio-mark"></span>
+                            <div class="flex items-center ml-2">
+                              <img src="https://via.placeholder.com/60x30" alt="GoPay" class="h-6 mr-2 rounded">
+                              <span class="font-medium">GoPay</span>
+                            </div>
+                          </label>
+                          <label class="custom-radio flex items-center">
+                            <input type="radio" name="ewallet">
+                            <span class="radio-mark"></span>
+                            <div class="flex items-center ml-2">
+                              <img src="https://via.placeholder.com/60x30" alt="OVO" class="h-6 mr-2 rounded">
+                              <span class="font-medium">OVO</span>
+                            </div>
+                          </label>
+                          <label class="custom-radio flex items-center">
+                            <input type="radio" name="ewallet">
+                            <span class="radio-mark"></span>
+                            <div class="flex items-center ml-2">
+                              <img src="https://via.placeholder.com/60x30" alt="DANA" class="h-6 mr-2 rounded">
+                              <span class="font-medium">DANA</span>
+                            </div>
+                          </label>
+                        </div>
+                        <p class="text-gray-600 text-sm bg-blue-50 p-4 rounded-lg border border-blue-100">Anda akan diarahkan ke aplikasi e-wallet untuk menyelesaikan pembayaran.</p>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              
+              <!-- Cash on Delivery -->
+              <div class="border-2 border-gray-200 rounded-xl p-5 payment-method">
+                <div class="flex items-start">
+                  <label class="custom-radio flex items-start w-full cursor-pointer">
+                    <input type="radio" name="payment-method">
+                    <span class="radio-mark mt-1"></span>
+                    <div class="flex-grow ml-2">
+                      <div class="flex items-center">
+                        <span class="font-bold text-lg">Bayar di Tempat (COD)</span>
+                        <div class="flex ml-4 space-x-2">
+                          <i class="fas fa-money-bill-wave text-green-500 text-xl"></i>
+                        </div>
+                      </div>
+                      <p class="text-gray-600 text-sm mt-2">Bayar ketika pesanan tiba di alamat Anda. Hanya tersedia untuk pengiriman di kota tertentu.</p>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Billing Address -->
+          <div class="bg-white rounded-xl shadow-md p-8 mb-8 fade-in">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-2xl font-bold flex items-center">
+                <i class="fas fa-file-invoice text-orange-500 mr-3"></i>
+                Alamat Penagihan
+              </h2>
+              <label class="custom-checkbox">
+                <input type="checkbox" id="same-address" checked>
+                <span class="checkmark"></span>
+                <span class="ml-2">Sama dengan alamat pengiriman</span>
+              </label>
+            </div>
+            
+            <div id="billing-address-form" class="hidden space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-gray-700 text-sm mb-2 font-medium">Nama Depan</label>
+                  <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                </div>
+                <div>
+                  <label class="block text-gray-700 text-sm mb-2 font-medium">Nama Belakang</label>
+                  <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-700 text-sm mb-2 font-medium">Alamat</label>
+                <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+              </div>
+              <div>
+                <label class="block text-gray-700 text-sm mb-2 font-medium">Alamat Lanjutan (Opsional)</label>
+                <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label class="block text-gray-700 text-sm mb-2 font-medium">Kota</label>
+                  <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                </div>
+                <div>
+                  <label class="block text-gray-700 text-sm mb-2 font-medium">Provinsi</label>
+                  <select class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                    <option value="">Pilih Provinsi</option>
+                    <option value="jawa-barat">Jawa Barat</option>
+                    <option value="jawa-tengah">Jawa Tengah</option>
+                    <option value="jawa-timur">Jawa Timur</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-gray-700 text-sm mb-2 font-medium">Kode Pos</label>
+                  <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-700 text-sm mb-2 font-medium">Nomor Telepon</label>
+                <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+              </div>
+            </div>
+          </div>
+          
+          <!-- Navigation Buttons -->
+          <div class="flex flex-col sm:flex-row justify-between gap-4">
+            <button id="back-to-shipping" class="btn-outline py-3 px-6 rounded-xl flex items-center justify-center">
+              <i class="fas fa-arrow-left mr-2"></i> Kembali ke Pengiriman
+            </button>
+            <button id="to-confirmation" class="btn-primary py-3 px-6 rounded-xl flex items-center justify-center">
+              Lanjut ke Konfirmasi <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Order Summary (Same as in shipping step) -->
+        <div class="lg:w-1/3">
+          <div class="bg-white rounded-xl shadow-md overflow-hidden sticky-summary">
+            <div class="p-8">
+              <h2 class="text-2xl font-bold mb-6 flex items-center">
+                <i class="fas fa-shopping-basket text-orange-500 mr-3"></i>
+                Ringkasan Pesanan
+              </h2>
+              
+              <div class="space-y-6 mb-6">
+                <!-- Product 1 -->
+                <div class="flex items-start product-card p-3 rounded-lg">
+                  <img src="https://via.placeholder.com/100" alt="Rendang Padang" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                  <div class="flex-grow">
+                    <h3 class="font-bold text-gray-800">Rendang Padang</h3>
+                    <p class="text-sm text-gray-500">Kemasan 250 gram</p>
+                    <div class="flex justify-between mt-2">
+                      <span class="text-sm text-gray-600">1 x Rp 85.000</span>
+                      <span class="font-medium text-gray-800">Rp 85.000</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="flex items-start product-card p-3 rounded-lg">
+                  <img src="https://via.placeholder.com/100" alt="Sambal Bawang" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                  <div class="flex-grow">
+                    <h3 class="font-bold text-gray-800">Sambal Bawang</h3>
+                    <p class="text-sm text-gray-500">Kemasan 100 gram</p>
+                    <div class="flex justify-between mt-2">
+                      <span class="text-sm text-gray-600">2 x Rp 35.000</span>
+                      <span class="font-medium text-gray-800">Rp 70.000</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="flex items-start product-card p-3 rounded-lg">
+                  <img src="https://via.placeholder.com/100" alt="Bumbu Rawon" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                  <div class="flex-grow">
+                    <h3 class="font-bold text-gray-800">Bumbu Rawon</h3>
+                    <p class="text-sm text-gray-500">Kemasan 50 gram</p>
+                    <div class="flex justify-between mt-2">
+                      <span class="text-sm text-gray-600">1 x Rp 32.000</span>
+                      <span class="font-medium text-gray-800">Rp 32.000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="border-t border-gray-200 pt-6 mb-6 space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Subtotal</span>
+                  <span class="font-medium">Rp 187.000</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Diskon</span>
+                  <span class="font-medium text-green-500">- Rp 8.000</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Pengiriman (JNE Regular)</span>
+                  <span class="font-medium">Rp 20.000</span>
+                </div>
+              </div>
+              
+              <div class="border-t border-gray-200 pt-6 mb-6">
+                <div class="flex justify-between">
+                  <span class="text-xl font-bold">Total</span>
+                  <span class="text-xl font-bold text-orange-500">Rp 199.000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Confirmation Step (Hidden by default, shown via JavaScript) -->
+  <section id="confirmation-step" class="py-8 hidden">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Confirmation Details -->
+        <div class="lg:w-2/3">
+          <div class="bg-white rounded-xl shadow-md p-8 mb-8 fade-in">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+              <i class="fas fa-check-circle text-orange-500 mr-3"></i>
+              Konfirmasi Pesanan
+            </h2>
+            
+            <div class="space-y-8">
+              <!-- Shipping Information -->
+              <div>
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="text-lg font-bold">Informasi Pengiriman</h3>
+                  <button id="edit-shipping" class="text-orange-500 hover:text-orange-600 transition-colors text-sm flex items-center">
+                    <i class="fas fa-edit mr-2"></i> Ubah
+                  </button>
+                </div>
+                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+                  <p class="font-medium text-gray-800">Budi Santoso</p>
+                  <p class="text-gray-600">+62 812-3456-7890</p>
+                  <p class="text-gray-600 mt-1">Jl. Merdeka No. 123, Kelurahan Sukajadi, Kecamatan Sukajadi, Kota Bandung, Jawa Barat, 40161</p>
+                  <div class="flex items-center mt-4 pt-4 border-t border-gray-200">
+                    <img src="https://via.placeholder.com/60x30" alt="JNE" class="h-6 mr-2 rounded">
+                    <span class="text-gray-700">JNE Regular (2-3 hari)</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Payment Information -->
+              <div>
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="text-lg font-bold">Informasi Pembayaran</h3>
+                  <button id="edit-payment" class="text-orange-500 hover:text-orange-600 transition-colors text-sm flex items-center">
+                    <i class="fas fa-edit mr-2"></i> Ubah
+                  </button>
+                </div>
+                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+                  <div class="flex items-center">
+                    <img src="https://via.placeholder.com/60x30" alt="Visa" class="h-6 mr-2 rounded">
+                    <span class="text-gray-800 font-medium">Kartu Kredit/Debit (Visa) yang berakhiran 3456</span>
+                  </div>
+                  <p class="text-gray-600 mt-4 pt-4 border-t border-gray-200">Alamat Penagihan: Sama dengan alamat pengiriman</p>
+                </div>
+              </div>
+              
+              <!-- Order Items -->
+              <div>
+                <h3 class="text-lg font-bold mb-4">Item Pesanan</h3>
+                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+                  <div class="space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+                      <div class="flex items-center">
+                        <img src="https://via.placeholder.com/100" alt="Rendang Padang" class="w-16 h-16 object-cover rounded-lg mr-4 shadow-sm">
+                        <div>
+                          <p class="font-medium text-gray-800">Rendang Padang</p>
+                          <p class="text-gray-600 text-sm">Kemasan 250 gram</p>
+                        </div>
+                      </div>
+                      <div class="text-right">
+                        <p class="font-medium text-gray-800">Rp 85.000</p>
+                        <p class="text-gray-600 text-sm">1 x Rp 85.000</p>
+                      </div>
+                    </div>
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+                      <div class="flex items-center">
+                        <img src="https://via.placeholder.com/100" alt="Sambal Bawang" class="w-16 h-16 object-cover rounded-lg mr-4 shadow-sm">
+                        <div>
+                          <p class="font-medium text-gray-800">Sambal Bawang</p>
+                          <p class="text-gray-600 text-sm">Kemasan 100 gram</p>
+                        </div>
+                      </div>
+                      <div class="text-right">
+                        <p class="font-medium text-gray-800">Rp 70.000</p>
+                        <p class="text-gray-600 text-sm">2 x Rp 35.000</p>
+                      </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <div class="flex items-center">
+                        <img src="https://via.placeholder.com/100" alt="Bumbu Rawon" class="w-16 h-16 object-cover rounded-lg mr-4 shadow-sm">
+                        <div>
+                          <p class="font-medium text-gray-800">Bumbu Rawon</p>
+                          <p class="text-gray-600 text-sm">Kemasan 50 gram</p>
+                        </div>
+                      </div>
+                      <div class="text-right">
+                        <p class="font-medium text-gray-800">Rp 32.000</p>
+                        <p class="text-gray-600 text-sm">1 x Rp 32.000</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Terms and Conditions -->
+              <div>
+                <label class="custom-checkbox flex items-start">
+                  <input type="checkbox" id="terms">
+                  <span class="checkmark mt-1"></span>
+                  <span class="ml-2 text-gray-700">
+                    Saya telah membaca dan menyetujui <a href="#" class="text-orange-500 hover:text-orange-600 transition-colors">Syarat & Ketentuan</a> dan <a href="#" class="text-orange-500 hover:text-orange-600 transition-colors">Kebijakan Privasi</a> Rasa Nusantara.
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Navigation Buttons -->
+          <div class="flex flex-col sm:flex-row justify-between gap-4">
+            <button id="back-to-payment" class="btn-outline py-3 px-6 rounded-xl flex items-center justify-center">
+              <i class="fas fa-arrow-left mr-2"></i> Kembali ke Pembayaran
+            </button>
+            <button id="place-order" class="btn-primary py-3 px-6 rounded-xl flex items-center justify-center">
+              Buat Pesanan <i class="fas fa-check ml-2"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Order Summary (Same as in previous steps) -->
+        <div class="lg:w-1/3">
+          <div class="bg-white rounded-xl shadow-md overflow-hidden sticky-summary">
+            <div class="p-8">
+              <h2 class="text-2xl font-bold mb-6 flex items-center">
+                <i class="fas fa-shopping-basket text-orange-500 mr-3"></i>
+                Ringkasan Pesanan
+              </h2>
+              
+              <div class="space-y-6 mb-6">
+                <!-- Product 1 -->
+                <div class="flex items-start product-card p-3 rounded-lg">
+                  <img src="https://via.placeholder.com/100" alt="Rendang Padang" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                  <div class="flex-grow">
+                    <h3 class="font-bold text-gray-800">Rendang Padang</h3>
+                    <p class="text-sm text-gray-500">Kemasan 250 gram</p>
+                    <div class="flex justify-between mt-2">
+                      <span class="text-sm text-gray-600">1 x Rp 85.000</span>
+                      <span class="font-medium text-gray-800">Rp 85.000</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="flex items-start product-card p-3 rounded-lg">
+                  <img src="https://via.placeholder.com/100" alt="Sambal Bawang" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                  <div class="flex-grow">
+                    <h3 class="font-bold text-gray-800">Sambal Bawang</h3>
+                    <p class="text-sm text-gray-500">Kemasan 100 gram</p>
+                    <div class="flex justify-between mt-2">
+                      <span class="text-sm text-gray-600">2 x Rp 35.000</span>
+                      <span class="font-medium text-gray-800">Rp 70.000</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="flex items-start product-card p-3 rounded-lg">
+                  <img src="https://via.placeholder.com/100" alt="Bumbu Rawon" class="w-20 h-20 object-cover rounded-lg mr-4 shadow-sm">
+                  <div class="flex-grow">
+                    <h3 class="font-bold text-gray-800">Bumbu Rawon</h3>
+                    <p class="text-sm text-gray-500">Kemasan 50 gram</p>
+                    <div class="flex justify-between mt-2">
+                      <span class="text-sm text-gray-600">1 x Rp 32.000</span>
+                      <span class="font-medium text-gray-800">Rp 32.000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="border-t border-gray-200 pt-6 mb-6 space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Subtotal</span>
+                  <span class="font-medium">Rp 187.000</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Diskon</span>
+                  <span class="font-medium text-green-500">- Rp 8.000</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Pengiriman (JNE Regular)</span>
+                  <span class="font-medium">Rp 20.000</span>
+                </div>
+              </div>
+              
+              <div class="border-t border-gray-200 pt-6 mb-6">
+                <div class="flex justify-between">
+                  <span class="text-xl font-bold">Total</span>
+                  <span class="text-xl font-bold text-orange-500">Rp 199.000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-16 pb-8 mt-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+        <!-- About -->
+        <div>
+          <h3 class="text-xl font-bold mb-6 flex items-center">
+            <i class="fas fa-utensils mr-2 text-orange-400"></i>
+            Rasa Nusantara
+          </h3>
+          <p class="text-gray-300 mb-6 leading-relaxed">Website e-commerce yang menyediakan berbagai produk kuliner tradisional Indonesia. Kami berkomitmen untuk melestarikan cita rasa nusantara dengan sentuhan modern.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="bg-gray-700 hover:bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fab fa-facebook-f text-white"></i>
+            </a>
+            <a href="#" class="bg-gray-700 hover:bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fab fa-instagram text-white"></i>
+            </a>
+            <a href="#" class="bg-gray-700 hover:bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fab fa-twitter text-white"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-6">Tautan Cepat</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Beranda
+              </a>
+            </li>
+            <li>
+              <a href="produk.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Produk
+              </a>
+            </li>
+            <li>
+              <a href="blog.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="forum.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Forum
+              </a>
+            </li>
+            <li>
+              <a href="tentang-kami.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Tentang Kami
+              </a>
+            </li>
+            <li>
+              <a href="kontak.html" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Kontak
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h3 class="text-xl font-bold mb-6">Kontak Kami</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-orange-400"></i>
+              <span>Jl. Contoh No. 123, Kota Cimahi, Jawa Barat, 40511</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone-alt mr-3 text-orange-400"></i>
+              <span>+62 812-3456-7890</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-3 text-orange-400"></i>
+              <span>support@rasanusantara.com</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Hours -->
+        <div>
+          <h3 class="text-xl font-bold mb-6">Jam Operasional</h3>
+          <ul class="space-y-3">
+            <li class="flex justify-between items-center pb-2 border-b border-gray-700">
+              <span>Senin - Jumat:</span>
+              <span class="text-orange-400">08:00 - 17:00 WIB</span>
+            </li>
+            <li class="flex justify-between items-center pb-2 border-b border-gray-700">
+              <span>Sabtu:</span>
+              <span class="text-orange-400">09:00 - 15:00 WIB</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <span>Minggu:</span>
+              <span class="text-orange-400">Tutup</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="border-gray-700 mb-8">
+      
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">&copy; 2025 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Syarat & Ketentuan</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Kebijakan Privasi</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+      
+      // Checkout steps navigation
+      const shippingStep = document.querySelector('section:not(#payment-step):not(#confirmation-step)');
+      const paymentStep = document.getElementById('payment-step');
+      const confirmationStep = document.getElementById('confirmation-step');
+      
+      // Step indicators
+      const stepIndicators = document.querySelectorAll('.step-item .w-12.h-12');
+      const stepLines = document.querySelectorAll('.step-line');
+      const stepTexts = document.querySelectorAll('.step-item .text-sm');
+      
+      // Next step buttons
+      const nextStepBtn = document.getElementById('next-step');
+      const toConfirmationBtn = document.getElementById('to-confirmation');
+      const placeOrderBtn = document.getElementById('place-order');
+      
+      // Back buttons
+      const backToShippingBtn = document.getElementById('back-to-shipping');
+      const backToPaymentBtn = document.getElementById('back-to-payment');
+      
+      // Edit buttons
+      const editShipping = document.getElementById('edit-shipping');
+      const editPayment = document.getElementById('edit-payment');
+      
+      // Payment method details
+      const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
+      const bankTransferDetails = document.getElementById('bank-transfer-details');
+      const ewalletDetails = document.getElementById('ewallet-details');
+      
+      // Billing address
+      const sameAddressCheckbox = document.getElementById('same-address');
+      const billingAddressForm = document.getElementById('billing-address-form');
+      
+      // Address and shipping method selection
+      const addressCards = document.querySelectorAll('.address-card');
+      const shippingMethods = document.querySelectorAll('.shipping-method');
+      const paymentMethodCards = document.querySelectorAll('.payment-method');
+      
+      // Address card selection
+      addressCards.forEach(card => {
+        card.addEventListener('click', function() {
+          addressCards.forEach(c => {
+            c.classList.remove('selected');
+            c.classList.remove('border-orange-500');
+            c.classList.add('border-gray-200');
+          });
+          this.classList.add('selected');
+          this.classList.add('border-orange-500');
+          this.classList.remove('border-gray-200');
+          
+          // Check the radio button inside the card
+          const radio = this.querySelector('input[type="radio"]');
+          if (radio) {
+            radio.checked = true;
+          }
+        });
+      });
+      
+      // Shipping method selection
+      shippingMethods.forEach(method => {
+        method.addEventListener('click', function() {
+          shippingMethods.forEach(m => {
+            m.classList.remove('selected');
+            m.classList.remove('border-orange-500');
+            m.classList.add('border-gray-200');
+          });
+          this.classList.add('selected');
+          this.classList.add('border-orange-500');
+          this.classList.remove('border-gray-200');
+          
+          // Check the radio button inside the method
+          const radio = this.querySelector('input[type="radio"]');
+          if (radio) {
+            radio.checked = true;
+          }
+        });
+      });
+      
+      // Payment method selection
+      paymentMethodCards.forEach(method => {
+        method.addEventListener('click', function() {
+          paymentMethodCards.forEach(m => {
+            m.classList.remove('selected');
+            m.classList.remove('border-orange-500');
+            m.classList.add('border-gray-200');
+          });
+          this.classList.add('selected');
+          this.classList.add('border-orange-500');
+          this.classList.remove('border-gray-200');
+          
+          // Check the radio button inside the method
+          const radio = this.querySelector('input[type="radio"]');
+          if (radio) {
+            radio.checked = true;
+            
+            // Show/hide payment details
+            if (radio.id === 'payment2') {
+              bankTransferDetails.classList.remove('hidden');
+              ewalletDetails.classList.add('hidden');
+            } else if (radio.id === 'payment3') {
+              ewalletDetails.classList.remove('hidden');
+              bankTransferDetails.classList.add('hidden');
+            } else {
+              bankTransferDetails.classList.add('hidden');
+              ewalletDetails.classList.add('hidden');
+            }
+          }
+        });
+      });
+      
+      // Show payment step
+      if (nextStepBtn) {
+        nextStepBtn.addEventListener('click', function() {
+          shippingStep.classList.add('hidden');
+          paymentStep.classList.remove('hidden');
+          confirmationStep.classList.add('hidden');
+          
+          // Update step indicators
+          stepIndicators[0].classList.remove('step-active');
+          stepIndicators[0].classList.add('step-completed');
+          stepIndicators[0].innerHTML = '<i class="fas fa-check"></i>';
+          
+          stepIndicators[1].classList.remove('step-inactive');
+          stepIndicators[1].classList.add('step-active');
+          
+          stepLines[0].classList.remove('line-inactive');
+          stepLines[0].classList.add('line-completed');
+          
+          stepTexts[0].classList.remove('text-orange-500');
+          stepTexts[0].classList.add('text-green-500');
+          
+          stepTexts[1].classList.remove('text-gray-500');
+          stepTexts[1].classList.add('text-orange-500');
+          
+          // Scroll to top
+          window.scrollTo(0, 0);
+        });
+      }
+      
+      // Show confirmation step
+      if (toConfirmationBtn) {
+        toConfirmationBtn.addEventListener('click', function() {
+          shippingStep.classList.add('hidden');
+          paymentStep.classList.add('hidden');
+          confirmationStep.classList.remove('hidden');
+          
+          // Update step indicators
+          stepIndicators[1].classList.remove('step-active');
+          stepIndicators[1].classList.add('step-completed');
+          stepIndicators[1].innerHTML = '<i class="fas fa-check"></i>';
+          
+          stepIndicators[2].classList.remove('step-inactive');
+          stepIndicators[2].classList.add('step-active');
+          
+          stepLines[1].classList.remove('line-inactive');
+          stepLines[1].classList.add('line-completed');
+          
+          stepTexts[1].classList.remove('text-orange-500');
+          stepTexts[1].classList.add('text-green-500');
+          
+          stepTexts[2].classList.remove('text-gray-500');
+          stepTexts[2].classList.add('text-orange-500');
+          
+          // Scroll to top
+          window.scrollTo(0, 0);
+        });
+      }
+      
+      // Back to shipping step
+      if (backToShippingBtn) {
+        backToShippingBtn.addEventListener('click', function() {
+          shippingStep.classList.remove('hidden');
+          paymentStep.classList.add('hidden');
+          confirmationStep.classList.add('hidden');
+          
+          // Update step indicators
+          stepIndicators[0].classList.remove('step-completed');
+          stepIndicators[0].classList.add('step-active');
+          stepIndicators[0].innerHTML = '1';
+          
+          stepIndicators[1].classList.remove('step-active');
+          stepIndicators[1].classList.add('step-inactive');
+          
+          stepLines[0].classList.remove('line-completed');
+          stepLines[0].classList.add('line-inactive');
+          
+          stepTexts[0].classList.remove('text-green-500');
+          stepTexts[0].classList.add('text-orange-500');
+          
+          stepTexts[1].classList.remove('text-orange-500');
+          stepTexts[1].classList.add('text-gray-500');
+          
+          // Scroll to top
+          window.scrollTo(0, 0);
+        });
+      }
+      
+      // Back to payment step
+      if (backToPaymentBtn) {
+        backToPaymentBtn.addEventListener('click', function() {
+          shippingStep.classList.add('hidden');
+          paymentStep.classList.remove('hidden');
+          confirmationStep.classList.add('hidden');
+          
+          // Update step indicators
+          stepIndicators[1].classList.remove('step-completed');
+          stepIndicators[1].classList.add('step-active');
+          stepIndicators[1].innerHTML = '2';
+          
+          stepIndicators[2].classList.remove('step-active');
+          stepIndicators[2].classList.add('step-inactive');
+          
+          stepLines[1].classList.remove('line-completed');
+          stepLines[1].classList.add('line-inactive');
+          
+          stepTexts[1].classList.remove('text-green-500');
+          stepTexts[1].classList.add('text-orange-500');
+          
+          stepTexts[2].classList.remove('text-orange-500');
+          stepTexts[2].classList.add('text-gray-500');
+          
+          // Scroll to top
+          window.scrollTo(0, 0);
+        });
+      }
+      
+      // Edit shipping from confirmation
+      if (editShipping) {
+        editShipping.addEventListener('click', function() {
+          shippingStep.classList.remove('hidden');
+          paymentStep.classList.add('hidden');
+          confirmationStep.classList.add('hidden');
+          
+          // Update step indicators
+          stepIndicators[0].classList.remove('step-completed');
+          stepIndicators[0].classList.add('step-active');
+          stepIndicators[0].innerHTML = '1';
+          
+          stepIndicators[1].classList.remove('step-completed');
+          stepIndicators[1].classList.add('step-inactive');
+          stepIndicators[1].innerHTML = '2';
+          
+          stepIndicators[2].classList.remove('step-active');
+          stepIndicators[2].classList.add('step-inactive');
+          
+          stepLines[0].classList.remove('line-completed');
+          stepLines[0].classList.add('line-inactive');
+          
+          stepLines[1].classList.remove('line-completed');
+          stepLines[1].classList.add('line-inactive');
+          
+          stepTexts[0].classList.remove('text-green-500');
+          stepTexts[0].classList.add('text-orange-500');
+          
+          stepTexts[1].classList.remove('text-green-500');
+          stepTexts[1].classList.add('text-gray-500');
+          
+          stepTexts[2].classList.remove('text-orange-500');
+          stepTexts[2].classList.add('text-gray-500');
+          
+          // Scroll to top
+          window.scrollTo(0, 0);
+        });
+      }
+      
+      // Edit payment from confirmation
+      if (editPayment) {
+        editPayment.addEventListener('click', function() {
+          shippingStep.classList.add('hidden');
+          paymentStep.classList.remove('hidden');
+          confirmationStep.classList.add('hidden');
+          
+          // Update step indicators
+          stepIndicators[1].classList.remove('step-completed');
+          stepIndicators[1].classList.add('step-active');
+          stepIndicators[1].innerHTML = '2';
+          
+          stepIndicators[2].classList.remove('step-active');
+          stepIndicators[2].classList.add('step-inactive');
+          
+          stepLines[1].classList.remove('line-completed');
+          stepLines[1].classList.add('line-inactive');
+          
+          stepTexts[1].classList.remove('text-green-500');
+          stepTexts[1].classList.add('text-orange-500');
+          
+          stepTexts[2].classList.remove('text-orange-500');
+          stepTexts[2].classList.add('text-gray-500');
+          
+          // Scroll to top
+          window.scrollTo(0, 0);
+        });
+      }
+      
+      // Toggle billing address form
+      if (sameAddressCheckbox) {
+        sameAddressCheckbox.addEventListener('change', function() {
+          if (this.checked) {
+            billingAddressForm.classList.add('hidden');
+          } else {
+            billingAddressForm.classList.remove('hidden');
+          }
+        });
+      }
+      
+      // Place order button
+      if (placeOrderBtn) {
+        placeOrderBtn.addEventListener('click', function() {
+          const termsCheckbox = document.getElementById('terms');
+          if (termsCheckbox && !termsCheckbox.checked) {
+            alert('Anda harus menyetujui Syarat & Ketentuan untuk melanjutkan.');
+            return;
+          }
+          
+          // Redirect to order confirmation page
+          window.location.href = 'order-confirmation.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

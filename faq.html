@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Rasa Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #E57C23;
+            --secondary-color: #025464;
+            --accent-color: #E8AA42;
+            --light-color: #F8F1F1;
+            --dark-color: #333;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .social-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: white;
+        }
+        
+        .social-icon:hover {
+            color: var(--accent-color);
+        }
+        
+        .faq-container {
+            margin: 60px auto;
+        }
+        
+        .faq-header {
+            background-color: var(--light-color);
+            padding: 40px 0;
+            margin-bottom: 40px;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            box-shadow: none;
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+        
+        .accordion-item {
+            border: none;
+            margin-bottom: 15px;
+            border-radius: 10px !important;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            border-radius: 10px;
+        }
+        
+        .accordion-button {
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        
+        .category-btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin: 0 10px 10px 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .search-faq {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Rasa Nusantara</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produk.html">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forum.html">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tentang-kami.html">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontak.html">Kontak</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="keranjang.html" class="btn position-relative me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3
+                        </span>
+                    </a>
+                    <a href="wishlist.html" class="btn position-relative me-3">
+                        <i class="fas fa-heart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            5
+                        </span>
+                    </a>
+                    <div class="dropdown">
+                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-1"></i> Budi Santoso
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="user-profile.html"><i class="fas fa-user-circle me-2"></i>Profil Saya</a></li>
+                            <li><a class="dropdown-item" href="order-history.html"><i class="fas fa-history me-2"></i>Riwayat Pesanan</a></li>
+                            <li><a class="dropdown-item" href="wishlist.html"><i class="fas fa-heart me-2"></i>Wishlist</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FAQ Header -->
+    <div class="faq-header">
+        <div class="container text-center">
+            <h1 class="mb-4">Pertanyaan yang Sering Diajukan</h1>
+            <p class="lead mb-4">Temukan jawaban untuk pertanyaan umum tentang produk, pengiriman, pembayaran, dan lainnya.</p>
+            
+            <!-- Search FAQ -->
+            <div class="search-faq">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cari pertanyaan..." aria-label="Cari pertanyaan">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Content -->
+    <div class="container faq-container">
+        <!-- FAQ Categories -->
+        <div class="text-center mb-4">
+            <button class="btn category-btn active" data-category="all">Semua</button>
+            <button class="btn category-btn" data-category="product">Produk</button>
+            <button class="btn category-btn" data-category="order">Pemesanan</button>
+            <button class="btn category-btn" data-category="shipping">Pengiriman</button>
+            <button class="btn category-btn" data-category="payment">Pembayaran</button>
+            <button class="btn category-btn" data-category="return">Pengembalian</button>
+            <button class="btn category-btn" data-category="account">Akun</button>
+        </div>
+        
+        <!-- FAQ Accordion -->
+        <div class="accordion" id="faqAccordion">
+            <!-- Product FAQs -->
+            <div class="accordion-item" data-category="product">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Apakah produk makanan Rasa Nusantara halal?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Ya, semua produk makanan Rasa Nusantara telah tersertifikasi halal oleh MUI (Majelis Ulama Indonesia). Kami berkomitmen untuk menyediakan produk yang aman dan sesuai dengan standar halal untuk semua pelanggan kami.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item" data-category="product">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Berapa lama masa simpan produk makanan Rasa Nusantara?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Masa simpan produk makanan Rasa Nusantara bervariasi tergantung jenis produknya. Secara umum:
+                        <ul>
+                            <li>Makanan kering (keripik, kue kering): 3-6 bulan</li>
+                            <li>Bumbu dan rempah: 6-12 bulan</li>
+                            <li>Makanan dalam kemasan vakum: 1-3 bulan</li>
+                            <li>Sambal dan saus: 1-2 bulan setelah dibuka</li>
+                        </ul>
+                        Semua produk kami memiliki tanggal kedaluwarsa yang tertera pada kemasan. Untuk hasil terbaik, simpan produk sesuai petunjuk penyimpanan.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order FAQs -->
+            <div class="accordion-item" data-category="order">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Bagaimana cara memesan produk Rasa Nusantara?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Anda dapat memesan produk Rasa Nusantara melalui beberapa cara:
+                        <ol>
+                            <li>Website: Kunjungi website kami, pilih produk yang diinginkan, tambahkan ke keranjang, dan selesaikan proses checkout.</li>
+                            <li>Aplikasi Mobile: Unduh aplikasi Rasa Nusantara di Google Play Store atau App Store.</li>
+                            <li>Marketplace: Kami juga tersedia di Tokopedia, Shopee, dan Bukalapak.</li>
+                            <li>WhatsApp: Hubungi customer service kami di nomor yang tertera di website.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item" data-category="order">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Bagaimana cara membatalkan pesanan?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Pembatalan pesanan dapat dilakukan dengan ketentuan sebagai berikut:
+                        <ul>
+                            <li>Pesanan yang belum dibayar: Dapat dibatalkan langsung melalui halaman riwayat pesanan di akun Anda.</li>
+                            <li>Pesanan yang sudah dibayar tapi belum diproses: Hubungi customer service kami melalui WhatsApp atau email untuk mengajukan pembatalan.</li>
+                            <li>Pesanan yang sudah diproses atau dikirim: Tidak dapat dibatalkan, tetapi Anda dapat mengajukan pengembalian setelah menerima produk.</li>
+                        </ul>
+                        Biaya pengembalian dana akan diproses dalam 3-5 hari kerja setelah pembatalan disetujui.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Shipping FAQs -->
+            <div class="accordion-item" data-category="shipping">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Berapa lama waktu pengiriman produk?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Waktu pengiriman produk Rasa Nusantara bervariasi tergantung lokasi dan jasa pengiriman yang dipilih:
+                        <ul>
+                            <li>Jabodetabek: 1-2 hari kerja</li>
+                            <li>Pulau Jawa: 2-3 hari kerja</li>
+                            <li>Pulau Sumatera, Kalimantan, Sulawesi: 3-5 hari kerja</li>
+                            <li>Indonesia Timur: 5-7 hari kerja</li>
+                        </ul>
+                        Untuk pengiriman same-day dan next-day tersedia untuk area tertentu dengan biaya tambahan.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item" data-category="shipping">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Bagaimana cara melacak pesanan saya?
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Anda dapat melacak pesanan dengan beberapa cara:
+                        <ol>
+                            <li>Login ke akun Anda dan kunjungi halaman "Riwayat Pesanan".</li>
+                            <li>Klik tombol "Lacak" pada pesanan yang ingin dilacak.</li>
+                            <li>Anda juga dapat menggunakan nomor resi yang dikirimkan melalui email atau SMS untuk melacak pesanan melalui website kurir yang digunakan.</li>
+                        </ol>
+                        Jika Anda mengalami kesulitan dalam melacak pesanan, silakan hubungi customer service kami.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Payment FAQs -->
+            <div class="accordion-item" data-category="payment">
+                <h2 class="accordion-header" id="headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        Metode pembayaran apa saja yang tersedia?
+                    </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Rasa Nusantara menerima berbagai metode pembayaran:
+                        <ul>
+                            <li>Transfer Bank (BCA, Mandiri, BNI, BRI)</li>
+                            <li>E-Wallet (GoPay, OVO, Dana, LinkAja, ShopeePay)</li>
+                            <li>Kartu Kredit/Debit (Visa, Mastercard, JCB)</li>
+                            <li>Virtual Account</li>
+                            <li>Cicilan 0% (untuk pembelian minimal Rp 500.000)</li>
+                            <li>COD (Cash On Delivery) untuk area tertentu</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Return FAQs -->
+            <div class="accordion-item" data-category="return">
+                <h2 class="accordion-header" id="headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        Bagaimana kebijakan pengembalian produk?
+                    </button>
+                </h2>
+                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Kebijakan pengembalian produk Rasa Nusantara:
+                        <ul>
+                            <li>Produk dapat dikembalikan dalam waktu 7 hari setelah diterima.</li>
+                            <li>Produk harus dalam kondisi asli, belum dibuka, dan belum digunakan.</li>
+                            <li>Pengembalian karena kesalahan kami (produk rusak, salah kirim) akan mendapatkan penggantian produk atau pengembalian dana penuh termasuk ongkos kirim.</li>
+                            <li>Pengembalian karena alasan lain (berubah pikiran, tidak sesuai ekspektasi) akan dikenakan biaya pengiriman kembali.</li>
+                        </ul>
+                        Untuk mengajukan pengembalian, silakan kunjungi halaman "Riwayat Pesanan" di akun Anda dan pilih opsi "Ajukan Pengembalian".
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Account FAQs -->
+            <div class="accordion-item" data-category="account">
+                <h2 class="accordion-header" id="headingNine">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        Bagaimana cara mendaftar akun di Rasa Nusantara?
+                    </button>
+                </h2>
+                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Untuk mendaftar akun di Rasa Nusantara:
+                        <ol>
+                            <li>Kunjungi website kami dan klik tombol "Daftar" di pojok kanan atas.</li>
+                            <li>Isi formulir pendaftaran dengan data diri Anda (nama, email, nomor telepon, dan password).</li>
+                            <li>Verifikasi akun Anda melalui email atau SMS yang dikirimkan.</li>
+                            <li>Setelah verifikasi, Anda dapat login dan mulai berbelanja.</li>
+                        </ol>
+                        Anda juga dapat mendaftar menggunakan akun Google, Facebook, atau Apple untuk proses yang lebih cepat.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item" data-category="account">
+                <h2 class="accordion-header" id="headingTen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                        Bagaimana cara mengubah informasi akun saya?
+                    </button>
+                </h2>
+                <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Untuk mengubah informasi akun:
+                        <ol>
+                            <li>Login ke akun Anda.</li>
+                            <li>Klik nama Anda di pojok kanan atas dan pilih "Profil Saya".</li>
+                            <li>Klik tombol "Edit" pada informasi yang ingin diubah.</li>
+                            <li>Lakukan perubahan dan klik "Simpan".</li>
+                        </ol>
+                        Untuk mengubah password, kunjungi tab "Keamanan" di halaman profil Anda.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Not Finding Answer -->
+        <div class="text-center mt-5 p-4 bg-light rounded">
+            <h4>Tidak menemukan jawaban yang Anda cari?</h4>
+            <p class="mb-4">Hubungi tim customer service kami untuk bantuan lebih lanjut.</p>
+            <a href="kontak.html" class="btn btn-primary">Hubungi Kami</a>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">Rasa Nusantara</h5>
+                    <p>Menyajikan makanan khas Indonesia dengan kualitas terbaik dan rasa autentik sejak 2010.</p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Tautan Cepat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                        <li class="mb-2"><a href="produk.html" class="text-white text-decoration-none">Produk</a></li>
+                        <li class="mb-2"><a href="blog.html" class="text-white text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="forum.html" class="text-white text-decoration-none">Forum</a></li>
+                        <li class="mb-2"><a href="tentang-kami.html" class="text-white text-decoration-none">Tentang Kami</a></li>
+                        <li class="mb-2"><a href="kontak.html" class="text-white text-decoration-none">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Bantuan & Informasi</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="faq.html" class="text-white text-decoration-none">FAQ</a></li>
+                        <li class="mb-2"><a href="return-policy.html" class="text-white text-decoration-none">Kebijakan Pengembalian</a></li>
+                        <li class="mb-2"><a href="privacy-policy.html" class="text-white text-decoration-none">Kebijakan Privasi</a></li>
+                        <li class="mb-2"><a href="terms-conditions.html" class="text-white text-decoration-none">Syarat & Ketentuan</a></li>
+                        <li class="mb-2"><a href="size-guide.html" class="text-white text-decoration-none">Panduan Ukuran</a></li>
+                        <li class="mb-2"><a href="order-tracking.html" class="text-white text-decoration-none">Lacak Pesanan</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-4">Hubungi Kami</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Jl. Gatot Subroto No. 123, Jakarta</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> (021) 123-4567</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@rasanusantara.com</li>
+                    </ul>
+                    <h5 class="mb-3 mt-4">Metode Pembayaran</h5>
+                    <div class="d-flex flex-wrap">
+                        <i class="fab fa-cc-visa me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fab fa-cc-mastercard me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fab fa-cc-paypal me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fas fa-money-bill-wave me-3 mb-2" style="font-size: 24px;"></i>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2023 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Dibuat dengan <i class="fas fa-heart text-danger"></i> di Indonesia</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category filter functionality
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const faqItems = document.querySelectorAll('.accordion-item');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    
+                    // Toggle active class
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter FAQ items
+                    faqItems.forEach(item => {
+                        if (category === 'all' || item.dataset.category === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.querySelector('.search-faq input');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                faqItems.forEach(item => {
+                    const questionText = item.querySelector('.accordion-button').textContent.toLowerCase();
+                    const answerText = item.querySelector('.accordion-body').textContent.toLowerCase();
+                    
+                    if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Reset category buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                document.querySelector('[data-category="all"]').classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

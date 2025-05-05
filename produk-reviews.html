@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulasan Produk - Rasa Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #E57C23;
+            --secondary-color: #025464;
+            --accent-color: #E8AA42;
+            --light-color: #F8F1F1;
+            --dark-color: #333;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+        
+        .card-header {
+            background-color: white;
+            border-bottom: 1px solid #eee;
+            font-weight: 600;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .social-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: white;
+        }
+        
+        .social-icon:hover {
+            color: var(--accent-color);
+        }
+        
+        .reviews-container {
+            margin: 60px auto;
+        }
+        
+        .review-card {
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .review-content {
+            padding: 20px;
+        }
+        
+        .review-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .product-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .rating {
+            color: #ffc107;
+        }
+        
+        .rating-empty {
+            color: #e0e0e0;
+        }
+        
+        .review-date {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .review-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .filter-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .review-images {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .review-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .verified-badge {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        
+        .progress {
+            height: 8px;
+        }
+        
+        .progress-bar {
+            background-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Rasa Nusantara</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produk.html">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forum.html">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tentang-kami.html">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontak.html">Kontak</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="keranjang.html" class="btn position-relative me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3
+                        </span>
+                    </a>
+                    <a href="wishlist.html" class="btn position-relative me-3">
+                        <i class="fas fa-heart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            5
+                        </span>
+                    </a>
+                    <div class="dropdown">
+                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-1"></i> Budi Santoso
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="user-profile.html"><i class="fas fa-user-circle me-2"></i>Profil Saya</a></li>
+                            <li><a class="dropdown-item" href="order-history.html"><i class="fas fa-history me-2"></i>Riwayat Pesanan</a></li>
+                            <li><a class="dropdown-item" href="wishlist.html"><i class="fas fa-heart me-2"></i>Wishlist</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Reviews Section -->
+    <div class="container reviews-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Ulasan Produk</h2>
+            <a href="detail-produk.html" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-left me-2"></i>Kembali ke Produk
+            </a>
+        </div>
+        
+        <!-- Product Info -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2 text-center">
+                        <img src="/placeholder.svg?height=150&width=150" alt="Rendang Sapi Padang" class="img-fluid rounded mb-3">
+                    </div>
+                    <div class="col-md-7">
+                        <h4>Rendang Sapi Padang</h4>
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="rating me-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="fw-bold">4.5/5</span>
+                            <span class="ms-2">(128 ulasan)</span>
+                        </div>
+                        <p>Rendang sapi khas Padang yang dimasak dengan rempah-rempah pilihan dan santan kelapa asli. Dimasak dengan api kecil selama berjam-jam untuk menghasilkan cita rasa yang kaya dan daging yang empuk.</p>
+                    </div>
+                    <div class="col-md-3 text-center text-md-end">
+                        <div class="mb-3">
+                            <h5 class="mb-3">Ringkasan Ulasan</h5>
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">5</span>
+                                <div class="progress flex-grow-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="ms-2">75%</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">4</span>
+                                <div class="progress flex-grow-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="ms-2">15%</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">3</span>
+                                <div class="progress flex-grow-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="ms-2">5%</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">2</span>
+                                <div class="progress flex-grow-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 3%" aria-valuenow="3" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="ms-2">3%</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">1</span>
+                                <div class="progress flex-grow-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 2%" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="ms-2">2%</span>
+                            </div>
+                        </div>
+                        <a href="#write-review" class="btn btn-primary">Tulis Ulasan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <label for="ratingFilter" class="form-label">Filter berdasarkan rating</label>
+                    <select class="form-select" id="ratingFilter">
+                        <option value="all">Semua Rating</option>
+                        <option value="5">5 Bintang</option>
+                        <option value="4">4 Bintang</option>
+                        <option value="3">3 Bintang</option>
+                        <option value="2">2 Bintang</option>
+                        <option value="1">1 Bintang</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <label for="sortReviews" class="form-label">Urutkan berdasarkan</label>
+                    <select class="form-select" id="sortReviews">
+                        <option value="newest">Terbaru</option>
+                        <option value="oldest">Terlama</option>
+                        <option value="highest">Rating Tertinggi</option>
+                        <option value="lowest">Rating Terendah</option>
+                        <option value="helpful">Paling Membantu</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="searchReviews" class="form-label">Cari ulasan</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchReviews" placeholder="Kata kunci">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Reviews List -->
+        <div class="card review-card">
+            <div class="review-header">
+                <div class="d-flex align-items-center">
+                    <img src="/placeholder.svg?height=50&width=50" alt="User" class="user-avatar me-3">
+                    <div>
+                        <h6 class="mb-0">Ahmad Rizki <span class="verified-badge">Pembelian Terverifikasi</span></h6>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <span class="review-date">20 Mei 2023</span>
+            </div>
+            <div class="review-content">
+                <p>Rendang ini benar-benar luar biasa! Rasanya autentik seperti yang saya makan di Padang. Daging empuk dan bumbu meresap sempurna. Pengiriman cepat dan packaging aman. Akan beli lagi!</p>
+                <div class="review-images">
+                    <img src="/placeholder.svg?height=100&width=100" alt="Review Image" class="review-image">
+                    <img src="/placeholder.svg?height=100&width=100" alt="Review Image" class="review-image">
+                </div>
+            </div>
+            <div class="review-footer">
+                <div>
+                    <button class="btn btn-sm btn-outline-secondary me-2">
+                        <i class="fas fa-thumbs-up me-1"></i> Membantu (15)
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-comment me-1"></i> Komentar
+                    </button>
+                </div>
+                <div class="review-actions">
+                    <button class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-share me-1"></i> Bagikan
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card review-card">
+            <div class="review-header">
+                <div class="d-flex align-items-center">
+                    <img src="/placeholder.svg?height=50&width=50" alt="User" class="user-avatar me-3">
+                    <div>
+                        <h6 class="mb-0">Siti Nurhaliza <span class="verified-badge">Pembelian Terverifikasi</span></h6>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <span class="review-date">15 Mei 2023</span>
+            </div>
+            <div class="review-content">
+                <p>Rendang ini enak, tapi menurut saya kurang pedas. Mungkin bisa ditambahkan opsi level kepedasan. Daging empuk dan porsinya cukup banyak. Pengiriman juga cepat sampai.</p>
+            </div>
+            <div class="review-footer">
+                <div>
+                    <button class="btn btn-sm btn-outline-secondary me-2">
+                        <i class="fas fa-thumbs-up me-1"></i> Membantu (8)
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-comment me-1"></i> Komentar
+                    </button>
+                </div>
+                <div class="review-actions">
+                    <button class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-share me-1"></i> Bagikan
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card review-card">
+            <div class="review-header">
+                <div class="d-flex align-items-center">
+                    <img src="/placeholder.svg?height=50&width=50" alt="User" class="user-avatar me-3">
+                    <div>
+                        <h6 class="mb-0">Budi Hartono <span class="verified-badge">Pembelian Terverifikasi</span></h6>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <span class="review-date">10 Mei 2023</span>
+            </div>
+            <div class="review-content">
+                <p>Rendang ini cukup enak, tapi saya pernah mencoba yang lebih baik. Daging agak keras di beberapa bagian. Bumbu cukup meresap dan tidak terlalu pedas. Cocok untuk yang tidak suka pedas.</p>
+                <div class="review-images">
+                    <img src="/placeholder.svg?height=100&width=100" alt="Review Image" class="review-image">
+                </div>
+            </div>
+            <div class="review-footer">
+                <div>
+                    <button class="btn btn-sm btn-outline-secondary me-2">
+                        <i class="fas fa-thumbs-up me-1"></i> Membantu (5)
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-comment me-1"></i> Komentar
+                    </button>
+                </div>
+                <div class="review-actions">
+                    <button class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-share me-1"></i> Bagikan
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pagination -->
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Write Review Form -->
+        <div class="card mt-5" id="write-review">
+            <div class="card-header">
+                <h5 class="mb-0">Tulis Ulasan Anda</h5>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Rating</label>
+                        <div class="rating fs-3">
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reviewTitle" class="form-label">Judul Ulasan</label>
+                        <input type="text" class="form-control" id="reviewTitle" placeholder="Berikan judul singkat untuk ulasan Anda">
+                    </div>
+                    <div class="mb-3">
+                        <label for="reviewContent" class="form-label">Ulasan</label>
+                        <textarea class="form-control" id="reviewContent" rows="4" placeholder="Bagikan pengalaman Anda dengan produk ini"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reviewImages" class="form-label">Unggah Foto (opsional)</label>
+                        <input type="file" class="form-control" id="reviewImages" multiple>
+                        <div class="form-text">Anda dapat mengunggah hingga 5 foto (maks. 5MB per foto)</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Kirim Ulasan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">Rasa Nusantara</h5>
+                    <p>Menyajikan makanan khas Indonesia dengan kualitas terbaik dan rasa autentik sejak 2010.</p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Tautan Cepat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                        <li class="mb-2"><a href="produk.html" class="text-white text-decoration-none">Produk</a></li>
+                        <li class="mb-2"><a href="blog.html" class="text-white text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="forum.html" class="text-white text-decoration-none">Forum</a></li>
+                        <li class="mb-2"><a href="tentang-kami.html" class="text-white text-decoration-none">Tentang Kami</a></li>
+                        <li class="mb-2"><a href="kontak.html" class="text-white text-decoration-none">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Bantuan & Informasi</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="faq.html" class="text-white text-decoration-none">FAQ</a></li>
+                        <li class="mb-2"><a href="return-policy.html" class="text-white text-decoration-none">Kebijakan Pengembalian</a></li>
+                        <li class="mb-2"><a href="privacy-policy.html" class="text-white text-decoration-none">Kebijakan Privasi</a></li>
+                        <li class="mb-2"><a href="terms-conditions.html" class="text-white text-decoration-none">Syarat & Ketentuan</a></li>
+                        <li class="mb-2"><a href="size-guide.html" class="text-white text-decoration-none">Panduan Ukuran</a></li>
+                        <li class="mb-2"><a href="order-tracking.html" class="text-white text-decoration-none">Lacak Pesanan</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-4">Hubungi Kami</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Jl. Gatot Subroto No. 123, Jakarta</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> (021) 123-4567</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@rasanusantara.com</li>
+                    </ul>
+                    <h5 class="mb-3 mt-4">Metode Pembayaran</h5>
+                    <div class="d-flex flex-wrap">
+                        <i class="fab fa-cc-visa me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fab fa-cc-mastercard me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fab fa-cc-paypal me-3 mb-2" style="font-size: 24px;"></i>
+                        <i class="fas fa-money-bill-wave me-3 mb-2" style="font-size: 24px;"></i>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2023 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Dibuat dengan <i class="fas fa-heart text-danger"></i> di Indonesia</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Star rating functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('#write-review .rating i');
+            
+            stars.forEach((star, index) => {
+                star.addEventListener('mouseover', function() {
+                    for (let i = 0; i <= index; i++) {
+                        stars[i].classList.remove('far');
+                        stars[i].classList.add('fas');
+                    }
+                    for (let i = index + 1; i < stars.length; i++) {
+                        stars[i].classList.remove('fas');
+                        stars[i].classList.add('far');
+                    }
+                });
+                
+                star.addEventListener('click', function() {
+                    for (let i = 0; i <= index; i++) {
+                        stars[i].classList.remove('far');
+                        stars[i].classList.add('fas');
+                        stars[i].dataset.selected = 'true';
+                    }
+                    for (let i = index + 1; i < stars.length; i++) {
+                        stars[i].classList.remove('fas');
+                        stars[i].classList.add('far');
+                        stars[i].dataset.selected = 'false';
+                    }
+                });
+            });
+            
+            document.querySelector('#write-review .rating').addEventListener('mouseout', function() {
+                stars.forEach((star, index) => {
+                    if (star.dataset.selected === 'true') {
+                        star.classList.remove('far');
+                        star.classList.add('fas');
+                    } else {
+                        star.classList.remove('fas');
+                        star.classList.add('far');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

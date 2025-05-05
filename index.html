@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rasa Nusantara - Kuliner Tradisional Indonesia</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .hero-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .product-card {
+      transition: all 0.3s ease;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .category-card {
+      transition: all 0.3s ease;
+    }
+    
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .blog-card {
+      transition: all 0.3s ease;
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .testimonial-card {
+      transition: all 0.3s ease;
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .feature-card {
+      transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .btn-primary {
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .btn-secondary {
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+  <!-- Header - Sticky for better navigation -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <a href="index.html" class="text-2xl font-bold text-orange-600 flex items-center">
+          <i class="fas fa-utensils mr-2"></i>
+          Rasa Nusantara
+        </a>
+        
+        <!-- Navigation - Desktop -->
+        <nav class="hidden md:flex space-x-6">
+          <a href="index.html" class="text-orange-500 font-medium border-b-2 border-orange-500 pb-1">Beranda</a>
+          <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">Produk</a>
+          <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">Blog</a>
+          <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">Tentang Kami</a>
+          <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">Kontak</a>
+        </nav>
+        
+        <!-- Right Menu -->
+        <div class="flex items-center space-x-5">
+          <!-- Search -->
+          <div class="relative hidden md:block">
+            <input type="text" placeholder="Cari produk atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-64 transition-all duration-200">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+          
+          <!-- Notifications -->
+          <div class="relative group">
+            <a href="#" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">
+              <i class="fas fa-bell text-xl"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
+            </a>
+            <div class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg py-2 z-10 hidden group-hover:block">
+              <div class="px-4 py-2 border-b border-gray-100">
+                <h4 class="font-semibold">Notifikasi (2)</h4>
+              </div>
+              <a href="#" class="block px-4 py-3 hover:bg-gray-50 transition-colors duration-200">
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 mr-3">
+                    <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full">
+                  </div>
+                  <div>
+                    <p class="font-medium">Pesanan Anda telah dikirim</p>
+                    <p class="text-sm text-gray-500">2 jam yang lalu</p>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="block px-4 py-3 hover:bg-gray-50 transition-colors duration-200">
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 mr-3">
+                    <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full">
+                  </div>
+                  <div>
+                    <p class="font-medium">Promo spesial hari ini!</p>
+                    <p class="text-sm text-gray-500">5 jam yang lalu</p>
+                  </div>
+                </div>
+              </a>
+              <div class="px-4 py-2 border-t border-gray-100 text-center">
+                <a href="#" class="text-orange-500 hover:text-orange-600 text-sm font-medium">Lihat semua notifikasi</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Cart -->
+          <div class="relative group">
+            <a href="keranjang.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+            </a>
+            <div class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg py-2 z-10 hidden group-hover:block">
+              <div class="px-4 py-2 border-b border-gray-100">
+                <h4 class="font-semibold">Keranjang Belanja (3)</h4>
+              </div>
+              <div class="max-h-60 overflow-y-auto">
+                <a href="#" class="block px-4 py-3 hover:bg-gray-50 transition-colors duration-200">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 mr-3">
+                      <img src="https://via.placeholder.com/60" alt="Product" class="w-12 h-12 rounded-md object-cover">
+                    </div>
+                    <div class="flex-grow">
+                      <p class="font-medium">Rendang Padang</p>
+                      <p class="text-sm text-gray-500">1 x Rp 85.000</p>
+                    </div>
+                  </div>
+                </a>
+                <a href="#" class="block px-4 py-3 hover:bg-gray-50 transition-colors duration-200">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 mr-3">
+                      <img src="https://via.placeholder.com/60" alt="Product" class="w-12 h-12 rounded-md object-cover">
+                    </div>
+                    <div class="flex-grow">
+                      <p class="font-medium">Sambal Bawang</p>
+                      <p class="text-sm text-gray-500">2 x Rp 35.000</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="px-4 py-3 border-t border-gray-100">
+                <div class="flex justify-between font-medium mb-2">
+                  <span>Total:</span>
+                  <span>Rp 155.000</span>
+                </div>
+                <div class="flex flex-col space-y-2">
+                  <a href="keranjang.html" class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg text-center text-sm font-medium transition-colors duration-200">
+                    Lihat Keranjang
+                  </a>
+                  <a href="checkout.html" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-center text-sm font-medium transition-colors duration-200">
+                    Checkout
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- User -->
+          <div class="relative group">
+            <a href="akun.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200">
+              <i class="fas fa-user-circle text-xl"></i>
+            </a>
+            <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 hidden group-hover:block">
+              <a href="akun.html" class="block px-4 py-2 hover:bg-gray-50 transition-colors duration-200">
+                <i class="fas fa-user-circle mr-2"></i> Profil Saya
+              </a>
+              <a href="pesanan.html" class="block px-4 py-2 hover:bg-gray-50 transition-colors duration-200">
+                <i class="fas fa-shopping-bag mr-2"></i> Pesanan Saya
+              </a>
+              <a href="wishlist.html" class="block px-4 py-2 hover:bg-gray-50 transition-colors duration-200">
+                <i class="fas fa-heart mr-2"></i> Wishlist
+              </a>
+              <div class="border-t border-gray-100 my-1"></div>
+              <a href="logout.html" class="block px-4 py-2 hover:bg-gray-50 transition-colors duration-200 text-red-500">
+                <i class="fas fa-sign-out-alt mr-2"></i> Keluar
+              </a>
+            </div>
+          </div>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-orange-500 transition-colors duration-200">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+        <div class="flex flex-col space-y-3">
+          <a href="index.html" class="text-orange-500 font-medium py-2">Beranda</a>
+          <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200 py-2">Produk</a>
+          <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200 py-2">Blog</a>
+          <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200 py-2">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200 py-2">Tentang Kami</a>
+          <a href="kontak.html" class="text-gray-700 hover:text-orange-500 transition-colors duration-200 py-2">Kontak</a>
+        </div>
+        <div class="mt-4 relative">
+          <input type="text" placeholder="Cari produk atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-r from-orange-600 to-orange-500 text-white hero-pattern">
+    <div class="container mx-auto px-4 py-20 md:py-28">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <span class="inline-block bg-white text-orange-600 px-4 py-1 rounded-full text-sm font-medium mb-4 shadow-md">Kuliner Tradisional Indonesia</span>
+          <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Rasakan Kelezatan Kuliner Nusantara</h1>
+          <p class="text-lg mb-8 text-white text-opacity-90 leading-relaxed">Temukan berbagai produk kuliner tradisional Indonesia berkualitas tinggi dari berbagai daerah di nusantara. Nikmati cita rasa otentik yang dibuat dengan bahan-bahan pilihan.</p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="produk.html" class="btn-primary bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-200 inline-block text-center shadow-md">
+              <i class="fas fa-store mr-2"></i> Jelajahi Produk
+            </a>
+            <a href="#featured-products" class="btn-secondary bg-orange-700 hover:bg-orange-800 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 inline-block text-center shadow-md border border-orange-400">
+              <i class="fas fa-fire mr-2"></i> Produk Unggulan
+            </a>
+          </div>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+          <img src="https://via.placeholder.com/600x400" alt="Kuliner Nusantara" class="rounded-2xl shadow-2xl max-w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300">
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="fill-current text-gray-50">
+        <path d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-medium mb-3">Kategori</span>
+        <h2 class="text-3xl font-bold mb-4">Kategori Produk</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Jelajahi berbagai kategori produk kuliner tradisional Indonesia yang kami tawarkan.</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <a href="produk.html" class="category-card bg-white rounded-xl shadow-md p-6 flex flex-col items-center hover:bg-orange-50 transition-all duration-200 group">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors duration-200">
+            <i class="fas fa-utensils text-orange-500 text-2xl"></i>
+          </div>
+          <h3 class="font-bold mb-1 group-hover:text-orange-500 transition-colors duration-200">Makanan Siap Saji</h3>
+          <p class="text-gray-500 text-sm">24 Produk</p>
+        </a>
+        <a href="produk.html" class="category-card bg-white rounded-xl shadow-md p-6 flex flex-col items-center hover:bg-green-50 transition-all duration-200 group">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors duration-200">
+            <i class="fas fa-seedling text-green-500 text-2xl"></i>
+          </div>
+          <h3 class="font-bold mb-1 group-hover:text-green-500 transition-colors duration-200">Bumbu & Rempah</h3>
+          <p class="text-gray-500 text-sm">18 Produk</p>
+        </a>
+        <a href="produk.html" class="category-card bg-white rounded-xl shadow-md p-6 flex flex-col items-center hover:bg-purple-50 transition-all duration-200 group">
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors duration-200">
+            <i class="fas fa-cookie text-purple-500 text-2xl"></i>
+          </div>
+          <h3 class="font-bold mb-1 group-hover:text-purple-500 transition-colors duration-200">Kue Tradisional</h3>
+          <p class="text-gray-500 text-sm">15 Produk</p>
+        </a>
+        <a href="produk.html" class="category-card bg-white rounded-xl shadow-md p-6 flex flex-col items-center hover:bg-yellow-50 transition-all duration-200 group">
+          <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-yellow-200 transition-colors duration-200">
+            <i class="fas fa-coffee text-yellow-600 text-2xl"></i>
+          </div>
+          <h3 class="font-bold mb-1 group-hover:text-yellow-600 transition-colors duration-200">Minuman</h3>
+          <p class="text-gray-500 text-sm">12 Produk</p>
+        </a>
+      </div>
+      
+      <div class="text-center mt-10">
+        <a href="produk.html" class="inline-flex items-center text-orange-500 hover:text-orange-600 transition-colors duration-200 font-medium group">
+          Lihat Semua Kategori 
+          <span class="ml-2 transform group-hover:translate-x-1 transition-transform duration-200">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section id="featured-products" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-medium mb-3">Unggulan</span>
+        <h2 class="text-3xl font-bold mb-4">Produk Unggulan</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Produk-produk terbaik dan terlaris dari berbagai daerah di Indonesia.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Product 1 -->
+        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="relative">
+            <img src="https://via.placeholder.com/300x300" alt="Rendang Padang" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="absolute top-3 left-3">
+              <span class="bg-orange-500 text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-md">Terlaris</span>
+            </div>
+            <div class="absolute top-3 right-3">
+              <button class="bg-white rounded-full p-2.5 text-gray-600 hover:text-orange-500 transition-colors duration-200 shadow-md hover:shadow-lg">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg mb-2">Rendang Padang</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex items-center text-yellow-400 text-sm">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span class="text-gray-600 ml-2">(120)</span>
+              </div>
+            </div>
+            <p class="text-gray-600 text-sm mb-4">Rendang daging sapi asli Padang dengan bumbu rempah pilihan.</p>
+            <div class="flex justify-between items-center">
+              <p class="text-orange-500 font-bold text-lg">Rp 85.000</p>
+              <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm transition-colors duration-200 flex items-center">
+                <i class="fas fa-shopping-cart mr-2"></i> Beli
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="relative">
+            <img src="https://via.placeholder.com/300x300" alt="Sambal Bawang" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="absolute top-3 right-3">
+              <button class="bg-white rounded-full p-2.5 text-gray-600 hover:text-orange-500 transition-colors duration-200 shadow-md hover:shadow-lg">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg mb-2">Sambal Bawang</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex items-center text-yellow-400 text-sm">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <span class="text-gray-600 ml-2">(98)</span>
+              </div>
+            </div>
+            <p class="text-gray-600 text-sm mb-4">Sambal bawang pedas dengan bahan-bahan alami tanpa pengawet.</p>
+            <div class="flex justify-between items-center">
+              <p class="text-orange-500 font-bold text-lg">Rp 35.000</p>
+              <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm transition-colors duration-200 flex items-center">
+                <i class="fas fa-shopping-cart mr-2"></i> Beli
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="relative">
+            <img src="https://via.placeholder.com/300x300" alt="Kopi Luwak" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="absolute top-3 left-3">
+              <span class="bg-green-500 text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-md">Baru</span>
+            </div>
+            <div class="absolute top-3 right-3">
+              <button class="bg-white rounded-full p-2.5 text-gray-600 hover:text-orange-500 transition-colors duration-200 shadow-md hover:shadow-lg">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg mb-2">Kopi Luwak</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex items-center text-yellow-400 text-sm">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <span class="text-gray-600 ml-2">(75)</span>
+              </div>
+            </div>
+            <p class="text-gray-600 text-sm mb-4">Kopi luwak asli dari Bali dengan cita rasa yang khas.</p>
+            <div class="flex justify-between items-center">
+              <p class="text-orange-500 font-bold text-lg">Rp 120.000</p>
+              <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm transition-colors duration-200 flex items-center">
+                <i class="fas fa-shopping-cart mr-2"></i> Beli
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 4 -->
+        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="relative">
+            <img src="https://via.placeholder.com/300x300" alt="Bumbu Rawon" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="absolute top-3 left-3">
+              <span class="bg-red-500 text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-md">Diskon 20%</span>
+            </div>
+            <div class="absolute top-3 right-3">
+              <button class="bg-white rounded-full p-2.5 text-gray-600 hover:text-orange-500 transition-colors duration-200 shadow-md hover:shadow-lg">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg mb-2">Bumbu Rawon</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex items-center text-yellow-400 text-sm">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <span class="text-gray-600 ml-2">(55)</span>
+              </div>
+            </div>
+            <p class="text-gray-600 text-sm mb-4">Bumbu rawon instan dengan rempah-rempah pilihan.</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-gray-500 text-sm line-through">Rp 40.000</p>
+                <p class="text-orange-500 font-bold text-lg">Rp 32.000</p>
+              </div>
+              <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm transition-colors duration-200 flex items-center">
+                <i class="fas fa-shopping-cart mr-2"></i> Beli
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-10">
+        <a href="produk.html" class="btn-primary bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg transition-all duration-200 inline-block font-medium shadow-md">
+          <i class="fas fa-shopping-bag mr-2"></i> Lihat Semua Produk
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo Banner -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl overflow-hidden shadow-xl">
+        <div class="flex flex-col md:flex-row">
+          <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-white">
+            <span class="inline-block bg-white text-orange-600 px-4 py-1 rounded-full text-sm font-medium mb-4 shadow-md">Promo Spesial</span>
+            <h2 class="text-3xl font-bold mb-4 leading-tight">Diskon 25% untuk Pembelian Pertama</h2>
+            <p class="text-lg mb-6 text-white text-opacity-90">Dapatkan diskon spesial untuk pembelian pertama Anda. Gunakan kode promo <span class="font-bold bg-orange-700 px-2 py-1 rounded">NUSANTARA25</span> saat checkout.</p>
+            <div class="mt-2">
+              <a href="produk.html" class="btn-primary bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-200 inline-block shadow-md">
+                <i class="fas fa-shopping-cart mr-2"></i> Belanja Sekarang
+              </a>
+            </div>
+          </div>
+          <div class="md:w-1/2">
+            <img src="https://via.placeholder.com/600x400" alt="Promo Diskon" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Blog Posts -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-medium mb-3">Blog</span>
+        <h2 class="text-3xl font-bold mb-4">Artikel Terbaru</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Temukan artikel menarik seputar kuliner tradisional Indonesia.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Blog Post 1 -->
+        <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="relative">
+            <img src="https://via.placeholder.com/400x300" alt="Rahasia Rendang" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="absolute top-3 left-3">
+              <span class="bg-orange-100 text-orange-600 text-xs px-3 py-1.5 rounded-full font-medium shadow-md">Resep</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-3 text-gray-500 text-sm">
+              <i class="far fa-calendar-alt mr-2"></i>
+              <span>15 April 2025</span>
+              <span class="mx-2">•</span>
+              <i class="far fa-eye mr-2"></i>
+              <span>1.2K</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3 hover:text-orange-500 transition-colors duration-200">
+              <a href="blog.html">Rahasia Rendang yang Lezat dan Tahan Lama</a>
+            </h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">Rendang adalah salah satu hidangan khas Minangkabau yang terkenal di seluruh dunia. Dalam artikel ini, kami akan mengungkap rahasia membuat rendang yang lezat dan tahan lama.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img src="https://via.placeholder.com/50" alt="Author" class="w-10 h-10 rounded-full mr-3 border-2 border-orange-200">
+                <span class="text-gray-700 text-sm">Chef Budi</span>
+              </div>
+              <a href="blog.html" class="text-orange-500 hover:text-orange-600 transition-colors duration-200 flex items-center text-sm font-medium">
+                Baca Selengkapnya
+                <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Blog Post 2 -->
+        <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="relative">
+            <img src="https://via.placeholder.com/400x300" alt="Sejarah Sate" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="absolute top-3 left-3">
+              <span class="bg-blue-100 text-blue-600 text-xs px-3 py-1.5 rounded-full font-medium shadow-md">Sejarah Kuliner</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-3 text-gray-500 text-sm">
+              <i class="far fa-calendar-alt mr-2"></i>
+              <span>10 April 2025</span>
+              <span class="mx-2">•</span>
+              <i class="far fa-eye mr-2"></i>
+              <span>980</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3 hover:text-orange-500 transition-colors duration-200">
+              <a href="blog.html">Sejarah Sate di Indonesia dan Perkembangannya</a>
+            </h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">Sate adalah salah satu hidangan yang sangat populer di Indonesia. Artikel ini akan membahas sejarah sate di Indonesia, berbagai jenis sate dari berbagai daerah.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img src="https://via.placeholder.com/50" alt="Author" class="w-10 h-10 rounded-full mr-3 border-2 border-orange-200">
+                <span class="text-gray-700 text-sm">Andi Sejarawan</span>
+              </div>
+              <a href="blog.html" class="text-orange-500 hover:text-orange-600 transition-colors duration-200 flex items-center text-sm font-medium">
+                Baca Selengkapnya
+                <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Blog Post 3 -->
+        <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="relative">
+            <img src="https://via.placeholder.com/400x300" alt="Rempah Indonesia" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="absolute top-3 left-3">
+              <span class="bg-green-100 text-green-600 text-xs px-3 py-1.5 rounded-full font-medium shadow-md">Bahan Masakan</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-3 text-gray-500 text-sm">
+              <i class="far fa-calendar-alt mr-2"></i>
+              <span>5 April 2025</span>
+              <span class="mx-2">•</span>
+              <i class="far fa-eye mr-2"></i>
+              <span>845</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3 hover:text-orange-500 transition-colors duration-200">
+              <a href="blog.html">Mengenal Rempah-rempah Khas Indonesia</a>
+            </h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">Indonesia dikenal sebagai negeri rempah-rempah. Artikel ini akan membahas berbagai jenis rempah-rempah khas Indonesia, manfaatnya, dan bagaimana menggunakannya dalam masakan.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img src="https://via.placeholder.com/50" alt="Author" class="w-10 h-10 rounded-full mr-3 border-2 border-orange-200">
+                <span class="text-gray-700 text-sm">Siti Herbalis</span>
+              </div>
+              <a href="blog.html" class="text-orange-500 hover:text-orange-600 transition-colors duration-200 flex items-center text-sm font-medium">
+                Baca Selengkapnya
+                <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-10">
+        <a href="blog.html" class="inline-flex items-center text-orange-500 hover:text-orange-600 transition-colors duration-200 font-medium group">
+          Lihat Semua Artikel 
+          <span class="ml-2 transform group-hover:translate-x-1 transition-transform duration-200">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-medium mb-3">Testimoni</span>
+        <h2 class="text-3xl font-bold mb-4">Apa Kata Pelanggan Kami</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Pengalaman pelanggan yang telah membeli produk kuliner tradisional dari Rasa Nusantara.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="testimonial-card bg-white rounded-xl shadow-md p-6 relative">
+          <div class="absolute -top-4 left-6 text-orange-500 text-5xl opacity-20">
+            <i class="fas fa-quote-left"></i>
+          </div>
+          <div class="flex items-center text-yellow-400 mb-4">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="text-gray-600 mb-6 relative z-10">"Rendang Padang dari Rasa Nusantara benar-benar otentik dan lezat. Rasanya persis seperti yang saya makan di Padang. Pengiriman cepat dan kemasan aman. Pasti akan beli lagi!"</p>
+          <div class="flex items-center">
+            <img src="https://via.placeholder.com/50" alt="Budi Santoso" class="w-12 h-12 rounded-full mr-4 border-2 border-orange-200">
+            <div>
+              <h4 class="font-bold">Budi Santoso</h4>
+              <p class="text-sm text-gray-500">Jakarta</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card bg-white rounded-xl shadow-md p-6 relative">
+          <div class="absolute -top-4 left-6 text-orange-500 text-5xl opacity-20">
+            <i class="fas fa-quote-left"></i>
+          </div>
+          <div class="flex items-center text-yellow-400 mb-4">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <p class="text-gray-600 mb-6 relative z-10">"Saya sangat senang dengan koleksi bumbu dapur yang saya beli. Semua bumbu sangat segar dan berkualitas tinggi. Masakan saya jadi lebih lezat. Terima kasih Rasa Nusantara!"</p>
+          <div class="flex items-center">
+            <img src="https://via.placeholder.com/50" alt="Siti Rahma" class="w-12 h-12 rounded-full mr-4 border-2 border-orange-200">
+            <div>
+              <h4 class="font-bold">Siti Rahma</h4>
+              <p class="text-sm text-gray-500">Bandung</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card bg-white rounded-xl shadow-md p-6 relative">
+          <div class="absolute -top-4 left-6 text-orange-500 text-5xl opacity-20">
+            <i class="fas fa-quote-left"></i>
+          </div>
+          <div class="flex items-center text-yellow-400 mb-4">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="text-gray-600 mb-6 relative z-10">"Kopi Luwak yang saya beli benar-benar istimewa. Aromanya harum dan rasanya sangat khas. Pelayanan customer service juga sangat ramah dan membantu. Rekomendasi untuk pecinta kopi!"</p>
+          <div class="flex items-center">
+            <img src="https://via.placeholder.com/50" alt="Andi Wijaya" class="w-12 h-12 rounded-full mr-4 border-2 border-orange-200">
+            <div>
+              <h4 class="font-bold">Andi Wijaya</h4>
+              <p class="text-sm text-gray-500">Surabaya</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-medium mb-3">Keunggulan</span>
+        <h2 class="text-3xl font-bold mb-4">Mengapa Memilih Kami</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Kami berkomitmen untuk memberikan produk kuliner tradisional Indonesia berkualitas tinggi dengan pelayanan terbaik.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="feature-card bg-white rounded-xl shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+            <i class="fas fa-check-circle text-orange-500 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Kualitas Terjamin</h3>
+          <p class="text-gray-600">Semua produk kami dibuat dengan bahan-bahan berkualitas tinggi dan proses produksi yang higienis.</p>
+        </div>
+        <div class="feature-card bg-white rounded-xl shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+            <i class="fas fa-shipping-fast text-orange-500 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Pengiriman Cepat</h3>
+          <p class="text-gray-600">Kami menjamin pengiriman cepat dan aman ke seluruh wilayah Indonesia.</p>
+        </div>
+        <div class="feature-card bg-white rounded-xl shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+            <i class="fas fa-headset text-orange-500 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Layanan Pelanggan</h3>
+          <p class="text-gray-600">Tim layanan pelanggan kami siap membantu Anda 7 hari seminggu.</p>
+        </div>
+        <div class="feature-card bg-white rounded-xl shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+            <i class="fas fa-undo text-orange-500 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Garansi Kepuasan</h3>
+          <p class="text-gray-600">Jika Anda tidak puas dengan produk kami, kami siap memberikan pengembalian dana.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-medium mb-3">Mitra</span>
+        <h2 class="text-3xl font-bold mb-4">Mitra Kami</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Kami bekerja sama dengan berbagai mitra untuk memberikan pengalaman terbaik bagi pelanggan.</p>
+      </div>
+      
+      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+        <img src="https://via.placeholder.com/150x80" alt="Partner 1" class="h-12 grayscale hover:grayscale-0 transition-all duration-300 transform hover:scale-110">
+        <img src="https://via.placeholder.com/150x80" alt="Partner 2" class="h-12 grayscale hover:grayscale-0 transition-all duration-300 transform hover:scale-110">
+        <img src="https://via.placeholder.com/150x80" alt="Partner 3" class="h-12 grayscale hover:grayscale-0 transition-all duration-300 transform hover:scale-110">
+        <img src="https://via.placeholder.com/150x80" alt="Partner 4" class="h-12 grayscale hover:grayscale-0 transition-all duration-300 transform hover:scale-110">
+        <img src="https://via.placeholder.com/150x80" alt="Partner 5" class="h-12 grayscale hover:grayscale-0 transition-all duration-300 transform hover:scale-110">
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 bg-orange-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <span class="inline-block bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-medium mb-3">Newsletter</span>
+        <h2 class="text-3xl font-bold mb-4">Berlangganan Newsletter</h2>
+        <p class="text-lg text-gray-600 mb-8">Dapatkan informasi tentang produk terbaru, promo, dan resep eksklusif langsung ke email Anda.</p>
+        <form class="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
+          <input type="email" placeholder="Alamat email Anda" class="flex-grow px-5 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent shadow-md">
+          <button type="submit" class="btn-primary bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg transition-all duration-200 font-medium shadow-md flex items-center justify-center">
+            <i class="fas fa-paper-plane mr-2"></i> Berlangganan
+          </button>
+        </form>
+        <p class="text-sm text-gray-500 mt-4">Kami tidak akan mengirimkan spam. Anda dapat berhenti berlangganan kapan saja.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-16 pb-6">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+        <!-- About -->
+        <div>
+          <h3 class="text-xl font-bold mb-6 flex items-center">
+            <i class="fas fa-utensils mr-2 text-orange-400"></i>
+            Rasa Nusantara
+          </h3>
+          <p class="text-gray-300 mb-6 leading-relaxed">Website e-commerce yang menyediakan berbagai produk kuliner tradisional Indonesia. Kami berkomitmen untuk melestarikan cita rasa nusantara dengan sentuhan modern.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="bg-gray-700 hover:bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-200">
+              <i class="fab fa-facebook-f text-white"></i>
+            </a>
+            <a href="#" class="bg-gray-700 hover:bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-200">
+              <i class="fab fa-instagram text-white"></i>
+            </a>
+            <a href="#" class="bg-gray-700 hover:bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-200">
+              <i class="fab fa-twitter text-white"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-6">Tautan Cepat</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Beranda
+              </a>
+            </li>
+            <li>
+              <a href="produk.html" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Produk
+              </a>
+            </li>
+            <li>
+              <a href="blog.html" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="forum.html" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Forum
+              </a>
+            </li>
+            <li>
+              <a href="tentang-kami.html" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Tentang Kami
+              </a>
+            </li>
+            <li>
+              <a href="kontak.html" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                Kontak
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h3 class="text-xl font-bold mb-6">Kontak Kami</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-orange-400"></i>
+              <span>Jl. Contoh No. 123, Kota Cimahi, Jawa Barat, 40511</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone-alt mr-3 text-orange-400"></i>
+              <span>+62 812-3456-7890</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-3 text-orange-400"></i>
+              <span>support@rasanusantara.com</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Hours -->
+        <div>
+          <h3 class="text-xl font-bold mb-6">Jam Operasional</h3>
+          <ul class="space-y-3">
+            <li class="flex justify-between items-center bg-gray-700 px-3 py-2 rounded-lg">
+              <span>Senin - Jumat:</span>
+              <span class="bg-orange-500 text-white px-2 py-1 rounded text-sm">08:00 - 17:00 WIB</span>
+            </li>
+            <li class="flex justify-between items-center bg-gray-700 px-3 py-2 rounded-lg">
+              <span>Sabtu:</span>
+              <span class="bg-orange-500 text-white px-2 py-1 rounded text-sm">09:00 - 15:00 WIB</span>
+            </li>
+            <li class="flex justify-between items-center bg-gray-700 px-3 py-2 rounded-lg">
+              <span>Minggu:</span>
+              <span class="bg-red-500 text-white px-2 py-1 rounded text-sm">Tutup</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="border-gray-700 mb-6">
+      
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">&copy; 2025 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Syarat & Ketentuan</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Kebijakan Privasi</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 bg-orange-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-orange-600 transition-colors duration-200 transform hover:scale-110 opacity-0 invisible">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+      
+      // Back to top button
+      const backToTopButton = document.getElementById('back-to-top');
+      
+      if (backToTopButton) {
+        window.addEventListener('scroll', function() {
+          if (window.pageYOffset > 300) {
+            backToTopButton.classList.remove('opacity-0', 'invisible');
+            backToTopButton.classList.add('opacity-100', 'visible');
+          } else {
+            backToTopButton.classList.remove('opacity-100', 'visible');
+            backToTopButton.classList.add('opacity-0', 'invisible');
+          }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

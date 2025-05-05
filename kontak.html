@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontak - Rasa Nusantara</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    /* Custom Styles */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+    
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      min-width: 200px;
+    }
+    
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .social-icon:hover {
+      transform: scale(1.1);
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 40;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+    
+    /* Form focus effects */
+    .form-input:focus {
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    .contact-card {
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon {
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50">
+  <!-- Header -->
+  <header class="sticky-header shadow-sm">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <a href="index.html" class="text-2xl font-bold text-orange-600 flex items-center">
+          <i class="fas fa-utensils mr-2"></i>
+          Rasa Nusantara
+        </a>
+        
+        <!-- Navigation - Desktop -->
+        <nav class="hidden md:flex space-x-6">
+          <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors">Beranda</a>
+          <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors">Produk</a>
+          <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors">Blog</a>
+          <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors">Tentang Kami</a>
+          <a href="kontak.html" class="text-orange-500 font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[3px] after:bg-orange-500 after:rounded-full">Kontak</a>
+        </nav>
+        
+        <!-- Right Menu -->
+        <div class="flex items-center space-x-4">
+          <!-- Search -->
+          <div class="relative hidden md:block">
+            <input type="text" placeholder="Cari produk atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-64">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+          
+          <!-- Notifications -->
+          <div class="relative dropdown">
+            <button class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-bell"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">2</span>
+            </button>
+            <div class="dropdown-menu bg-white rounded-lg shadow-lg p-4 mt-2 z-50">
+              <h4 class="font-bold text-gray-800 mb-3">Notifikasi</h4>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <div class="bg-orange-100 rounded-full p-2 mr-3">
+                    <i class="fas fa-tag text-orange-500"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium">Promo Spesial Lebaran!</p>
+                    <p class="text-xs text-gray-500">Diskon hingga 30% untuk semua produk</p>
+                    <p class="text-xs text-gray-400 mt-1">2 jam yang lalu</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="bg-green-100 rounded-full p-2 mr-3">
+                    <i class="fas fa-check text-green-500"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium">Pesanan Anda telah dikirim</p>
+                    <p class="text-xs text-gray-500">Pesanan #12345 sedang dalam perjalanan</p>
+                    <p class="text-xs text-gray-400 mt-1">5 jam yang lalu</p>
+                  </div>
+                </div>
+              </div>
+              <a href="#" class="block text-center text-orange-500 hover:text-orange-600 text-sm mt-4 pt-2 border-t border-gray-100">
+                Lihat Semua Notifikasi
+              </a>
+            </div>
+          </div>
+          
+          <!-- Cart -->
+          <div class="relative dropdown">
+            <a href="keranjang.html" class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+            </a>
+            <div class="dropdown-menu bg-white rounded-lg shadow-lg p-4 mt-2 z-50 w-72">
+              <h4 class="font-bold text-gray-800 mb-3">Keranjang Belanja</h4>
+              <div class="space-y-3 max-h-60 overflow-y-auto">
+                <div class="flex items-center">
+                  <img src="https://via.placeholder.com/50" alt="Rendang Padang" class="w-12 h-12 object-cover rounded-md mr-3">
+                  <div class="flex-1">
+                    <h5 class="text-sm font-medium">Rendang Padang</h5>
+                    <p class="text-xs text-gray-500">1 x Rp 85.000</p>
+                  </div>
+                  <button class="text-gray-400 hover:text-red-500">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <div class="flex items-center">
+                  <img src="https://via.placeholder.com/50" alt="Sambal Bawang" class="w-12 h-12 object-cover rounded-md mr-3">
+                  <div class="flex-1">
+                    <h5 class="text-sm font-medium">Sambal Bawang</h5>
+                    <p class="text-xs text-gray-500">2 x Rp 35.000</p>
+                  </div>
+                  <button class="text-gray-400 hover:text-red-500">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <div class="flex items-center">
+                  <img src="https://via.placeholder.com/50" alt="Bumbu Rawon" class="w-12 h-12 object-cover rounded-md mr-3">
+                  <div class="flex-1">
+                    <h5 class="text-sm font-medium">Bumbu Rawon</h5>
+                    <p class="text-xs text-gray-500">1 x Rp 32.000</p>
+                  </div>
+                  <button class="text-gray-400 hover:text-red-500">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="border-t border-gray-100 mt-3 pt-3">
+                <div class="flex justify-between mb-3">
+                  <span class="font-medium">Total:</span>
+                  <span class="font-bold text-orange-500">Rp 187.000</span>
+                </div>
+                <div class="flex space-x-2">
+                  <a href="keranjang.html" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-2 rounded-md text-sm transition-colors">
+                    Keranjang
+                  </a>
+                  <a href="checkout.html" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded-md text-sm transition-colors">
+                    Checkout
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- User -->
+          <div class="relative dropdown">
+            <button class="text-gray-700 hover:text-orange-500 transition-colors">
+              <i class="fas fa-user"></i>
+            </button>
+            <div class="dropdown-menu bg-white rounded-lg shadow-lg p-4 mt-2 z-50">
+              <div class="flex items-center mb-4 pb-3 border-b border-gray-100">
+                <div class="bg-orange-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                  <i class="fas fa-user text-orange-500"></i>
+                </div>
+                <div>
+                  <h5 class="font-medium">Selamat datang!</h5>
+                  <p class="text-xs text-gray-500">user@example.com</p>
+                </div>
+              </div>
+              <ul class="space-y-2">
+                <li>
+                  <a href="akun.html" class="flex items-center text-gray-700 hover:text-orange-500">
+                    <i class="fas fa-user-circle w-6"></i>
+                    <span>Profil Saya</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="flex items-center text-gray-700 hover:text-orange-500">
+                    <i class="fas fa-shopping-bag w-6"></i>
+                    <span>Pesanan Saya</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="flex items-center text-gray-700 hover:text-orange-500">
+                    <i class="fas fa-heart w-6"></i>
+                    <span>Wishlist</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="flex items-center text-gray-700 hover:text-orange-500">
+                    <i class="fas fa-cog w-6"></i>
+                    <span>Pengaturan</span>
+                  </a>
+                </li>
+                <li class="pt-2 mt-2 border-t border-gray-100">
+                  <a href="#" class="flex items-center text-red-500 hover:text-red-600">
+                    <i class="fas fa-sign-out-alt w-6"></i>
+                    <span>Keluar</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-orange-500 transition-colors">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4 animate-fade-in">
+        <div class="flex flex-col space-y-3">
+          <a href="index.html" class="text-gray-700 hover:text-orange-500 transition-colors">Beranda</a>
+          <a href="produk.html" class="text-gray-700 hover:text-orange-500 transition-colors">Produk</a>
+          <a href="blog.html" class="text-gray-700 hover:text-orange-500 transition-colors">Blog</a>
+          <a href="forum.html" class="text-gray-700 hover:text-orange-500 transition-colors">Forum</a>
+          <a href="tentang-kami.html" class="text-gray-700 hover:text-orange-500 transition-colors">Tentang Kami</a>
+          <a href="kontak.html" class="text-orange-500 font-medium">Kontak</a>
+        </div>
+        <div class="mt-4 relative">
+          <input type="text" placeholder="Cari produk atau resep" class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-100 py-2">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-orange-500">Beranda</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <span class="text-gray-800">Kontak</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Header -->
+  <section class="py-16 bg-gradient-to-r from-orange-500 to-orange-600 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0 bg-pattern"></div>
+    </div>
+    <div class="container mx-auto px-4 text-center relative z-10">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Hubungi Kami</h1>
+      <p class="text-white text-lg max-w-3xl mx-auto opacity-90">Kami siap membantu Anda dengan pertanyaan, saran, atau masukan. Jangan ragu untuk menghubungi kami melalui berbagai saluran di bawah ini.</p>
+    </div>
+  </section>
+
+  <!-- Contact Information -->
+  <section class="py-16 -mt-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Contact Card 1 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 text-center contact-card">
+          <div class="inline-flex items-center justify-center w-20 h-20 bg-orange-100 text-orange-500 rounded-full mb-6">
+            <i class="fas fa-map-marker-alt text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Alamat Kantor</h3>
+          <p class="text-gray-600 mb-4">Jl. Contoh No. 123, Kota Cimahi, Jawa Barat, 40511, Indonesia</p>
+          <a href="https://maps.google.com" target="_blank" class="text-orange-500 hover:text-orange-600 transition-colors inline-flex items-center group">
+            Lihat di Peta
+            <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+        
+        <!-- Contact Card 2 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 text-center contact-card">
+          <div class="inline-flex items-center justify-center w-20 h-20 bg-orange-100 text-orange-500 rounded-full mb-6">
+            <i class="fas fa-phone-alt text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Telepon & Email</h3>
+          <p class="text-gray-600 mb-3">+62 812-3456-7890</p>
+          <p class="text-gray-600 mb-1">support@rasanusantara.com</p>
+          <p class="text-gray-600">info@rasanusantara.com</p>
+        </div>
+        
+        <!-- Contact Card 3 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 text-center contact-card">
+          <div class="inline-flex items-center justify-center w-20 h-20 bg-orange-100 text-orange-500 rounded-full mb-6">
+            <i class="fas fa-clock text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Jam Operasional</h3>
+          <p class="text-gray-600 mb-2">Senin - Jumat: 08:00 - 17:00 WIB</p>
+          <p class="text-gray-600 mb-2">Sabtu: 09:00 - 15:00 WIB</p>
+          <p class="text-gray-600">Minggu: Tutup</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form and Map -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Contact Form -->
+        <div class="lg:w-1/2">
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-2xl font-bold mb-6 flex items-center">
+              <span class="bg-orange-100 text-orange-500 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                <i class="fas fa-envelope"></i>
+              </span>
+              Kirim Pesan
+            </h2>
+            <form>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label for="name" class="block text-gray-700 mb-2 font-medium">Nama Lengkap</label>
+                  <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent form-input" required>
+                </div>
+                <div>
+                  <label for="email" class="block text-gray-700 mb-2 font-medium">Email</label>
+                  <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent form-input" required>
+                </div>
+              </div>
+              <div class="mb-6">
+                <label for="phone" class="block text-gray-700 mb-2 font-medium">Nomor Telepon</label>
+                <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent form-input">
+              </div>
+              <div class="mb-6">
+                <label for="subject" class="block text-gray-700 mb-2 font-medium">Subjek</label>
+                <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent form-input" required>
+              </div>
+              <div class="mb-6">
+                <label for="message" class="block text-gray-700 mb-2 font-medium">Pesan</label>
+                <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent form-input" required></textarea>
+              </div>
+              <div class="mb-6">
+                <div class="flex items-center">
+                  <input type="checkbox" id="privacy" name="privacy" class="mr-3 h-5 w-5 text-orange-500 focus:ring-orange-500 rounded" required>
+                  <label for="privacy" class="text-gray-700">Saya menyetujui <a href="#" class="text-orange-500 hover:text-orange-600 transition-colors underline">Kebijakan Privasi</a></label>
+                </div>
+              </div>
+              <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors flex items-center justify-center w-full md:w-auto">
+                <i class="fas fa-paper-plane mr-2"></i>
+                Kirim Pesan
+              </button>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Map -->
+        <div class="lg:w-1/2">
+          <div class="bg-white rounded-xl shadow-lg p-4 h-full">
+            <div class="h-full min-h-[500px] bg-gray-200 rounded-lg overflow-hidden">
+              <!-- Replace with actual map embed -->
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347862248!2d107.57311687442016!3d-6.903273916440719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146a1f93d3e815b2!2sBandung%2C%20Kota%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1682956590000!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Pertanyaan yang Sering Diajukan</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Temukan jawaban untuk pertanyaan umum tentang produk dan layanan kami</p>
+      </div>
+      
+      <div class="max-w-3xl mx-auto">
+        <!-- FAQ Item 1 -->
+        <div class="mb-4 faq-item bg-white rounded-xl shadow-md overflow-hidden">
+          <button class="flex justify-between items-center w-full p-5 text-left focus:outline-none" onclick="toggleFAQ(this)">
+            <span class="font-bold text-lg">Bagaimana cara melakukan pemesanan?</span>
+            <i class="fas fa-chevron-down text-orange-500 transition-transform faq-icon"></i>
+          </button>
+          <div class="bg-white px-5 pb-5 hidden faq-answer">
+            <div class="border-t border-gray-100 pt-4">
+              <p class="text-gray-600">Untuk melakukan pemesanan, Anda dapat mengikuti langkah-langkah berikut:</p>
+              <ol class="list-decimal list-inside text-gray-600 mt-3 space-y-2">
+                <li>Pilih produk yang ingin Anda beli</li>
+                <li>Klik tombol "Beli" atau "Tambah ke Keranjang"</li>
+                <li>Periksa keranjang belanja Anda</li>
+                <li>Klik "Checkout" dan isi informasi pengiriman</li>
+                <li>Pilih metode pembayaran</li>
+                <li>Konfirmasi pesanan Anda</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 2 -->
+        <div class="mb-4 faq-item bg-white rounded-xl shadow-md overflow-hidden">
+          <button class="flex justify-between items-center w-full p-5 text-left focus:outline-none" onclick="toggleFAQ(this)">
+            <span class="font-bold text-lg">Berapa lama waktu pengiriman?</span>
+            <i class="fas fa-chevron-down text-orange-500 transition-transform faq-icon"></i>
+          </button>
+          <div class="bg-white px-5 pb-5 hidden faq-answer">
+            <div class="border-t border-gray-100 pt-4">
+              <p class="text-gray-600">Waktu pengiriman tergantung pada lokasi Anda dan metode pengiriman yang dipilih. Secara umum:</p>
+              <ul class="list-disc list-inside text-gray-600 mt-3 space-y-2">
+                <li>Untuk wilayah Jabodetabek: 1-2 hari kerja</li>
+                <li>Untuk wilayah Jawa: 2-3 hari kerja</li>
+                <li>Untuk wilayah luar Jawa: 3-5 hari kerja</li>
+                <li>Untuk wilayah terpencil: 5-7 hari kerja</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 3 -->
+        <div class="mb-4 faq-item bg-white rounded-xl shadow-md overflow-hidden">
+          <button class="flex justify-between items-center w-full p-5 text-left focus:outline-none" onclick="toggleFAQ(this)">
+            <span class="font-bold text-lg">Metode pembayaran apa saja yang tersedia?</span>
+            <i class="fas fa-chevron-down text-orange-500 transition-transform faq-icon"></i>
+          </button>
+          <div class="bg-white px-5 pb-5 hidden faq-answer">
+            <div class="border-t border-gray-100 pt-4">
+              <p class="text-gray-600">Kami menerima berbagai metode pembayaran untuk memudahkan Anda:</p>
+              <ul class="list-disc list-inside text-gray-600 mt-3 space-y-2">
+                <li>Transfer Bank (BCA, Mandiri, BNI, BRI)</li>
+                <li>Kartu Kredit/Debit (Visa, Mastercard)</li>
+                <li>E-Wallet (GoPay, OVO, DANA, LinkAja)</li>
+                <li>Pembayaran di Tempat (COD) untuk wilayah tertentu</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 4 -->
+        <div class="mb-4 faq-item bg-white rounded-xl shadow-md overflow-hidden">
+          <button class="flex justify-between items-center w-full p-5 text-left focus:outline-none" onclick="toggleFAQ(this)">
+            <span class="font-bold text-lg">Bagaimana kebijakan pengembalian produk?</span>
+            <i class="fas fa-chevron-down text-orange-500 transition-transform faq-icon"></i>
+          </button>
+          <div class="bg-white px-5 pb-5 hidden faq-answer">
+            <div class="border-t border-gray-100 pt-4">
+              <p class="text-gray-600">Kami memiliki kebijakan pengembalian produk sebagai berikut:</p>
+              <ul class="list-disc list-inside text-gray-600 mt-3 space-y-2">
+                <li>Produk dapat dikembalikan dalam waktu 7 hari setelah diterima</li>
+                <li>Produk harus dalam kondisi asli dan belum dibuka</li>
+                <li>Pengembalian dana akan diproses dalam 3-5 hari kerja</li>
+                <li>Untuk produk yang rusak atau tidak sesuai, kami akan mengganti dengan produk baru</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 5 -->
+        <div class="mb-4 faq-item bg-white rounded-xl shadow-md overflow-hidden">
+          <button class="flex justify-between items-center w-full p-5 text-left focus:outline-none" onclick="toggleFAQ(this)">
+            <span class="font-bold text-lg">Apakah produk Rasa Nusantara halal?</span>
+            <i class="fas fa-chevron-down text-orange-500 transition-transform faq-icon"></i>
+          </button>
+          <div class="bg-white px-5 pb-5 hidden faq-answer">
+            <div class="border-t border-gray-100 pt-4">
+              <p class="text-gray-600">Ya, semua produk Rasa Nusantara telah tersertifikasi halal oleh MUI (Majelis Ulama Indonesia). Kami berkomitmen untuk menyediakan produk yang aman dan sesuai dengan standar halal untuk semua konsumen kami.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Media -->
+  <section class="py-16 bg-orange-50">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4">Ikuti Kami di Media Sosial</h2>
+      <p class="text-gray-600 mb-10 max-w-2xl mx-auto">Dapatkan informasi terbaru, resep, dan promo menarik dengan mengikuti kami di media sosial.</p>
+      
+      <div class="flex flex-wrap justify-center gap-6">
+        <a href="#" class="bg-white w-16 h-16 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all social-icon">
+          <i class="fab fa-facebook-f text-2xl text-blue-600"></i>
+        </a>
+        <a href="#" class="bg-white w-16 h-16 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all social-icon">
+          <i class="fab fa-instagram text-2xl text-pink-600"></i>
+        </a>
+        <a href="#" class="bg-white w-16 h-16 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all social-icon">
+          <i class="fab fa-twitter text-2xl text-blue-400"></i>
+        </a>
+        <a href="#" class="bg-white w-16 h-16 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all social-icon">
+          <i class="fab fa-youtube text-2xl text-red-600"></i>
+        </a>
+        <a href="#" class="bg-white w-16 h-16 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all social-icon">
+          <i class="fab fa-tiktok text-2xl text-black"></i>
+        </a>
+      </div>
+      
+      <div class="mt-10 grid grid-cols-2 md:grid-cols-5 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all">
+          <p class="font-bold text-gray-800">5K+</p>
+          <p class="text-gray-600 text-sm">Facebook</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all">
+          <p class="font-bold text-gray-800">12K+</p>
+          <p class="text-gray-600 text-sm">Instagram</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all">
+          <p class="font-bold text-gray-800">3K+</p>
+          <p class="text-gray-600 text-sm">Twitter</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all">
+          <p class="font-bold text-gray-800">8K+</p>
+          <p class="text-gray-600 text-sm">YouTube</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all">
+          <p class="font-bold text-gray-800">15K+</p>
+          <p class="text-gray-600 text-sm">TikTok</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-4">Berlangganan Newsletter</h2>
+        <p class="text-gray-600 mb-8">Dapatkan informasi terbaru tentang produk, resep, dan promo spesial langsung ke email Anda.</p>
+        <div class="flex flex-col sm:flex-row gap-2">
+          <input type="email" placeholder="Alamat email Anda" class="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent form-input">
+          <button class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors flex items-center justify-center">
+            <i class="fas fa-paper-plane mr-2"></i>
+            Berlangganan
+          </button>
+        </div>
+        <p class="text-sm text-gray-500 mt-4">Kami tidak akan mengirimkan spam. Anda dapat berhenti berlangganan kapan saja.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-16 pb-6">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <!-- About -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 flex items-center">
+            <i class="fas fa-utensils mr-2 text-orange-400"></i>
+            Rasa Nusantara
+          </h3>
+          <p class="text-gray-300 mb-4">Website e-commerce yang menyediakan berbagai produk kuliner tradisional Indonesia. Kami berkomitmen untuk melestarikan cita rasa nusantara dengan sentuhan modern.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-white hover:text-orange-300 transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-white hover:text-orange-300 transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-white hover:text-orange-300 transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-white hover:text-orange-300 transition-colors">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="text-white hover:text-orange-300 transition-colors">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Tautan Cepat</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i> Beranda</a></li>
+            <li><a href="produk.html" class="text-gray-300 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i> Produk</a></li>
+            <li><a href="blog.html" class="text-gray-300 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i> Blog</a></li>
+            <li><a href="forum.html" class="text-gray-300 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i> Forum</a></li>
+            <li><a href="tentang-kami.html" class="text-gray-300 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i> Tentang Kami</a></li>
+            <li><a href="kontak.html" class="text-gray-300 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i> Kontak</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Kontak Kami</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-orange-400"></i>
+              <span>Jl. Contoh No. 123, Kota Cimahi, Jawa Barat, 40511</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone-alt mr-3 text-orange-400"></i>
+              <span>+62 812-3456-7890</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-3 text-orange-400"></i>
+              <span>support@rasanusantara.com</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-globe mr-3 text-orange-400"></i>
+              <span>www.rasanusantara.com</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Hours -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Jam Operasional</h3>
+          <ul class="space-y-2">
+            <li class="flex justify-between items-center">
+              <span>Senin - Jumat:</span>
+              <span class="bg-gray-700 px-2 py-1 rounded text-sm">08:00 - 17:00 WIB</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <span>Sabtu:</span>
+              <span class="bg-gray-700 px-2 py-1 rounded text-sm">09:00 - 15:00 WIB</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <span>Minggu:</span>
+              <span class="bg-gray-700 px-2 py-1 rounded text-sm">Tutup</span>
+            </li>
+          </ul>
+          <div class="mt-4 pt-4 border-t border-gray-700">
+            <h4 class="font-medium mb-2">Metode Pembayaran</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-white text-gray-800 px-2 py-1 rounded text-xs">BCA</span>
+              <span class="bg-white text-gray-800 px-2 py-1 rounded text-xs">Mandiri</span>
+              <span class="bg-white text-gray-800 px-2 py-1 rounded text-xs">BNI</span>
+              <span class="bg-white text-gray-800 px-2 py-1 rounded text-xs">BRI</span>
+              <span class="bg-white text-gray-800 px-2 py-1 rounded text-xs">VISA</span>
+              <span class="bg-white text-gray-800 px-2 py-1 rounded text-xs">GoPay</span>
+              <span class="bg-white text-gray-800 px-2 py-1 rounded text-xs">OVO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <hr class="border-gray-700 mb-6">
+      
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">&copy; 2025 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Syarat & Ketentuan</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Kebijakan Privasi</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top bg-orange-500 hover:bg-orange-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-all">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+      
+      // FAQ toggle
+      window.toggleFAQ = function(button) {
+        const faqItem = button.closest('.faq-item');
+        const answer = faqItem.querySelector('.faq-answer');
+        const icon = button.querySelector('.faq-icon');
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-item').forEach(item => {
+          if (item !== faqItem) {
+            item.querySelector('.faq-answer').classList.add('hidden');
+            item.querySelector('.faq-icon').classList.remove('rotate-180');
+          }
+        });
+        
+        // Toggle current FAQ
+        answer.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+      }
+      
+      // Back to top button
+      const backToTopButton = document.getElementById('back-to-top');
+      
+      if (backToTopButton) {
+        window.addEventListener('scroll', function() {
+          if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+          } else {
+            backToTopButton.classList.remove('visible');
+          }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

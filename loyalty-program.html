@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Loyalitas - Rasa Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #E57C23;
+            --secondary-color: #025464;
+            --accent-color: #E8AA42;
+            --light-color: #F8F1F1;
+            --dark-color: #333;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .social-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: white;
+        }
+        
+        .social-icon:hover {
+            color: var(--accent-color);
+        }
+        
+        .loyalty-container {
+            margin: 60px auto;
+        }
+        
+        .loyalty-header {
+            background-color: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        
+        .tier-card {
+            height: 100%;
+            transition: transform 0.3s ease;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .tier-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .tier-header {
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .tier-bronze .tier-header {
+            background-color: #CD7F32;
+        }
+        
+        .tier-silver .tier-header {
+            background-color: #C0C0C0;
+        }
+        
+        .tier-gold .tier-header {
+            background-color: #FFD700;
+            color: #333;
+        }
+        
+        .tier-platinum .tier-header {
+            background: linear-gradient(135deg, #A9A9A9 0%, #E5E4E2 100%);
+        }
+        
+        .tier-body {
+            padding: 20px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-color);
+        }
+        
+        .progress-container {
+            margin: 30px 0;
+        }
+        
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+        
+        .progress-bar {
+            background-color: var(--primary-color);
+        }
+        
+        .point-badge {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+            display: inline-block;
+        }
+        
+        .reward-card {
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .reward-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .reward-img {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .point-cost {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .how-it-works-step {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Rasa Nusantara</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produk.html">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forum.html">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tentang-kami.html">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontak.html">Kontak</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="keranjang.html" class="btn position-relative me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3
+                        </span>
+                    </a>
+                    <a href="wishlist.html" class="btn position-relative me-3">
+                        <i class="fas fa-heart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            5
+                        </span>
+                    </a>
+                    <div class="dropdown">
+                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-1"></i> Budi Santoso
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="user-profile.html"><i class="fas fa-user-circle me-2"></i>Profil Saya</a></li>
+                            <li><a class="dropdown-item" href="order-history.html"><i class="fas fa-history me-2"></i>Riwayat Pesanan</a></li>
+                            <li><a class="dropdown-item" href="wishlist.html"><i class="fas fa-heart me-2"></i>Wishlist</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loyalty Program Header -->
+    <div class="loyalty-header">
+        <div class="container text-center">
+            <h1 class="mb-3">Program Loyalitas Rasa Nusantara</h1>
+            <p class="lead mb-4">Dapatkan hadiah dan keuntungan eksklusif setiap kali Anda berbelanja</p>
+            <div class="point-badge fs-5 mb-4">Poin Anda: 1,250</div>
+            <div class="progress-container">
+                <p class="mb-2">Level Silver (250 poin lagi untuk mencapai Gold)</p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <small>0</small>
+                    <small>1,000</small>
+                    <small>1,500</small>
+                    <small>3,000</small>
+                </div>
+            </div>
+            <a href="#rewards" class="btn btn-primary mt-3">Lihat Hadiah</a>
+        </div>
+    </div>
+
+    <!-- Loyalty Program Content -->
+    <div class="container loyalty-container">
+        <!-- How It Works -->
+        <section class="mb-5">
+            <h2 class="text-center mb-5">Cara Kerja Program Loyalitas</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="how-it-works-step">
+                        <div class="step-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <h4>Belanja</h4>
+                        <p>Dapatkan 1 poin untuk setiap Rp 10.000 yang Anda belanjakan di Rasa Nusantara</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="how-it-works-step">
+                        <div class="step-icon">
+                            <i class="fas fa-level-up-alt"></i>
+                        </div>
+                        <h4>Naik Level</h4>
+                        <p>Kumpulkan poin untuk naik ke level berikutnya dan dapatkan keuntungan lebih banyak</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="how-it-works-step">
+                        <div class="step-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h4>Tukarkan</h4>
+                        <p>Tukarkan poin Anda dengan berbagai hadiah menarik dan voucher diskon</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="how-it-works-step">
+                        <div class="step-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Nikmati</h4>
+                        <p>Nikmati keuntungan eksklusif sesuai dengan level keanggotaan Anda</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Membership Tiers -->
+        <section class="mb-5">
+            <h2 class="text-center mb-5">Level Keanggotaan</h2>
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="card tier-card tier-bronze">
+                        <div class="tier-header">
+                            <h3>Bronze</h3>
+                            <p class="mb-0">0 - 999 Poin</p>
+                        </div>
+                        <div class="tier-body">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-tag"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Diskon 5%</h6>
+                                    <small class="text-muted">Untuk pembelian pertama</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-birthday-cake"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Hadiah Ulang Tahun</h6>
+                                    <small class="text-muted">Voucher diskon 10%</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Newsletter</h6>
+                                    <small class="text-muted">Info promo terbaru</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card tier-card tier-silver">
+                        <div class="tier-header">
+                            <h3>Silver</h3>
+                            <p class="mb-0">1,000 - 1,999 Poin</p>
+                        </div>
+                        <div class="tier-body">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-tag"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Diskon 10%</h6>
+                                    <small class="text-muted">Untuk semua produk</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Gratis Ongkir</h6>
+                                    <small class="text-muted">Min. pembelian Rp 200.000</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-birthday-cake"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Hadiah Ulang Tahun</h6>
+                                    <small class="text-muted">Voucher diskon 15%</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Akses Early Sale</h6>
+                                    <small class="text-muted">1 hari lebih awal</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card tier-card tier-gold">
+                        <div class="tier-header">
+                            <h3>Gold</h3>
+                            <p class="mb-0">2,000 - 4,999 Poin</p>
+                        </div>
+                        <div class="tier-body">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-tag"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Diskon 15%</h6>
+                                    <small class="text-muted">Untuk semua produk</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Gratis Ongkir</h6>
+                                    <small class="text-muted">Min. pembelian Rp 150.000</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-birthday-cake"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Hadiah Ulang Tahun</h6>
+                                    <small class="text-muted">Voucher diskon 20% + produk gratis</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Akses Early Sale</h6>
+                                    <small class="text-muted">2 hari lebih awal</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Prioritas Customer Service</h6>
+                                    <small class="text-muted">Layanan pelanggan prioritas</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card tier-card tier-platinum">
+                        <div class="tier-header">
+                            <h3>Platinum</h3>
+                            <p class="mb-0">5,000+ Poin</p>
+                        </div>
+                        <div class="tier-body">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-tag"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Diskon 20%</h6>
+                                    <small class="text-muted">Untuk semua produk</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Gratis Ongkir</h6>
+                                    <small class="text-muted">Tanpa minimum pembelian</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-birthday-cake"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Hadiah Ulang Tahun</h6>
+                                    <small class="text-muted">Voucher diskon 25% + paket produk eksklusif</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Akses Early Sale</h6>
+                                    <small class="text-muted">3 hari lebih awal</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Dedicated Customer Service</h6>
+                                    <small class="text-muted">Layanan pelanggan khusus 24/7</small>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Undangan Event Eksklusif</h6>
+                                    <small class="text-muted">Akses ke acara khusus</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Available Rewards -->
+        <section id="rewards" class="mb-5">
+            <h2 class="text-center mb-5">Hadiah yang Tersedia</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card reward-card">
+                        <div class="position-relative">
+                            <img src="/placeholder.svg?height=200&width=400" class="reward-img w-100" alt="Voucher Diskon">
+                            <div class="point-cost">500 Poin</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Voucher Diskon 50.000</h5>
+                            <p class="card-text">Voucher diskon Rp 50.000 untuk pembelian minimum Rp 200.000</p>
+                            <a href="#" class="btn btn-primary">Tukarkan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card reward-card">
+                        <div class="position-relative">
+                            <img src="/placeholder.svg?height=200&width=400" class="reward-img w-100" alt="Gratis Ongkir">
+                            <div class="point-cost">300 Poin</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Voucher Gratis Ongkir</h5>
+                            <p class="card-text">Gratis ongkos kirim untuk pembelian apa pun tanpa minimum pembelian</p>
+                            <a href="#" class="btn btn-primary">Tukarkan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card reward-card">
+                        <div class="position-relative">
+                            <img src="/placeholder.svg?height=200&width=400" class="reward-img w-100" alt="Produk Gratis">
+                            <div class="point-cost">800 Poin</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Sambal Bawang Bu Rudy</h5>
+                            <p class="card-text">Dapatkan 1 botol Sambal Bawang Bu Rudy secara gratis</p>
+                            <a href="#" class="btn btn-primary">Tukarkan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card reward-card">
+                        <div class="position-relative">
+                            <img src="/placeholder.svg?height=200&width=400" class="reward-img w-100" alt="Voucher Diskon">
+                            <div class="point-cost">1000 Poin</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Voucher Diskon 100.000</h5>
+                            <p class="card-text">Voucher diskon Rp 100.000 untuk pembelian minimum Rp 350.000</p>
+                            <a href="#" class="btn btn-primary">Tukarkan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card reward-card">
+                        <div class="position-relative">
+                            <img src="/placeholder.svg?height=200&width=400" class="reward-img w-100" alt="Produk Gratis">
+                            <div class="point-cost">1200 Poin</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Rendang Sapi Padang</h5>
+                            <p class="card-text">Dapatkan 1 porsi Rendang Sapi Padang secara gratis</p>
+                            <a href="#" class="btn btn-primary">Tukarkan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card reward-card">
+                        <div class="position-relative">
+                            <img src="/placeholder.svg?height=200&width=400" class="reward-img w-100" alt="Voucher Diskon">
+                            <div class="point-cost">2000 Poin</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Voucher Diskon 25%</h5>
+                            <p class="card-text">Voucher diskon 25% untuk semua produk tanpa minimum pembelian</p>
+                            <a href="#" class="btn btn-primary">Tukarkan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary">Lihat Semua Hadiah</a>
+            </div>
+        </section>
+        
+        <!-- Point History -->
+        <section class="mb-5">
+            <h2 class="text-center mb-5">Riwayat Poin</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <th>Aktivitas</th>
+                                    <th>Poin</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>20 Mei 2023</td>
+                                    <td>Pembelian #RN78945612</td>
+                                    <td class="text-success">+170</td>
+                                    <td><span class="badge bg-success">Berhasil</span></td>
+                                </tr>
+                                <tr>
+                                    <td>15 Mei 2023</td>
+                                    <td>Tukar Voucher Diskon 50.000</td>
+                                    <td class="text-danger">-500</td>
+                                    <td><span class="badge bg-success">Berhasil</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2 Mei 2023</td>
+                                    <td>Pembelian #RN78945589</td>
+                                    <td class="text-success">+155</td>
+                                    <td><span class="badge bg-success">Berhasil</span></td>
+                                </tr>
+                                <tr>
+                                    <td>25 April 2023</td>
+                                    <td>Bonus Ulang Tahun</td>
+                                    <td class="text-success">+500</td>
+                                    <td><span class="badge bg-success">Berhasil</span></td>
+                                </tr>
+                                <tr>
+                                    <td>15 April 2023</td>
+                                    <td>Pembelian #RN78945501</td>
+                                    <td class="text-success">+75</td>
+                                    <td><span class="badge bg-danger">Dibatalkan</span></td>
+                                </tr>
+                                <tr>
+                                    <td>10 April 2023</td>
+                                    <td>Bonus Referral</td>
+                                    <td class="text-success">+100</td>
+                                    <td><span class="badge bg-success">Berhasil</span></td>
+                                </tr>
+                                <tr>
+                                    <td>5 April 2023</td>
+                                    <td>Pembelian #RN78945480</td>
+                                    <td class="text-success">+250</td>
+                                    <td><span class="badge bg-success">Berhasil</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary">Lihat Semua Riwayat</a>
+            </div>
+        </section>
+        
+        <!-- FAQ -->
+        <section class="mb-5">
+            <h2 class="text-center mb-5">Pertanyaan Umum</h2>
+            <div class="accordion" id="loyaltyFaqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Bagaimana cara mendapatkan poin?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#loyaltyFaqAccordion">
+                        <div class="accordion-body">
+                            Anda akan mendapatkan 1 poin untuk setiap Rp 10.000 yang Anda belanjakan di Rasa Nusantara. Poin akan otomatis ditambahkan ke akun Anda setelah pesanan selesai dan tidak dibatalkan. Anda juga bisa mendapatkan poin tambahan melalui program referral, ulang tahun, dan promosi khusus lainnya.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Berapa lama poin saya berlaku?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#loyaltyFaqAccordion">
+                        <div class="accordion-body">
+                            Poin Anda berlaku selama 12 bulan sejak tanggal diperoleh. Poin yang tidak digunakan akan kedaluwarsa setelah periode tersebut. Anda akan menerima notifikasi melalui email dan aplikasi sebelum poin Anda kedaluwarsa.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Bagaimana cara menukarkan poin saya?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#loyaltyFaqAccordion">
+                        <div class="accordion-body">
+                            Untuk menukarkan poin, kunjungi halaman "Program Loyalitas" di akun Anda, pilih hadiah yang diinginkan, dan klik tombol "Tukarkan". Hadiah akan otomatis ditambahkan ke akun Anda atau dikirimkan bersama pesanan berikutnya, tergantung jenis hadiah yang dipilih.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Apakah level keanggotaan saya bisa turun?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#loyaltyFaqAccordion">
+                <div class="accordion-body">
+                    Level keanggotaan Anda dievaluasi setiap 6 bulan berdasarkan total poin yang Anda kumpulkan. Jika total poin Anda kurang dari persyaratan minimum untuk level saat ini, level keanggotaan Anda akan diturunkan ke level yang sesuai. Namun, Anda akan diberi notifikasi 30 hari sebelumnya dan kesempatan untuk mengumpulkan poin tambahan agar tetap di level saat ini.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Apakah saya bisa mentransfer poin ke akun lain?
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#loyaltyFaqAccordion">
+                <div class="accordion-body">
+                    Saat ini, transfer poin antar akun tidak tersedia. Poin hanya dapat digunakan oleh pemilik akun yang mengumpulkannya. Namun, Anda dapat memberikan hadiah yang ditukarkan dengan poin Anda kepada orang lain.
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Join Now -->
+    <section class="text-center p-5 bg-light rounded">
+        <h2 class="mb-4">Bergabunglah dengan Program Loyalitas Kami Sekarang!</h2>
+        <p class="lead mb-4">Nikmati berbagai keuntungan eksklusif dan hadiah menarik setiap kali Anda berbelanja</p>
+        <a href="register.html" class="btn btn-primary btn-lg">Daftar Sekarang</a>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer class="py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 mb-4 mb-lg-0">
+                <h5 class="text-uppercase mb-4">Rasa Nusantara</h5>
+                <p>Menyajikan makanan khas Indonesia dengan kualitas terbaik dan rasa autentik sejak 2010.</p>
+                <div class="d-flex mt-4">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 mb-lg-0">
+                <h5 class="mb-4">Tautan Cepat</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                    <li class="mb-2"><a href="produk.html" class="text-white text-decoration-none">Produk</a></li>
+                    <li class="mb-2"><a href="blog.html" class="text-white text-decoration-none">Blog</a></li>
+                    <li class="mb-2"><a href="forum.html" class="text-white text-decoration-none">Forum</a></li>
+                    <li class="mb-2"><a href="tentang-kami.html" class="text-white text-decoration-none">Tentang Kami</a></li>
+                    <li class="mb-2"><a href="kontak.html" class="text-white text-decoration-none">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 mb-4 mb-lg-0">
+                <h5 class="mb-4">Bantuan & Informasi</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="faq.html" class="text-white text-decoration-none">FAQ</a></li>
+                    <li class="mb-2"><a href="return-policy.html" class="text-white text-decoration-none">Kebijakan Pengembalian</a></li>
+                    <li class="mb-2"><a href="privacy-policy.html" class="text-white text-decoration-none">Kebijakan Privasi</a></li>
+                    <li class="mb-2"><a href="terms-conditions.html" class="text-white text-decoration-none">Syarat & Ketentuan</a></li>
+                    <li class="mb-2"><a href="size-guide.html" class="text-white text-decoration-none">Panduan Ukuran</a></li>
+                    <li class="mb-2"><a href="order-tracking.html" class="text-white text-decoration-none">Lacak Pesanan</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3">
+                <h5 class="mb-4">Hubungi Kami</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Jl. Gatot Subroto No. 123, Jakarta</li>
+                    <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> (021) 123-4567</li>
+                    <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@rasanusantara.com</li>
+                </ul>
+                <h5 class="mb-3 mt-4">Metode Pembayaran</h5>
+                <div class="d-flex flex-wrap">
+                    <i class="fab fa-cc-visa me-3 mb-2" style="font-size: 24px;"></i>
+                    <i class="fab fa-cc-mastercard me-3 mb-2" style="font-size: 24px;"></i>
+                    <i class="fab fa-cc-paypal me-3 mb-2" style="font-size: 24px;"></i>
+                    <i class="fas fa-money-bill-wave me-3 mb-2" style="font-size: 24px;"></i>
+                </div>
+            </div>
+        </div>
+        <hr class="my-4 bg-light">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="mb-0">&copy; 2023 Rasa Nusantara. Hak Cipta Dilindungi.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <p class="mb-0">Dibuat dengan <i class="fas fa-heart text-danger"></i> di Indonesia</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
